@@ -1,0 +1,953 @@
+<!DOCTYPE html><html><head>
+      <title>webpackNote</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+.markdown-preview.markdown-preview {
+  font-family: "consolas", "Noto Sans S Chinese";
+  font-size: 1em;
+}
+.markdown-img-description {
+  text-align: center;
+  margin-top: -1em;
+  color: #666;
+  margin-bottom: 2em;
+}
+html body img {
+  border: 2px solid #ccc;
+}
+.markdown-p-center {
+  text-align: center;
+}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      
+<script>
+    function setCurrent(){
+        const links = document.querySelectorAll(".md-sidebar-toc a")
+        for(const link of links){
+            link.style.color="";
+        }
+        const hash = location.hash;
+        const a = document.querySelector('a[href="'+hash+'"]');
+        if(a){
+            a.style.color = "#f40";
+        }
+    }
+    setCurrent();
+    window.onhashchange = setCurrent;
+</script>
+<h1 class="mume-header undefined" id="webpack%E7%AC%94%E8%AE%B0">webpack&#x7B14;&#x8BB0;</h1>
+
+<h2 class="mume-header" id="webpack-cli-%E6%89%93%E5%8C%85%E6%96%87%E4%BB%B6">webpack CLI &#x6253;&#x5305;&#x6587;&#x4EF6;</h2>
+
+<pre data-role="codeBlock" data-info="bash" class="language-bash">webpack <span class="token operator">&lt;</span>entry<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>output<span class="token operator">&gt;</span>
+</pre><p>&#x4E3A;&#x4E86;&#x66F4;&#x5408;&#x9002;&#x4E14;&#x65B9;&#x4FBF;&#x5730;&#x4F7F;&#x7528;&#x914D;&#x7F6E;&#xFF0C;&#x53EF;&#x4EE5;&#x5728; <code>webpack.config.js</code> &#x4E2D;&#x5BF9; webpack &#x8FDB;&#x884C;&#x914D;&#x7F6E;&#xFF0C;&#x4F46;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; CLI &#x53C2;&#x6570; <code>--config</code> &#x6765;&#x6307;&#x5B9A;&#x67D0;&#x4E2A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x8BA9;&#x4E0D;&#x540C;&#x7684;&#x73AF;&#x5883;&#x6709;&#x81EA;&#x5DF1;&#x7279;&#x5B9A;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; CLI &#x53C2;&#x6570; <code>--env</code> &#x6765;&#x6307;&#x5B9A;&#x73AF;&#x5883;&#x540D;&#x79F0;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x8FDB;&#x884C;&#x5224;&#x65AD;&#xFF0C;&#x6839;&#x636E;&#x73AF;&#x5883;&#x540D;&#x79F0;&#x8FD4;&#x56DE;&#x4E0D;&#x540C;&#x7684;&#x914D;&#x7F6E;&#x7ED3;&#x679C;&#x3002;</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">webpack --env abc <span class="token comment"># env: &quot;abc&quot;</span>
+webpack --env.abc <span class="token comment"># env: {abc:true}</span>
+webpack --env.abc<span class="token operator">=</span>1  <span class="token comment"># env&#xFF1A; {abc:1}</span>
+webpack --env.abc<span class="token operator">=</span>1 --env.bcd<span class="token operator">=</span>2 <span class="token comment"># env: {abc:1, bcd:2}</span>
+</pre><p>CLI &#x4E2D;&#x4F20;&#x5165;&#x7684;&#x4EFB;&#x4F55;&#x53C2;&#x6570;&#x4F1A;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x6620;&#x5C04;&#x4E3A;&#x5BF9;&#x5E94;&#x7684;&#x53C2;&#x6570;&#x3002;&#x5F53;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x4E0E;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x914D;&#x7F6E;&#x51FA;&#x73B0;&#x51B2;&#x7A81;&#x65F6;&#xFF0C;&#x4EE5;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x4E3A;&#x51C6;&#x3002;</p>
+<h2 class="mume-header" id="webpack-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">webpack &#x914D;&#x7F6E;&#x6587;&#x4EF6;</h2>
+
+<p>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x901A;&#x8FC7; CommonJS &#x6A21;&#x5757;&#x5BFC;&#x51FA;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x5BF9;&#x8C61;&#x4E2D;&#x7684;&#x5404;&#x79CD;&#x5C5E;&#x6027;&#x5BF9;&#x5E94;&#x4E0D;&#x540C;&#x7684; webpack &#x914D;&#x7F6E;&#x3002;<br>
+<strong>&#x9700;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5FC5;&#x987B;&#x662F;&#x6709;&#x6548;&#x7684; node &#x4EE3;&#x7801;</strong></p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    mode<span class="token punctuation">:</span> <span class="token constant">XXX</span><span class="token punctuation">,</span>
+    entry<span class="token punctuation">:</span> <span class="token constant">XXX</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x53EF;&#x4EE5;&#x9488;&#x5BF9;&#x591A;&#x4E2A;&#x73AF;&#x5883;&#x5206;&#x522B;&#x4E66;&#x5199; webpack &#x914D;&#x7F6E;&#xFF0C;&#x5141;&#x8BB8;&#x901A;&#x8FC7; CommonJS &#x6A21;&#x5757;&#x5BFC;&#x51FA;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x3002;&#x5728;&#x5F00;&#x59CB;&#x6784;&#x5EFA;&#x65F6;&#xFF0C;webpack &#x53D1;&#x73B0;&#x914D;&#x7F6E;&#x662F;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x4F1A;&#x8C03;&#x7528;&#x8BE5;&#x51FD;&#x6570;&#xFF0C;&#x5C06;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x7684;&#x5BF9;&#x8C61;&#x4F5C;&#x4E3A;&#x914D;&#x7F6E;&#x5185;&#x5BB9;&#x3002;</p>
+<p>&#x51FD;&#x6570;&#x63A5;&#x6536;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x7684;&#x503C;&#x6765;&#x81EA;&#x4E8E; CLI &#x4E2D; webpack &#x547D;&#x4EE4;&#x7684; <code>--env</code> &#x53C2;&#x6570;&#x6307;&#x5B9A;&#x7684;&#x503C;&#xFF0C;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x4E0D;&#x540C;&#x7684;&#x73AF;&#x5883;&#x8FD4;&#x56DE;&#x4E0D;&#x540C;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">var</span> baseConfig <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./webpack.base&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> devConfig <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./webpack.dev&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> proConfig <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./webpack.pro&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">env</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>env <span class="token operator">&amp;&amp;</span> env<span class="token punctuation">.</span>prod<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+            <span class="token operator">...</span>baseConfig<span class="token punctuation">,</span>
+            <span class="token operator">...</span>proConfig
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+            <span class="token operator">...</span>baseConfig<span class="token punctuation">,</span>
+            <span class="token operator">...</span>devConfig
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><h2 class="mume-header" id="webpack-%E4%B8%AD%E7%9A%84-loader-%E6%A8%A1%E5%9D%97%E6%96%87%E4%BB%B6">webpack &#x4E2D;&#x7684; loader &#x6A21;&#x5757;&#x6587;&#x4EF6;</h2>
+
+<p>loader &#x6A21;&#x5757;&#x6587;&#x4EF6;&#x4E2D;&#x901A;&#x8FC7; CommonJS &#x6A21;&#x5757;&#x5BFC;&#x51FA;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x5B83;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x5C06;&#x67D0;&#x4E2A;&#x6E90;&#x7801;&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x6210;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x7801;&#x5B57;&#x7B26;&#x4E32;&#x8FD4;&#x56DE;&#xFF0C;&#x7B80;&#x5355;&#x8BF4;&#x5C31;&#x662F;&#x8F6C;&#x6362;&#x4EE3;&#x7801;&#x683C;&#x5F0F;&#x3002;</p>
+<p>&#x51FD;&#x6570;&#x63A5;&#x6536;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x4E3A;&#x4EA4;&#x7531; loader &#x5904;&#x7406;&#x7684;&#x6A21;&#x5757;&#x7684;&#x6E90;&#x7801;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+<p>&#x51FD;&#x6570;&#x8FD4;&#x56DE; loader &#x5904;&#x7406;&#x8FC7;&#x7684;&#x6E90;&#x7801;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+<p><strong>&#x9700;&#x8981;&#x6CE8;&#x610F;&#xFF0C;loader &#x6A21;&#x5757;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5FC5;&#x987B;&#x662F;&#x6709;&#x6548;&#x7684; node &#x4EE3;&#x7801;</strong><br>
+<img src="assets/2020-01-13-10-39-24.png" alt="loader&#x6A21;&#x5757;&#x7684;&#x4F5C;&#x7528;"></p>
+<p>&#x51FD;&#x6570;&#x53EF;&#x901A;&#x8FC7; <code>loader-utils</code> &#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x7684; <code>getOptions</code> &#x65B9;&#x6CD5;&#xFF0C;&#x83B7;&#x53D6; <code>this</code> &#x4E0A;&#x4E0B;&#x6587;&#x5BF9;&#x8C61;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x4F20;&#x9012;&#x7684;&#x53C2;&#x6570;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">var</span> loaderUtils <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;loader-utils&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">sourceCode</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> options <span class="token operator">=</span> loaderUtils<span class="token punctuation">.</span><span class="token function">getOptions</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> reg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>changeVar<span class="token punctuation">,</span> <span class="token string">&quot;g&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> sourceCode<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>reg<span class="token punctuation">,</span> <span class="token string">&quot;var&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><h2 class="mume-header" id="webpack-%E4%B8%AD%E7%9A%84-plugin-%E6%A8%A1%E5%9D%97%E6%96%87%E4%BB%B6">webpack &#x4E2D;&#x7684; plugin &#x6A21;&#x5757;&#x6587;&#x4EF6;</h2>
+
+<p>plugin &#x6A21;&#x5757;&#x6587;&#x4EF6;&#x4E2D;&#x901A;&#x8FC7; CommonJS &#x6A21;&#x5757;&#x5BFC;&#x51FA;&#x4E00;&#x4E2A;&#x7C7B;&#x51FD;&#x6570;&#xFF0C;&#x5176;&#x672C;&#x8D28;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5E26;&#x6709; <code>apply</code> &#x65B9;&#x6CD5;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x5B83;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x4EE5;&#x5404;&#x79CD;&#x65B9;&#x5F0F;&#x81EA;&#x5B9A;&#x4E49; webpack &#x6784;&#x5EFA;&#x8FC7;&#x7A0B;&#xFF0C;&#x7B80;&#x5355;&#x8BF4;&#x5C31;&#x662F;&#x628A;&#x529F;&#x80FD;&#x5D4C;&#x5165;&#x5230; webpack &#x7684;&#x7F16;&#x8BD1;&#x6D41;&#x7A0B;&#x4E2D;&#x3002;</p>
+<p>&#x7C7B;&#x51FD;&#x6570;&#x4E2D;&#x6709;&#x4E00;&#x4E2A; <code>apply</code> &#x65B9;&#x6CD5;&#xFF0C;&#x5E76;&#x5411;&#x8BE5;&#x65B9;&#x6CD5;&#x4E2D;&#x4F20;&#x5165;&#x4E00;&#x4E2A; <code>compiler</code> &#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x63D0;&#x4F9B;&#x4E86;&#x5927;&#x91CF;&#x7684;&#x94A9;&#x5B50;&#x51FD;&#x6570;&#xFF08;hooks&#xFF0C;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x4E8B;&#x4EF6;&#xFF09;&#xFF0C;&#x901A;&#x8FC7;&#x6CE8;&#x518C;&#x8FD9;&#x4E9B;&#x4E8B;&#x4EF6;&#x5E76;&#x6307;&#x5B9A;&#x4E8B;&#x4EF6;&#x7C7B;&#x578B;&#x521B;&#x5EFA;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x51FD;&#x6570;&#x4E2D;&#x4F20;&#x5165;&#x4E00;&#x4E2A; <code>compilation</code> &#x5BF9;&#x8C61;&#xFF0C;&#x540C;&#x6837;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x4E5F;&#x63D0;&#x4F9B;&#x4E86;&#x5927;&#x91CF;&#x7684;&#x94A9;&#x5B50;&#x51FD;&#x6570;&#xFF0C;&#x7528;&#x76F8;&#x540C;&#x7684;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x521B;&#x5EFA; compilation &#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x7C7B;&#x51FD;&#x6570;&#x53EF;&#x901A;&#x8FC7;&#x81EA;&#x5DF1;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x83B7;&#x53D6;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x4F20;&#x9012;&#x7684;&#x53C2;&#x6570;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token keyword">class</span> <span class="token class-name">MyPlugin</span><span class="token punctuation">{</span>
+  
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token constant">XXX</span> <span class="token operator">=</span> <span class="token constant">XXX</span></span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token constant">XXX</span> <span class="token operator">=</span> <span class="token constant">XXX</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">apply</span><span class="token punctuation">(</span><span class="token parameter">compiler</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        compiler<span class="token punctuation">.</span>hooks<span class="token punctuation">.</span>&#x4E8B;&#x4EF6;&#x540D;&#x79F0;<span class="token punctuation">.</span><span class="token function">&#x4E8B;&#x4EF6;&#x7C7B;&#x578B;</span><span class="token punctuation">(</span><span class="token string">&quot;MyPlugin&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">compilation</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token constant">XXX</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x51FD;&#x6570;</span>
+            compilation<span class="token punctuation">.</span>hooks<span class="token punctuation">.</span>&#x4E8B;&#x4EF6;&#x540D;&#x79F0;<span class="token punctuation">.</span><span class="token function">&#x4E8B;&#x4EF6;&#x7C7B;&#x578B;</span><span class="token punctuation">(</span><span class="token string">&quot;MyPlugin&quot;</span><span class="token punctuation">,</span> &#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x51FD;&#x6570;<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><blockquote>
+<p><strong>&#x4E8B;&#x4EF6;&#x540D;&#x79F0;</strong></p>
+<p>&#x5373;&#x8981;&#x76D1;&#x542C;&#x7684;&#x4E8B;&#x4EF6;&#x540D;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x94A9;&#x5B50;&#x51FD;&#x6570;&#x7684;&#x540D;&#x79F0;&#xFF0C;&#x5206;&#x4E3A; <a href="https://www.webpackjs.com/api/compiler-hooks">compiler</a> &#x94A9;&#x5B50;&#x548C; <a href="https://www.webpackjs.com/api/compilation-hooks/">compilation</a> &#x94A9;&#x5B50;&#x3002;</p>
+<p><strong>&#x4E8B;&#x4EF6;&#x7C7B;&#x578B;</strong></p>
+<p>&#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x7684;&#x662F; Tapable API &#xFF0C;&#x8FD9;&#x4E2A;&#x5C0F;&#x578B;&#x7684;&#x5E93;&#x662F;&#x4E00;&#x4E2A;&#x4E13;&#x95E8;&#x7528;&#x4E8E;&#x94A9;&#x5B50;&#x51FD;&#x6570;&#x76D1;&#x542C;&#x7684;&#x5E93;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E9B;&#x4E8B;&#x4EF6;&#x7C7B;&#x578B;&#xFF1A;</p>
+<ul>
+<li>tap&#xFF1A;&#x6CE8;&#x518C;&#x4E00;&#x4E2A;&#x540C;&#x6B65;&#x7684;&#x94A9;&#x5B50;&#x51FD;&#x6570;&#xFF0C;&#x51FD;&#x6570;&#x8FD0;&#x884C;&#x5B8C;&#x6BD5;&#x5219;&#x8868;&#x793A;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x7ED3;&#x675F;&#x3002;</li>
+<li>tapAsync&#xFF1A;&#x6CE8;&#x518C;&#x4E00;&#x4E2A;&#x57FA;&#x4E8E;&#x56DE;&#x8C03;&#x7684;&#x5F02;&#x6B65;&#x7684;&#x94A9;&#x5B50;&#x51FD;&#x6570;&#xFF0C;&#x51FD;&#x6570;&#x901A;&#x8FC7;&#x8C03;&#x7528;&#x4E00;&#x4E2A;&#x56DE;&#x8C03;&#x8868;&#x793A;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x7ED3;&#x675F;&#x3002;</li>
+<li>tapPromise&#xFF1A;&#x6CE8;&#x518C;&#x4E00;&#x4E2A;&#x57FA;&#x4E8E; Promise &#x7684;&#x5F02;&#x6B65;&#x7684;&#x94A9;&#x5B50;&#x51FD;&#x6570;&#xFF0C;&#x51FD;&#x6570;&#x901A;&#x8FC7;&#x8FD4;&#x56DE;&#x7684; Promise &#x8FDB;&#x5165;&#x5DF2;&#x51B3;&#x72B6;&#x6001;&#x8868;&#x793A;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x7ED3;&#x675F;&#x3002;</li>
+</ul>
+<p><strong>&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x51FD;&#x6570;</strong><br>
+&#x53C2;&#x4E0E; webpack &#x7F16;&#x8BD1;&#x548C;&#x751F;&#x6210;&#x3002;</p>
+<p><strong>&#x9700;&#x8981;&#x6CE8;&#x610F;&#xFF0C;plugin &#x6A21;&#x5757;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5FC5;&#x987B;&#x662F;&#x6709;&#x6548;&#x7684; node &#x4EE3;&#x7801;</strong></p>
+</blockquote>
+<h2 class="mume-header" id="webpack-%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9">webpack &#x914D;&#x7F6E;&#x9009;&#x9879;</h2>
+
+<ul>
+<li>CLI <code>&lt;entry&gt;</code> | CONF entry {string/object}:<br>
+&#x6307;&#x5B9A;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x7684;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#xFF0C;&#x4ECE;&#x8FD9;&#x4E2A;&#x8D77;&#x70B9;&#x5F00;&#x59CB;&#xFF0C;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x542F;&#x52A8;&#x6267;&#x884C;&#x3002;&#x5982;&#x679C;&#x4F20;&#x9012;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#xFF0C;&#x90A3;&#x4E48;&#x6570;&#x7EC4;&#x7684;&#x6BCF;&#x4E00;&#x9879;&#x90FD;&#x4F1A;&#x6267;&#x884C;&#x3002;&#x591A;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x4EE5;&#x5BF9;&#x8C61;&#x5F62;&#x5F0F;&#x4E66;&#x5199;&#xFF0C;&#x5728; CLI &#x4E2D;&#x4EE5;&#x952E;&#x503C;&#x5BF9;&#x5F62;&#x5F0F;&#x4E66;&#x5199;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;./src/index.js</em></li>
+<li>CLI <code>&lt;output&gt;</code> | CONF output {string/object}:<br>
+&#x6307;&#x5B9A;&#x7F16;&#x8BD1;&#x7ED3;&#x679C;&#x6587;&#x4EF6;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;./dist/main.js</em>
+<ul>
+<li>
+<p>CLI <code>--output-path</code> | CONF path {string}:<br>
+&#x8D44;&#x6E90;&#x653E;&#x7F6E;&#x7684;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x5FC5;&#x987B;&#x914D;&#x7F6E;&#x4E00;&#x4E2A;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;path.resolve(__dirname, &quot;dist&quot;)</em></p>
+</li>
+<li>
+<p>CLI <code>--output-filename</code> | CONF filename {string}:<br>
+&#x9488;&#x5BF9;&#x8D44;&#x6E90;&#x5217;&#x8868;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x6216;&#x8DEF;&#x5F84;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x5305;&#x542B;&#x4EE5;&#x4E0B;&#x66FF;&#x6362;&#x6A21;&#x677F;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x52A8;&#x6001;&#x540D;&#x79F0;&#x7528;&#x4E8E;&#x89E3;&#x51B3;&#x7F13;&#x5B58;&#x95EE;&#x9898;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th>&#x6A21;&#x677F;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[hash]</td>
+<td>&#x6A21;&#x5757;&#x6807;&#x8BC6;&#x7B26;(module identifier)&#x7684; hash</td>
+</tr>
+<tr>
+<td>[chunkhash]</td>
+<td>chunk &#x5185;&#x5BB9;&#x7684; hash</td>
+</tr>
+<tr>
+<td>[name]</td>
+<td>&#x6A21;&#x5757;&#x540D;&#x79F0;</td>
+</tr>
+<tr>
+<td>[id]</td>
+<td>&#x6A21;&#x5757;&#x6807;&#x8BC6;&#x7B26;(module identifier)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>[hash] &#x548C; [chunkhash] &#x7684;&#x957F;&#x5EA6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; [hash:16]&#xFF08;&#x9ED8;&#x8BA4;&#x4E3A;20&#xFF09;&#x6765;&#x6307;&#x5B9A;&#x3002;<br>
+[id] &#x5728;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4E0B;&#x5C31;&#x662F;&#x6A21;&#x5757;&#x540D;&#x79F0;&#xFF0C;&#x5728;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E0B;&#x662F;&#x6570;&#x5B57;&#xFF0C;&#x4E0D;&#x63A8;&#x8350;&#x4F5C;&#x4E3A;&#x552F;&#x4E00;&#x6807;&#x8BC6;&#x7B26;&#x3002;</p>
+</blockquote>
+<p><em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;main.js</em></p>
+</li>
+<li>
+<p>CLI <code>--output-library</code> | CONF library {string}:<br>
+&#x4EE5;&#x5E93;&#x7684;&#x5F62;&#x5F0F;&#x5BFC;&#x51FA;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5C06;&#x6253;&#x5305;&#x7ED3;&#x679C;&#x4E2D;&#x81EA;&#x6267;&#x884C;&#x51FD;&#x6570;&#x7684;&#x6267;&#x884C;&#x7ED3;&#x679C;&#x66B4;&#x9732;&#x7ED9;&#x6307;&#x5B9A;&#x7684;&#x53D8;&#x91CF;&#x3002;&#x4E0E; DllPlugin &#x548C; DllReferencePlugin &#x63D2;&#x4EF6;&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#xFF0C;&#x4EE5;&#x63D0;&#x9AD8;&#x4F20;&#x8F93;&#x6027;&#x80FD;&#x3002;<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+</li>
+<li>
+<p>CLI <code>--output-library-target</code> | CONF libraryTarget {string (var/window/this/global/commonjs/...)}:<br>
+&#x4EE5;&#x5E93;&#x7684;&#x5F62;&#x5F0F;&#x5BFC;&#x51FA;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x65F6;&#x7684;&#x8F93;&#x51FA;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x63A7;&#x5236;&#x5982;&#x4F55;&#x66B4;&#x9732;&#x5165;&#x53E3;&#x5305;&#x7684;&#x5BFC;&#x51FA;&#x7ED3;&#x679C;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;var</em></p>
+</li>
+<li>
+<p>CONF publicPath {string}:<br>
+&#x5F53;&#x6309;&#x9700;&#x52A0;&#x8F7D;&#x6216;&#x52A0;&#x8F7D;&#x5916;&#x90E8;&#x8D44;&#x6E90;&#x65F6;&#xFF0C;&#x7528;&#x6765;&#x786E;&#x5B9A;&#x6700;&#x7EC8;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x6240;&#x5F15;&#x7528;&#x7684;&#x6B63;&#x786E;&#x7684;&#x8DEF;&#x5F84;&#x3002;&#x8BE5;&#x9009;&#x9879;&#x7684;&#x503C;&#x4F5C;&#x4E3A;&#x8FD0;&#x884C;&#x6216;&#x8F7D;&#x5165;&#x65F6;&#x6240;&#x521B;&#x5EFA;&#x7684;&#x6BCF;&#x4E2A; URL &#x7684;&#x524D;&#x7F00;&#x3002;&#x5728;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6B64;&#x9009;&#x9879;&#x7684;&#x503C;&#x90FD;&#x4F1A;&#x4EE5; <code>/</code> &#x7ED3;&#x675F;&#x3002;&#x5E76;&#x4E14;&#x8BE5;&#x9009;&#x9879;&#x7684;&#x503C;&#x53EF;&#x4EE5;&#x5728;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528; <code>__webpack_public_path__</code> &#x6765;&#x83B7;&#x53D6;&#xFF0C;&#x4EE5;&#x4FBF;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x52A8;&#x6001;&#x8BFB;&#x53D6;&#x6216;&#x8BBE;&#x7F6E;&#x3002;webpack-dev-server &#x4E5F;&#x4F1A;&#x9ED8;&#x8BA4;&#x4EE5; publicPath &#x4E3A;&#x57FA;&#x51C6;&#xFF0C;&#x6765;&#x51B3;&#x5B9A;&#x5728;&#x54EA;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;&#x542F;&#x7528;&#x670D;&#x52A1;&#xFF0C;&#x6765;&#x8BBF;&#x95EE; webpack &#x8F93;&#x51FA;&#x7684;&#x6587;&#x4EF6;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;&#x7A7A;</em></p>
+</li>
+</ul>
+</li>
+<li>CLI <code>--config</code> {string}:<br>
+&#x6307;&#x5B9A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;webpack.config.js</em></li>
+<li>CLI <code>--mode</code> | CONF mode {string (production/development)}:<br>
+&#x6307;&#x5B9A;&#x7F16;&#x8BD1;&#x7ED3;&#x679C;&#x4EE3;&#x7801;&#x8FD0;&#x884C;&#x7684;&#x73AF;&#x5883;&#xFF0C;&#x4F1A;&#x5F71;&#x54CD; webpack &#x5BF9;&#x7F16;&#x8BD1;&#x7ED3;&#x679C;&#x4EE3;&#x7801;&#x683C;&#x5F0F;&#x7684;&#x5904;&#x7406;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;production</em></li>
+<li>CLI <code>--devtool</code> | CONF devtool {string (none/eval/source-map/...)}:<br>
+&#x4E3A;&#x6253;&#x5305;&#x597D;&#x7684;&#x8D44;&#x6E90;&#x5B9A;&#x4E49; source map &#x7684;&#x7C7B;&#x578B;&#x3002;<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup><br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;pro=none / dev=eval</em></li>
+<li>CONF module {object}:<br>
+&#x9488;&#x5BF9;&#x6A21;&#x5757;&#x7684;&#x914D;&#x7F6E;&#x3002;
+<ul>
+<li>CONF noParse {reg}:<br>
+&#x4E0D;&#x89E3;&#x6790;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5339;&#x914D;&#x7684;&#x6A21;&#x5757;&#xFF0C;&#x901A;&#x5E38;&#x7528;&#x5B83;&#x6765;&#x5FFD;&#x7565;&#x90A3;&#x4E9B;&#x5927;&#x578B;&#x7684;&#x5355;&#x6A21;&#x5757;&#x5E93;&#x6216;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x4F9D;&#x8D56;&#x7684;&#x5DF2;&#x7ECF;&#x6253;&#x5305;&#x597D;&#x7684;&#x6A21;&#x5757;&#xFF0C;&#x4EE5;&#x63D0;&#x9AD8;&#x6784;&#x5EFA;&#x6027;&#x80FD;&#x3002;<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></li>
+<li>CONF rules {array}:<br>
+&#x6A21;&#x5757;&#x5339;&#x914D;&#x89C4;&#x5219;&#xFF0C;&#x53EF;&#x4EE5;&#x5B58;&#x5728;&#x591A;&#x4E2A;&#x89C4;&#x5219;&#x3002;
+<ul>
+<li>Rule {object}:<br>
+&#x6BCF;&#x4E2A;&#x89C4;&#x5219;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x3002;
+<ul>
+<li>CONF test {reg}:<br>
+&#x5339;&#x914D;&#x6A21;&#x5757;&#x7684;&#x89C4;&#x5219;&#x3002;</li>
+<li>CONF use {array}:<br>
+&#x5339;&#x914D;&#x5230;&#x540E;&#x5E94;&#x7528;&#x7684; loader &#x6A21;&#x5757;&#x3002;
+<ul>
+<li>UseEntry {string/object}:<br>
+&#x5176;&#x4E2D;&#x4E00;&#x4E2A; loader &#x6A21;&#x5757;&#x6216; loader &#x6A21;&#x5757;&#x7684;&#x8DEF;&#x5F84;&#x3002;
+<ul>
+<li>CONF loader {string}:<br>
+&#x6307;&#x5B9A; loader &#x6A21;&#x5757;&#x7684;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#xFF0C;&#x8BE5;&#x5B57;&#x7B26;&#x4E32;&#x4F1A;&#x88AB;&#x653E;&#x7F6E;&#x5230; require &#x4E2D;&#x3002;</li>
+<li>CONF options {string/object}:<br>
+&#x5411;&#x5BF9;&#x5E94; loader &#x6A21;&#x5757;&#x4F20;&#x9012;&#x7684;&#x989D;&#x5916;&#x53C2;&#x6570;&#x3002;&#x4E5F;&#x53EF;&#x4EE5;&#x5728; loader &#x914D;&#x7F6E;&#x4E2D;&#x4EE5; query &#x7684;&#x5F62;&#x5F0F;&#x4F20;&#x53C2;&#x3002;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CONF include {reg}:<br>
+&#x4EC5;&#x5305;&#x542B;&#x9700;&#x8981;&#x5E94;&#x7528; loader &#x7684;&#x573A;&#x666F;&#xFF0C;&#x7528;&#x4E8E;&#x63D0;&#x9AD8;&#x6784;&#x5EFA;&#x6027;&#x80FD;&#x3002;<sup class="footnote-ref"><a href="#fn3" id="fnref3:1">[3:1]</a></sup></li>
+<li>CONF exclude {reg}:<br>
+&#x6392;&#x9664;&#x9700;&#x8981;&#x5E94;&#x7528; loader &#x7684;&#x573A;&#x666F;&#xFF0C;&#x7528;&#x4E8E;&#x63D0;&#x9AD8;&#x6784;&#x5EFA;&#x6027;&#x80FD;&#x3002;<sup class="footnote-ref"><a href="#fn3" id="fnref3:2">[3:2]</a></sup></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CLI <code>--plugin</code> | CONF plugins {array}:<br>
+&#x52A0;&#x8F7D; plugin &#x6A21;&#x5757;&#x3002;</li>
+<li>CONF context {string}:<br>
+&#x7528;&#x4E8E;&#x4ECE;&#x914D;&#x7F6E;&#x4E2D;&#x89E3;&#x6790;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x548C; loader &#x6A21;&#x5757;&#xFF0C;&#x5165;&#x53E3;&#x548C; loader &#x7684;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#x4F1A;&#x4EE5; context &#x7684;&#x914D;&#x7F6E;&#x4F5C;&#x4E3A;&#x57FA;&#x51C6;&#x8DEF;&#x5F84;&#xFF0C;&#x5FC5;&#x987B;&#x914D;&#x7F6E;&#x4E00;&#x4E2A;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;&#x5F53;&#x524D;&#x76EE;&#x5F55;</em></li>
+<li>CLI <code>--target</code> | CONF target {string (web/node/...)}:<br>
+&#x8BBE;&#x7F6E;&#x6253;&#x5305;&#x7ED3;&#x679C;&#x6700;&#x7EC8;&#x8981;&#x8FD0;&#x884C;&#x7684;&#x73AF;&#x5883;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;web</em></li>
+<li>CONF resolve {object}:<br>
+&#x7528;&#x4E8E;&#x63A7;&#x5236;&#x6A21;&#x5757;&#x89E3;&#x6790;&#x8FC7;&#x7A0B;&#x3002;
+<ul>
+<li>CONF modules {array}:<br>
+&#x89E3;&#x6790;&#x6A21;&#x5757;&#x9047;&#x5230;&#x5BFC;&#x5165;&#x8BED;&#x53E5;&#x65F6;&#x5E94;&#x8BE5;&#x641C;&#x7D22;&#x7684;&#x76EE;&#x5F55;&#x3002;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#x548C;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#x90FD;&#x80FD;&#x4F7F;&#x7528;&#xFF0C;webpack &#x4F1A;&#x4ECE;&#x6570;&#x7EC4;&#x4E2D;&#x914D;&#x7F6E;&#x7684;&#x4F4D;&#x7F6E;&#x4F9D;&#x6B21;&#x4ECE;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x4EE5;&#x53CA;&#x7956;&#x5148;&#x8DEF;&#x5F84;&#x5BFB;&#x627E;&#x4F9D;&#x8D56;&#x7684;&#x6A21;&#x5757;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;&quot;node_modules&quot;</em></li>
+<li>CLI <code>--resolve-extensions</code> | CONF extensions {array}:<br>
+&#x81EA;&#x52A8;&#x89E3;&#x6790;&#x786E;&#x5B9A;&#x7684;&#x6269;&#x5C55;&#x3002;&#x5F53;&#x89E3;&#x6790;&#x6A21;&#x5757;&#x9047;&#x5230;&#x65E0;&#x5177;&#x4F53;&#x540E;&#x7F00;&#x7684;&#x5BFC;&#x5165;&#x8BED;&#x53E5;&#x65F6;&#xFF0C;&#x4F8B;&#x5982; <code>require(&quot;test&quot;)</code> &#xFF0C;&#x4F1A;&#x6309;&#x7167;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x914D;&#x7F6E;&#x4F9D;&#x6B21;&#x67E5;&#x627E;&#x4E0E;&#x540E;&#x7F00;&#x540D;&#x5339;&#x914D;&#x7684;&#x6587;&#x4EF6;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;&quot;.js&quot;, &quot;.json&quot;</em></li>
+<li>CLI <code>--resolve-alias</code> | CONF alias {object}:<br>
+&#x6307;&#x5B9A;&#x6A21;&#x5757;&#x7684;&#x522B;&#x540D;&#x3002;&#x5BFC;&#x5165;&#x5BFC;&#x51FA;&#x8BED;&#x53E5;&#x4E2D;&#x53EF;&#x4EE5;&#x52A0;&#x5165;&#x914D;&#x7F6E;&#x7684;&#x952E;&#x540D;&#xFF0C;&#x6765;&#x786E;&#x4FDD;&#x6A21;&#x5757;&#x5F15;&#x5165;&#x53D8;&#x5F97;&#x66F4;&#x7B80;&#x5355;&#xFF0C;&#x4F8B;&#x5982; <code>require(&quot;@/abc.js&quot;)</code> &#x3002;&#x5728;&#x5927;&#x578B;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x6E90;&#x7801;&#x7ED3;&#x6784;&#x5F80;&#x5F80;&#x6BD4;&#x8F83;&#x6DF1;&#x548C;&#x590D;&#x6742;&#xFF0C;&#x522B;&#x540D;&#x914D;&#x7F6E;&#x53EF;&#x4EE5;&#x8BA9;&#x6211;&#x4EEC;&#x66F4;&#x52A0;&#x65B9;&#x4FBF;&#x7684;&#x5BFC;&#x5165;&#x4F9D;&#x8D56;&#x3002;</li>
+</ul>
+</li>
+<li>CONF externals {object}:<br>
+&#x4ECE;&#x6700;&#x7EC8;&#x7684; bundle &#x4E2D;&#x6392;&#x9664;&#x6389;&#x4F9D;&#x8D56;&#x7684;&#x6E90;&#x7801;&#xFF0C;&#x800C;&#x662F;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x518D;&#x53BB;&#x4ECE;&#x5916;&#x90E8;&#x83B7;&#x53D6;&#x8FD9;&#x4E9B;&#x6269;&#x5C55;&#x4F9D;&#x8D56;&#x3002;&#x9002;&#x7528;&#x4E8E;&#x4E00;&#x4E9B;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x6765;&#x81EA;&#x4E8E;&#x5916;&#x90E8; CDN &#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA9; bundle &#x7684;&#x4F53;&#x79EF;&#x53D8;&#x5F97;&#x66F4;&#x5C0F;&#xFF0C;&#x8FD8;&#x4E0D;&#x5F71;&#x54CD;&#x6E90;&#x7801;&#x7684;&#x8FD0;&#x884C;&#x3002;</li>
+<li>CONF stats {string/object}:<br>
+&#x63A7;&#x5236;&#x6784;&#x5EFA;&#x8FC7;&#x7A0B;&#x4E2D;&#x63A7;&#x5236;&#x53F0;&#x7684;&#x8F93;&#x51FA;&#x5185;&#x5BB9;&#x3002;webpack &#x63D0;&#x4F9B;&#x4E00;&#x4E9B;&#x9884;&#x8BBE;&#x9009;&#x9879;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x66F4;&#x52A0;&#x7CBE;&#x7EC6;&#x7684;&#x63A7;&#x5236;&#xFF0C;<a href="https://www.webpackjs.com/configuration/stats/">&#x4E86;&#x89E3;&#x66F4;&#x591A;</a>&#x3002;</li>
+<li>CLI <code>--watch</code> &#x6216; <code>-w</code> | CONF watch {boolean}:<br>
+&#x7528;&#x4E8E;&#x89C2;&#x5BDF;&#x4F9D;&#x8D56;&#x6587;&#x4EF6;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x4E00;&#x65E6;&#x6709;&#x53D8;&#x5316;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x91CD;&#x65B0;&#x6267;&#x884C;&#x6784;&#x5EFA;&#x6D41;&#x7A0B;&#x3002;&#x5728;&#x521D;&#x59CB;&#x6784;&#x5EFA;&#x4E4B;&#x540E;&#xFF0C;webpack &#x5C06;&#x7EE7;&#x7EED;&#x76D1;&#x542C;&#x4EFB;&#x4F55;&#x5DF2;&#x89E3;&#x6790;&#x6587;&#x4EF6;&#x7684;&#x66F4;&#x6539;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;false</em></li>
+<li>CONF devServer {object}:<br>
+&#x914D;&#x7F6E; webpack-dev-server &#x3002;
+<ul>
+<li>CLI <code>webpack-dev-server --port</code> | CONF port {number}:<br>
+&#x6307;&#x5B9A;&#x8981;&#x76D1;&#x542C;&#x8BF7;&#x6C42;&#x7684;&#x7AEF;&#x53E3;&#x53F7;&#x3002;</li>
+<li>CLI <code>webpack-dev-server --open</code> | CONF open {boolean}:<br>
+&#x8FD0;&#x884C; devServer &#x65F6;&#x662F;&#x5426;&#x81EA;&#x52A8;&#x6253;&#x5F00;&#x6D4F;&#x89C8;&#x5668;&#x3002;</li>
+<li>CLI <code>webpack-dev-server --open-page</code> | CONF openPage {string}:<br>
+&#x6307;&#x5B9A;&#x6253;&#x5F00;&#x6D4F;&#x89C8;&#x5668;&#x65F6;&#x8981;&#x5BFC;&#x822A;&#x5230;&#x7684;&#x9875;&#x9762;&#x8DEF;&#x5F84;&#x3002;</li>
+<li>CLI <code>--hot</code> | CONF hot {boolean}:<br>
+&#x542F;&#x7528; webpack &#x7684;&#x6A21;&#x5757;&#x70ED;&#x66FF;&#x6362;&#x7279;&#x6027;&#xFF0C;&#x7528;&#x4E8E;&#x63D0;&#x9AD8;&#x6784;&#x5EFA;&#x6027;&#x80FD;&#x3002;<sup class="footnote-ref"><a href="#fn3" id="fnref3:3">[3:3]</a></sup></li>
+<li>CONF index {string}:<br>
+&#x6307;&#x5B9A;&#x7D22;&#x5F15;&#x6587;&#x4EF6;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x3002;&#x901A;&#x8FC7;&#x57DF;&#x540D;&#x548C;&#x7AEF;&#x53E3;&#x53F7;&#x5C31;&#x53EF;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x3002;</li>
+<li>CONF proxy {object}:<br>
+&#x914D;&#x7F6E;&#x4EE3;&#x7406;&#xFF0C;&#x7528;&#x4E8E;&#x8DE8;&#x57DF;&#x8BBF;&#x95EE;&#x3002;&#x4F1A;&#x5C06;&#x5339;&#x914D;&#x5230;&#x7684; URL &#x5B57;&#x7B26;&#x4E32;&#x66FF;&#x6362;&#x4E3A;&#x4EE3;&#x7406;&#x5730;&#x5740;&#x540E;&#x518D;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#xFF0C;&#x6B64;&#x8FC7;&#x7A0B;&#x53D1;&#x751F;&#x5728; node &#x73AF;&#x5883;&#x4E2D;&#x3002;&#x56E0; dev-server &#x4F7F;&#x7528;&#x4E86; <a href="https://www.npmjs.com/package/http-proxy-middleware">http-proxy-middleware</a> &#x5305;&#xFF0C;proxy &#x7684;&#x914D;&#x7F6E;&#x53EF;&#x53C2;&#x8003;&#x5176;&#x6587;&#x6863;&#x3002;<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup></li>
+<li>CONF stats {string/object}:<br>
+&#x914D;&#x7F6E;&#x63A7;&#x5236;&#x53F0;&#x663E;&#x793A;&#x7684; bundle &#x4FE1;&#x606F;&#xFF0C;<a href="https://www.webpackjs.com/configuration/stats/">&#x4E86;&#x89E3;&#x66F4;&#x591A;</a>&#x3002;</li>
+</ul>
+</li>
+<li>CONF optimization {object}:<br>
+&#x7528;&#x4E8E;&#x4F18;&#x5316;&#x6027;&#x80FD;&#x3002;
+<ul>
+<li>CONF splitChunks {object}:<br>
+&#x7528;&#x4E8E;&#x5B9E;&#x73B0;&#x81EA;&#x52A8;&#x5206;&#x5305;&#xFF0C;&#x5185;&#x90E8;&#x4F7F;&#x7528; webpack &#x81EA;&#x5E26;&#x7684; SplitChunksPlugin &#x63D2;&#x4EF6;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E00;&#x5957;&#x9ED8;&#x8BA4;&#x914D;&#x7F6E;&#x4F5C;&#x4E3A; web &#x6027;&#x80FD;&#x7684;&#x6700;&#x4F73;&#x5B9E;&#x8DF5;&#xFF0C;&#x7528;&#x4E8E;&#x63D0;&#x9AD8;&#x4F20;&#x8F93;&#x6027;&#x80FD;&#x3002;<sup class="footnote-ref"><a href="#fn1" id="fnref1:1">[1:1]</a></sup>
+<ul>
+<li>CONF chunks {string (all/async/initial)}:<br>
+&#x914D;&#x7F6E;&#x9700;&#x8981;&#x5E94;&#x7528;&#x5206;&#x5305;&#x7B56;&#x7565;&#x7684; chunk&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;all</em></li>
+<li>CONF maxSize {number}:<br>
+&#x7528;&#x4E8E;&#x5C06;&#x5927;&#x4E8E;&#x6240;&#x8BBE;&#x7F6E;&#x5B57;&#x8282;&#x7684; chunk &#x5206;&#x5272;&#x4E3A;&#x66F4;&#x5C0F;&#x7684;&#x5305;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;0</em></li>
+<li>CONF automaticNameDelimiter {string}:<br>
+&#x914D;&#x7F6E;&#x751F;&#x6210; chunk &#x540D;&#x79F0;&#x7684;&#x5206;&#x9694;&#x7B26;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;~</em></li>
+<li>CONF minChunks {number}:<br>
+&#x914D;&#x7F6E;&#x6A21;&#x5757;&#x88AB;&#x591A;&#x5C11;&#x4E2A; chunk &#x4F7F;&#x7528;&#x65F6;&#x624D;&#x4F1A;&#x8FDB;&#x884C;&#x5206;&#x5305;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;1</em></li>
+<li>CONF minSize {number}:<br>
+&#x914D;&#x7F6E;&#x5F53;&#x5206;&#x5305;&#x8FBE;&#x5230;&#x591A;&#x5C11;&#x5B57;&#x8282;&#x540E;&#x624D;&#x5141;&#x8BB8;&#x88AB;&#x771F;&#x6B63;&#x7684;&#x62C6;&#x5206;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;20000</em></li>
+<li>CONF cacheGroups {object}:<br>
+&#x7528;&#x4E8E;&#x914D;&#x7F6E;&#x7F13;&#x5B58;&#x7EC4;&#x3002;&#x53EF;&#x4EE5;&#x7EE7;&#x627F;&#x548C;/&#x6216;&#x8986;&#x76D6; splitChunks &#x4E2D;&#x7684;&#x4EFB;&#x4F55;&#x9009;&#x9879;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;defaultVendors, default</em>
+<ul>
+<li>Name {object/false}:<br>
+&#x914D;&#x7F6E;&#x7F13;&#x5B58;&#x7EC4;&#x7684;&#x540D;&#x79F0;&#xFF0C;&#x4F1A;&#x5F71;&#x54CD;&#x5230;&#x5206;&#x5305;&#x7684; chunk &#x540D;&#x3002;&#x82E5;&#x8981;&#x7981;&#x7528;&#x4EFB;&#x4F55;&#x9ED8;&#x8BA4;&#x7F13;&#x5B58;&#x7EC4;&#xFF0C;&#x8BF7;&#x5C06;&#x5176;&#x8BBE;&#x7F6E;&#x4E3A; <code>false</code>&#x3002;
+<ul>
+<li>CONF test {reg}:<br>
+&#x63A7;&#x5236;&#x6B64;&#x7F13;&#x5B58;&#x7EC4;&#x5339;&#x914D;&#x54EA;&#x4E9B;&#x6A21;&#x5757;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;[\/]node_modules[\/]</em></li>
+<li>CONF priority {number}:<br>
+&#x914D;&#x7F6E;&#x7F13;&#x5B58;&#x7EC4;&#x4F18;&#x5148;&#x7EA7;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;-10 &#x548C; -20</em></li>
+<li>CONF reuseExistingChunk {boolean}:<br>
+&#x5982;&#x679C; chunk &#x5DF2;&#x7ECF;&#x4ECE;&#x4E3B;&#x5305;&#x4E2D;&#x5206;&#x79BB;&#xFF0C;&#x914D;&#x7F6E;&#x662F;&#x5426;&#x91CD;&#x7528;&#x5DF2;&#x7ECF;&#x88AB;&#x5206;&#x79BB;&#x51FA;&#x53BB;&#x7684; chunk&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;true</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CLI <code>--optimize-minimize</code> | CONF minimize {boolean}:<br>
+&#x914D;&#x7F6E;&#x662F;&#x5426;&#x4F7F;&#x7528; TerserPlugin &#x6216; <code>optimization.minimizer</code> &#x4E2D;&#x6307;&#x5B9A;&#x7684;&#x63D2;&#x4EF6;&#x6765;&#x538B;&#x7F29;&#x5305;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;true (&#x4EC5;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#xFF09;</em></li>
+<li>CONF minimizer {array}:<br>
+&#x914D;&#x7F6E;&#x538B;&#x7F29;&#x65F6;&#x4F7F;&#x7528;&#x7684;&#x63D2;&#x4EF6;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#x3002;<br>
+<em>&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;new TerserPlugin() (&#x4EC5;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#xFF09;</em></li>
+</ul>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// webpack &#x914D;&#x7F6E;&#x793A;&#x4F8B;</span>
+
+<span class="token keyword">var</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;path&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> MyPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./plugins/MyPlugin&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> webpack <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;webpack&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    mode<span class="token punctuation">:</span> <span class="token string">&quot;production&quot;</span><span class="token punctuation">,</span>
+    entry<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        main<span class="token punctuation">:</span> <span class="token string">&quot;./index.js&quot;</span><span class="token punctuation">,</span>
+        a<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;./a.js&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;./index.js&quot;</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    output<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        path<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">&quot;target&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        filename<span class="token punctuation">:</span> <span class="token string">&quot;[name].[chunkhash:5].js&quot;</span><span class="token punctuation">,</span>
+        library<span class="token punctuation">:</span> <span class="token string">&quot;MyLibrary&quot;</span><span class="token punctuation">,</span>
+        libraryTarget<span class="token punctuation">:</span> <span class="token string">&quot;this&quot;</span><span class="token punctuation">,</span>
+        publicPath<span class="token punctuation">:</span> <span class="token string">&quot;/&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    module<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        rules<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                test<span class="token punctuation">:</span> <span class="token regex">/index\.js$/</span><span class="token punctuation">,</span>
+                include<span class="token punctuation">:</span> <span class="token regex">/src/</span><span class="token punctuation">,</span>
+                use<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>
+                        loader<span class="token punctuation">:</span> <span class="token string">&quot;./loaders/loader1&quot;</span><span class="token punctuation">,</span>
+                        options<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                            <span class="token constant">XXX</span><span class="token punctuation">:</span> <span class="token constant">XXX</span>
+                        <span class="token punctuation">}</span>
+                    <span class="token punctuation">}</span>
+                    <span class="token punctuation">{</span>
+                        loader<span class="token punctuation">:</span> <span class="token string">&quot;./loaders/loader2?XXX=XXX&quot;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+            <span class="token punctuation">{</span>
+                test<span class="token punctuation">:</span> <span class="token regex">/\.js$/</span><span class="token punctuation">,</span>
+                exclude<span class="token punctuation">:</span> <span class="token regex">/node_modules/</span><span class="token punctuation">,</span>
+                use<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;./loaders/loader3&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;./loaders/loader4&quot;</span><span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        noParse<span class="token punctuation">:</span> <span class="token regex">/jquery|lodash/</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    resolve<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        modules<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;node_modules&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        extensions<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;.js&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;.json&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        alias<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">&quot;@&quot;</span><span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">&apos;src&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;_&quot;</span><span class="token punctuation">:</span> __dirname
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    devtool<span class="token punctuation">:</span> <span class="token string">&quot;source-map&quot;</span><span class="token punctuation">,</span>
+    context<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">&quot;src&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    target<span class="token punctuation">:</span> <span class="token string">&quot;web&quot;</span><span class="token punctuation">,</span>
+    externals<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        jquery<span class="token punctuation">:</span> <span class="token string">&quot;$&quot;</span><span class="token punctuation">,</span>
+        lodash<span class="token punctuation">:</span> <span class="token string">&quot;_&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    stats<span class="token punctuation">:</span> <span class="token string">&quot;errors-only&quot;</span><span class="token punctuation">,</span>
+    devServer<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        port<span class="token punctuation">:</span> <span class="token number">8080</span><span class="token punctuation">,</span>
+        open<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        openPage<span class="token punctuation">:</span> <span class="token string">&apos;/different/page&apos;</span><span class="token punctuation">,</span>
+        hot<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        index<span class="token punctuation">:</span> <span class="token string">&apos;index.html&apos;</span><span class="token punctuation">,</span>
+        proxy<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">&quot;/api&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                target<span class="token punctuation">:</span> <span class="token string">&quot;http://open.duyiedu.com&quot;</span><span class="token punctuation">,</span>
+                changeOrigin<span class="token punctuation">:</span> <span class="token boolean">true</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        stats<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            modules<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+            colors<span class="token punctuation">:</span> <span class="token boolean">true</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token keyword">new</span> <span class="token class-name">MyPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token constant">XXX</span><span class="token punctuation">:</span> <span class="token constant">XXX</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword">new</span> <span class="token class-name">webpack<span class="token punctuation">.</span>DefinePlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token constant">PI</span><span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`Math.PI`</span></span><span class="token punctuation">,</span>
+            <span class="token constant">VERSION</span><span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`&quot;1.0.0&quot;`</span></span><span class="token punctuation">,</span>
+            <span class="token constant">DOMAIN</span><span class="token punctuation">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token string">&quot;duyi.com&quot;</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    watch<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    optimization<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        splitChunks<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            chunks<span class="token punctuation">:</span> <span class="token string">&apos;all&apos;</span><span class="token punctuation">,</span>
+            minSize<span class="token punctuation">:</span> <span class="token number">20000</span><span class="token punctuation">,</span>
+            maxSize<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+            minChunks<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            automaticNameDelimiter<span class="token punctuation">:</span> <span class="token string">&apos;~&apos;</span><span class="token punctuation">,</span>
+            cacheGroups<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                defaultVendors<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                    test<span class="token punctuation">:</span> <span class="token regex">/[\\/]node_modules[\\/]/</span><span class="token punctuation">,</span>
+                    priority<span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">10</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                    minChunks<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+                    priority<span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">20</span><span class="token punctuation">,</span>
+                    reuseExistingChunk<span class="token punctuation">:</span> <span class="token boolean">true</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        minimize<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        minimizer<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+            <span class="token keyword">new</span> <span class="token class-name">TerserPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token keyword">new</span> <span class="token class-name">OptimizeCSSAssetsPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><h2 class="mume-header" id="webpack-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%85%BC%E5%AE%B9%E6%80%A7">webpack &#x6A21;&#x5757;&#x5316;&#x517C;&#x5BB9;&#x6027;</h2>
+
+<p>&#x7531;&#x4E8E; webpack &#x540C;&#x65F6;&#x652F;&#x6301; CommonJS &#x548C; ES6 module &#x6A21;&#x5757;&#x5316;</p>
+<ul>
+<li>
+<p>&#x540C;&#x6A21;&#x5757;&#x5316;&#x6807;&#x51C6;</p>
+<p>&#x5982;&#x679C;&#x5BFC;&#x51FA;&#x548C;&#x5BFC;&#x5165;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x540C;&#x4E00;&#x79CD;&#x6A21;&#x5757;&#x5316;&#x6807;&#x51C6;&#xFF0C;&#x6253;&#x5305;&#x540E;&#x7684;&#x6548;&#x679C;&#x548C;&#x4E4B;&#x524D;&#x5B66;&#x4E60;&#x7684;&#x6A21;&#x5757;&#x5316;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x5DEE;&#x5F02;&#x3002;</p>
+<p><img src="assets/2020-01-07-07-50-09.png" alt="CommonJS&#x5BFC;&#x5165;&#x5BFC;&#x51FA;"></p>
+<p><img src="assets/2020-01-07-07-53-45.png" alt="ES6&#x5BFC;&#x5165;&#x5BFC;&#x51FA;"></p>
+</li>
+<li>
+<p>&#x4E0D;&#x540C;&#x6A21;&#x5757;&#x5316;&#x6807;&#x51C6;</p>
+<p>&#x4E0D;&#x540C;&#x7684;&#x6A21;&#x5757;&#x5316;&#x6807;&#x51C6;&#xFF0C;webpack &#x6309;&#x7167;&#x5982;&#x4E0B;&#x7684;&#x65B9;&#x5F0F;&#x5904;&#x7406;&#x3002;</p>
+<p><img src="assets/2020-01-07-07-54-25.png" alt="ES6&#x5BFC;&#x51FA;CommonJS&#x5BFC;&#x5165;"></p>
+<p><img src="assets/2020-01-07-07-55-54.png" alt="CommonJS&#x5BFC;&#x5165;ES6&#x5BFC;&#x51FA;"></p>
+</li>
+</ul>
+<h2 class="mume-header" id="webpack-%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B">webpack &#x7F16;&#x8BD1;&#x8FC7;&#x7A0B;</h2>
+
+<p>webpack &#x7684;&#x4F5C;&#x7528;&#x662F;&#x5C06;&#x6E90;&#x4EE3;&#x7801;&#x7F16;&#x8BD1;&#xFF08;&#x6784;&#x5EFA;&#x3001;&#x6253;&#x5305;&#xFF09;&#x6210;&#x6700;&#x7EC8;&#x4EE3;&#x7801;&#x3002;</p>
+<p><img src="assets/2020-01-09-10-26-15.png" alt="webpack&#x7F16;&#x8BD1;&#x8FC7;&#x7A0B;"></p>
+<p>&#x6574;&#x4E2A;&#x8FC7;&#x7A0B;&#x5927;&#x81F4;&#x5206;&#x4E3A;&#x4E09;&#x4E2A;&#x6B65;&#x9AA4;</p>
+<ol>
+<li>&#x521D;&#x59CB;&#x5316;</li>
+<li>&#x7F16;&#x8BD1;</li>
+<li>&#x8F93;&#x51FA;</li>
+</ol>
+<p><img src="assets/2020-01-09-10-53-28.png" alt="&#x7F16;&#x8BD1;&#x7684;&#x4E09;&#x4E2A;&#x6B65;&#x9AA4;"></p>
+<p><img src="assets/2020-01-09-15-51-07.png" alt="&#x7F16;&#x8BD1;&#x7684;&#x603B;&#x8FC7;&#x7A0B;"></p>
+<h3 class="mume-header" id="%E5%88%9D%E5%A7%8B%E5%8C%96">&#x521D;&#x59CB;&#x5316;</h3>
+
+<p>&#x6B64;&#x9636;&#x6BB5;&#xFF0C;webpack &#x4F1A;&#x5C06; CLI &#x53C2;&#x6570;&#x3001;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x3001;&#x9ED8;&#x8BA4;&#x914D;&#x7F6E;&#x8FDB;&#x884C;&#x878D;&#x5408;&#xFF0C;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x6700;&#x7EC8;&#x7684;&#x914D;&#x7F6E;&#x5BF9;&#x8C61;&#xFF0C;&#x4E3A;&#x63A5;&#x4E0B;&#x6765;&#x7684;&#x7F16;&#x8BD1;&#x9636;&#x6BB5;&#x505A;&#x5FC5;&#x8981;&#x7684;&#x51C6;&#x5907;&#x3002;</p>
+<p>&#x5BF9;&#x914D;&#x7F6E;&#x7684;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x662F;&#x4F9D;&#x6258;&#x4E00;&#x4E2A;&#x7B2C;&#x4E09;&#x65B9;&#x5E93; yargs &#x5B8C;&#x6210;&#x7684;&#x3002;</p>
+<h3 class="mume-header" id="%E7%BC%96%E8%AF%91">&#x7F16;&#x8BD1;</h3>
+
+<ol>
+<li>
+<p><strong>&#x521B;&#x5EFA; chunk</strong></p>
+<p>chunk &#x662F; webpack &#x5728;&#x5185;&#x90E8;&#x6784;&#x5EFA;&#x8FC7;&#x7A0B;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x6982;&#x5FF5;&#xFF0C;&#x8BD1;&#x4E3A;&#x201C;&#x5757;&#x201D;&#xFF0C;&#x5B83;&#x8868;&#x793A;&#x901A;&#x8FC7;&#x67D0;&#x4E2A;&#x5165;&#x53E3;&#x627E;&#x5230;&#x7684;&#x6240;&#x6709;&#x4F9D;&#x8D56;&#x7684;&#x7EDF;&#x79F0;&#x3002;</p>
+<p>&#x6839;&#x636E;&#x5165;&#x53E3;&#x6A21;&#x5757;&#xFF08;&#x9ED8;&#x8BA4;&#x4E3A; <code>./src/index.js</code> &#xFF09;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; chunk &#x3002;</p>
+<p><img src="assets/2020-01-09-11-54-08.png" alt="&#x6839;&#x636E;&#x5165;&#x53E3;&#x6A21;&#x5757;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;chunk"></p>
+<p>&#x6BCF;&#x4E2A; chunk &#x90FD;&#x6709;&#x81F3;&#x5C11;&#x4E24;&#x4E2A;&#x5C5E;&#x6027;&#xFF1A;<br>
+name&#xFF1A;&#x540D;&#x5B57;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A; <code>main</code> &#x3002;<br>
+id&#xFF1A;&#x552F;&#x4E00;&#x7F16;&#x53F7;&#xFF0C;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x548C; name &#x76F8;&#x540C;&#xFF0C;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x662F;&#x4E00;&#x4E2A;&#x4ECE; 0 &#x5F00;&#x59CB;&#x7684;&#x6570;&#x5B57;&#x3002;</p>
+</li>
+<li>
+<p><strong>&#x6784;&#x5EFA;&#x6240;&#x6709;&#x4F9D;&#x8D56;&#x6A21;&#x5757;</strong></p>
+<p>&#x901A;&#x8FC7;&#x5165;&#x53E3;&#x6A21;&#x5757;&#x6784;&#x5EFA;&#x6240;&#x6709;&#x4F9D;&#x8D56;&#x6A21;&#x5757;&#xFF0C;&#x5B8C;&#x6210;&#x540E; chunk &#x4E2D;&#x4F1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x6A21;&#x5757;&#x5217;&#x8868;&#xFF0C;&#x5217;&#x8868;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x6A21;&#x5757;id&#x548C;&#x6A21;&#x5757;&#x8F6C;&#x6362;&#x540E;&#x7684;&#x4EE3;&#x7801;&#x3002;</p>
+<p><img src="assets/2020-01-13-09-35-44.png" alt="&#x6784;&#x5EFA;&#x6240;&#x6709;&#x4F9D;&#x8D56;&#x6A21;&#x5757;"></p>
+<p>&#x5728;&#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x540E;&#xFF0C;&#x4F1A;&#x6839;&#x636E;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x914D;&#x7F6E;&#x7684;&#x6A21;&#x5757;&#x7684;&#x5339;&#x914D;&#x89C4;&#x5219;&#xFF0C;&#x5C06;&#x5339;&#x914D;&#x5230;&#x7684;&#x6587;&#x4EF6;&#x7684;&#x5185;&#x5BB9;&#x4EA4;&#x7531;&#x76F8;&#x5E94;&#x7684; loaders &#x6A21;&#x5757;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x518D;&#x628A;&#x5904;&#x7406;&#x597D;&#x7684;&#x6587;&#x4EF6;&#x505A;&#x62BD;&#x8C61;&#x8BED;&#x6CD5;&#x6811;&#x5206;&#x6790;&#x3002;&#x5982;&#x679C;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x6CA1;&#x6709;&#x914D;&#x7F6E;&#x7684;&#x6A21;&#x5757;&#x7684;&#x5339;&#x914D;&#x89C4;&#x5219;&#xFF0C;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x8DF3;&#x8FC7;&#x5904;&#x7406; loaders &#x7684;&#x6B65;&#x9AA4;&#x3002;</p>
+<p><img src="assets/2020-01-13-10-29-54.png" alt="&#x5904;&#x7406;loaders"></p>
+<p>loaders &#x6A21;&#x5757;&#x4F1A;&#x6839;&#x636E;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x6A21;&#x5757;&#x5339;&#x914D;&#x89C4;&#x5219;&#x8BFB;&#x53D6;&#x76F8;&#x5E94;&#x7684; loader &#xFF0C;&#x5E76;&#x5C06;&#x8FD9;&#x4E9B; loader &#x653E;&#x5165;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x4E2D;&#xFF0C;&#x5728;&#x5904;&#x7406;&#x65F6;&#x4F1A;&#x5C06;&#x6570;&#x7EC4;&#x4E2D;&#x7684; loader &#x4ECE;&#x540E;&#x5411;&#x524D;&#x6267;&#x884C;&#xFF0C;&#x751F;&#x6210;&#x6700;&#x540E;&#x5904;&#x7406;&#x597D;&#x7684;&#x6587;&#x4EF6;&#x3002;</p>
+</li>
+<li>
+<p><strong>&#x4EA7;&#x751F; chunk assets</strong></p>
+<p>&#x901A;&#x8FC7;&#x6A21;&#x5757;&#x5217;&#x8868;&#xFF0C;webpack &#x4F1A;&#x6839;&#x636E;&#x521D;&#x59CB;&#x5316;&#x5F62;&#x6210;&#x7684;&#x6700;&#x7EC8;&#x914D;&#x7F6E;&#x4E3A; chunk &#x751F;&#x6210;&#x4E00;&#x4E2A;&#x8D44;&#x6E90;&#x5217;&#x8868;&#xFF0C;&#x5373; chunk assets &#xFF0C;&#x8D44;&#x6E90;&#x5217;&#x8868;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x662F;&#x751F;&#x6210;&#x5230;&#x6700;&#x7EC8;&#x6587;&#x4EF6;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x548C;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x3002;</p>
+<p><img src="assets/2020-01-09-12-39-16.png" alt="&#x4EA7;&#x751F;chunk assets"></p>
+<p>&#x6BCF;&#x4E2A;&#x8D44;&#x6E90;&#x5217;&#x8868;&#x90FD;&#x6709;&#x4E00;&#x4E2A; chunk hash &#xFF0C;chunk hash &#x662F;&#x6839;&#x636E;&#x6240;&#x6709; chunk assets &#x7684;&#x5185;&#x5BB9;&#x751F;&#x6210;&#x7684;&#x4E00;&#x4E2A; hash &#x5B57;&#x7B26;&#x4E32;&#x3002;<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup></p>
+</li>
+<li>
+<p><strong>&#x5408;&#x5E76; chunk assets</strong></p>
+<p>&#x5C06;&#x591A;&#x4E2A; chunk assets &#x5408;&#x5E76;&#x5230;&#x4E00;&#x8D77;&#x4EA7;&#x751F;&#x603B;&#x7684; assets &#xFF0C;&#x5E76;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x603B;&#x7684; hash &#x3002;</p>
+<p><img src="assets/2020-01-09-12-47-43.png" alt="&#x5408;&#x5E76;chunk assets"></p>
+</li>
+</ol>
+<h3 class="mume-header" id="%E8%BE%93%E5%87%BA">&#x8F93;&#x51FA;</h3>
+
+<p>webpack &#x5C06;&#x5229;&#x7528; node &#x4E2D;&#x7684; fs&#x6A21;&#x5757;&#xFF08;&#x6587;&#x4EF6;&#x5904;&#x7406;&#x6A21;&#x5757;&#xFF09;&#xFF0C;&#x6839;&#x636E;&#x7F16;&#x8BD1;&#x4EA7;&#x751F;&#x7684;&#x603B;&#x7684; assets &#xFF0C;&#x751F;&#x6210;&#x76F8;&#x5E94;&#x7684;&#x6587;&#x4EF6;&#x3002;</p>
+<p><img src="assets/2020-01-09-12-54-34.png" alt="&#x8F93;&#x51FA;"></p>
+<blockquote>
+<p>&#x6D89;&#x53CA;&#x672F;&#x8BED;</p>
+<ul>
+<li>module&#xFF1A;&#x6A21;&#x5757;&#xFF0C;&#x5206;&#x5272;&#x7684;&#x4EE3;&#x7801;&#x5355;&#x5143;&#xFF0C;webpack &#x4E2D;&#x7684;&#x6A21;&#x5757;&#x53EF;&#x4EE5;&#x662F;&#x4EFB;&#x4F55;&#x5185;&#x5BB9;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x4E0D;&#x4EC5;&#x9650;&#x4E8E; JS &#x3002;</li>
+<li>chunk&#xFF1A;webpack &#x5185;&#x90E8;&#x6784;&#x5EFA;&#x6A21;&#x5757;&#x7684;&#x5757;&#xFF0C;&#x4E00;&#x4E2A; chunk &#x4E2D;&#x5305;&#x542B;&#x591A;&#x4E2A;&#x6A21;&#x5757;&#xFF0C;&#x8FD9;&#x4E9B;&#x6A21;&#x5757;&#x662F;&#x4ECE;&#x5165;&#x53E3;&#x6A21;&#x5757;&#x901A;&#x8FC7;&#x4F9D;&#x8D56;&#x5206;&#x6790;&#x5F97;&#x6765;&#x7684;&#x3002;</li>
+<li>bundle&#xFF1A;chunk &#x6784;&#x5EFA;&#x597D;&#x6A21;&#x5757;&#x540E;&#x4F1A;&#x751F;&#x6210; chunk &#x7684;&#x8D44;&#x6E90;&#x6E05;&#x5355;&#xFF0C;&#x6E05;&#x5355;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x9879;&#x5C31;&#x662F;&#x4E00;&#x4E2A; bundle &#xFF0C;&#x53EF;&#x4EE5;&#x8BA4;&#x4E3A; bundle &#x5C31;&#x662F;&#x6700;&#x7EC8;&#x751F;&#x6210;&#x7684;&#x6587;&#x4EF6;&#x3002;</li>
+<li>hash&#xFF1A;&#x6700;&#x7EC8;&#x7684;&#x8D44;&#x6E90;&#x6E05;&#x5355;&#x6240;&#x6709;&#x5185;&#x5BB9;&#x8054;&#x5408;&#x751F;&#x6210;&#x7684; hash &#x503C;&#x3002;</li>
+<li>chunkhash&#xFF1A;chunk &#x751F;&#x6210;&#x7684;&#x8D44;&#x6E90;&#x6E05;&#x5355;&#x5185;&#x5BB9;&#x8054;&#x5408;&#x751F;&#x6210;&#x7684; hash &#x503C;&#x3002;</li>
+<li>chunkname&#xFF1A;chunk &#x7684;&#x540D;&#x79F0;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x914D;&#x7F6E;&#x5219;&#x4F7F;&#x7528; main &#x3002;</li>
+<li>id&#xFF1A;&#x901A;&#x5E38;&#x6307; chunk &#x7684;&#x552F;&#x4E00;&#x7F16;&#x53F7;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4E0B;&#x6784;&#x5EFA;&#x548C; chunkname &#x76F8;&#x540C;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E0B;&#x6784;&#x5EFA;&#xFF0C;&#x5219;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x4ECE;0&#x5F00;&#x59CB;&#x7684;&#x6570;&#x5B57;&#x8FDB;&#x884C;&#x7F16;&#x53F7;&#x3002;</li>
+</ul>
+</blockquote>
+<h2 class="mume-header" id="webpack-%E6%8F%92%E4%BB%B6">webpack &#x63D2;&#x4EF6;</h2>
+
+<p>&#x63D2;&#x4EF6;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x4EE5;&#x5404;&#x79CD;&#x65B9;&#x5F0F;&#x81EA;&#x5B9A;&#x4E49; webpack &#x6784;&#x5EFA;&#x8FC7;&#x7A0B;&#xFF0C;&#x7B80;&#x5355;&#x8BF4;&#x5C31;&#x662F;&#x628A;&#x529F;&#x80FD;&#x5D4C;&#x5165;&#x5230; webpack &#x7684;&#x7F16;&#x8BD1;&#x6D41;&#x7A0B;&#x4E2D;&#x3002;</p>
+<p><img src="assets/2020-01-15-12-45-16.png" alt="webpack &#x63D2;&#x4EF6;"></p>
+<p>webpack &#x4F1A;&#x5728;&#x521D;&#x59CB;&#x5316;&#x9636;&#x6BB5;&#x6784;&#x5EFA; <code>compiler</code> &#x5BF9;&#x8C61;&#xFF0C;&#x521B;&#x5EFA;&#x597D; <code>Compiler</code> &#x5BF9;&#x8C61;&#x540E;&#xFF0C;&#x4F1A;&#x8FD0;&#x884C; plugin &#x6A21;&#x5757;&#x4E2D;&#x7684; <code>apply</code> &#x51FD;&#x6570;&#xFF0C;&#x6839;&#x636E; <code>compiler</code> &#x5BF9;&#x8C61;&#x4E0A;&#x6CE8;&#x518C;&#x7684;&#x76D1;&#x542C;&#x4E8B;&#x4EF6;&#x4EE5;&#x53CA;&#x4E8B;&#x4EF6;&#x7C7B;&#x578B;&#x89E6;&#x53D1;&#x76F8;&#x5E94;&#x7684;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x968F;&#x540E; webpack &#x4F1A;&#x5728;&#x7F16;&#x8BD1;&#x9636;&#x6BB5;&#x524D;&#x6784;&#x5EFA; <code>compilation</code> &#x5BF9;&#x8C61;&#xFF0C;&#x521B;&#x5EFA;&#x597D; <code>compilation</code> &#x5BF9;&#x8C61;&#x540E;&#xFF0C;&#x6839;&#x636E; <code>compilation</code> &#x5BF9;&#x8C61;&#x4E0A;&#x6CE8;&#x518C;&#x7684;&#x76D1;&#x542C;&#x4E8B;&#x4EF6;&#x4EE5;&#x53CA;&#x4E8B;&#x4EF6;&#x7C7B;&#x578B;&#x89E6;&#x53D1;&#x76F8;&#x5E94;&#x7684;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x51FD;&#x6570;&#x3002;</p>
+<p><img src="assets/2020-01-15-12-49-26.png" alt="&#x5904;&#x7406; plugins"></p>
+<p>&#x5728;&#x6574;&#x4E2A; webpack &#x6253;&#x5305;&#x671F;&#x95F4;&#x53EA;&#x6709;&#x4E00;&#x4E2A; <code>compiler</code> &#x5BF9;&#x8C61;&#xFF0C;&#x968F;&#x540E;&#x5B8C;&#x6210;&#x6253;&#x5305;&#x5DE5;&#x4F5C;&#x7684;&#x662F; <code>compiler</code> &#x5BF9;&#x8C61;&#x5185;&#x90E8;&#x521B;&#x5EFA;&#x7684; <code>compilation</code> &#x5BF9;&#x8C61;&#x3002;&#x5F53;&#x6587;&#x4EF6;&#x53D1;&#x751F;&#x53D8;&#x5316;&#xFF0C;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x6253;&#x5305;&#x65F6;&#xFF0C;&#x4F1A;&#x91CD;&#x65B0;&#x521B;&#x5EFA; <code>compilation</code> &#x5BF9;&#x8C61;&#x3002;</p>
+<h2 class="mume-header" id="webpack-dev-server">webpack-dev-server</h2>
+
+<p>webpack-dev-server &#x53EF;&#x4EE5;&#x5728;&#x5F00;&#x53D1;&#x9636;&#x6BB5;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684; web &#x670D;&#x52A1;&#x5668;&#x6765;&#x6A21;&#x62DF;&#x771F;&#x5B9E;&#x73AF;&#x5883;&#xFF0C;&#x5E76;&#x4E14;&#x80FD;&#x591F;&#x5B9E;&#x65F6;&#x91CD;&#x65B0;&#x52A0;&#x8F7D;&#x4EE5;&#x907F;&#x514D;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#x6253;&#x5305;&#x3001;&#x8FD0;&#x884C;&#x3001;&#x8C03;&#x8BD5;&#x8FC7;&#x7A0B;&#x8FC7;&#x4E8E;&#x7E41;&#x7410;&#x3002;</p>
+<p>&#x5B89;&#x88C5;: <code>npm install --save-dev webpack-dev-server</code></p>
+<p>&#x4F7F;&#x7528;: <code>webpack-dev-server</code></p>
+<blockquote>
+<p>webpack-dev-server &#x652F;&#x6301;&#x5927;&#x591A;&#x6570;&#x7684; webpack CLI &#x547D;&#x4EE4;&#x53C2;&#x6570;&#x3002;</p>
+</blockquote>
+<h2 class="mume-header" id="webpaack-%E5%86%85%E7%BD%AE%E6%8F%92%E4%BB%B6">webpaack &#x5185;&#x7F6E;&#x63D2;&#x4EF6;</h2>
+
+<p>webpack &#x6709;&#x7740;&#x4E30;&#x5BCC;&#x7684;&#x63D2;&#x4EF6;&#x63A5;&#x53E3;&#xFF0C;webpack &#x81EA;&#x8EAB;&#x7684;&#x591A;&#x6570;&#x529F;&#x80FD;&#x90FD;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x63D2;&#x4EF6;&#x63A5;&#x53E3;&#x3002;&#x6240;&#x6709;&#x7684; webpack &#x5185;&#x7F6E;&#x63D2;&#x4EF6;&#x90FD;&#x4F5C;&#x4E3A; webpack &#x7684;&#x9759;&#x6001;&#x5C5E;&#x6027;&#x5B58;&#x5728;&#x3002;</p>
+<p><a href="https://www.webpackjs.com/plugins/">&#x67E5;&#x770B;&#x66F4;&#x591A;webpack&#x5185;&#x7F6E;&#x63D2;&#x4EF6;</a></p>
+<h3 class="mume-header" id="defineplugin">DefinePlugin</h3>
+
+<p>&#x5168;&#x5C40;&#x5E38;&#x91CF;&#x5B9A;&#x4E49;&#x63D2;&#x4EF6;&#xFF0C;&#x4F7F;&#x7528;&#x8BE5;&#x63D2;&#x4EF6;&#x901A;&#x5E38;&#x5B9A;&#x4E49;&#x4E00;&#x4E9B;&#x5E38;&#x91CF;&#x503C;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">new</span> <span class="token class-name">webpack<span class="token punctuation">.</span>DefinePlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token constant">PI</span><span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`Math.PI`</span></span><span class="token punctuation">,</span> <span class="token comment">// PI = Math.PI</span>
+    <span class="token constant">VERSION</span><span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`&quot;1.0.0&quot;`</span></span><span class="token punctuation">,</span> <span class="token comment">// VERSION = &quot;1.0.0&quot;</span>
+    <span class="token constant">DOMAIN</span><span class="token punctuation">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token string">&quot;duyi.com&quot;</span><span class="token punctuation">)</span> <span class="token comment">// DOMAIN = &quot;duyi.com&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x8FD9;&#x6837;&#x5728;&#x6E90;&#x7801;&#x4E2D;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x63D2;&#x4EF6;&#x4E2D;&#x63D0;&#x4F9B;&#x7684;&#x5E38;&#x91CF;&#xFF0C;&#x5F53; webpack &#x7F16;&#x8BD1;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x4F1A;&#x81EA;&#x52A8;&#x66FF;&#x6362;&#x4E3A;&#x5E38;&#x91CF;&#x7684;&#x503C;&#x3002;</p>
+<h3 class="mume-header" id="bannerplugin">BannerPlugin</h3>
+
+<p>&#x5B83;&#x53EF;&#x4EE5;&#x4E3A;&#x6BCF;&#x4E2A; chunk &#x751F;&#x6210;&#x7684;&#x6587;&#x4EF6;&#x5934;&#x90E8;&#x6DFB;&#x52A0;&#x4E00;&#x884C;&#x6CE8;&#x91CA;&#xFF0C;&#x4E00;&#x822C;&#x7528;&#x4E8E;&#x6DFB;&#x52A0;&#x4F5C;&#x8005;&#x3001;&#x516C;&#x53F8;&#x3001;&#x7248;&#x6743;&#x7B49;&#x4FE1;&#x606F;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">new</span> <span class="token class-name">webpack<span class="token punctuation">.</span>BannerPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    banner<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`
+    hash:[hash]
+    chunkhash:[chunkhash]
+    name:[name]
+    author:yuanjin
+    corporation:duyi
+    `</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><h3 class="mume-header" id="provideplugin">ProvidePlugin</h3>
+
+<p>&#x81EA;&#x52A8;&#x52A0;&#x8F7D;&#x6A21;&#x5757;&#xFF0C;&#x800C;&#x4E0D;&#x5FC5;&#x5230;&#x5904; <code>import</code> &#x6216; <code>require</code> &#x3002;&#x5F53;&#x6E90;&#x7801;&#x4E2D;&#x7528;&#x5230;&#x76F8;&#x5E94;&#x7684; identifier &#x65F6; module &#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x88AB;&#x52A0;&#x8F7D;&#xFF0C;&#x5E76;&#x4E14; identifier &#x4F1A;&#x88AB;&#x8FD9;&#x4E2A; module &#x8F93;&#x51FA;&#x7684;&#x5185;&#x5BB9;&#x6240;&#x8D4B;&#x503C;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">new</span> <span class="token class-name">webpack<span class="token punctuation">.</span>ProvidePlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    $<span class="token punctuation">:</span> <span class="token string">&apos;jquery&apos;</span><span class="token punctuation">,</span> <span class="token comment">// identifier: &apos;module1&apos;</span>
+    _<span class="token punctuation">:</span> <span class="token string">&apos;lodash&apos;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><h3 class="mume-header" id="hotmodulereplacementplugin">HotModuleReplacementPlugin</h3>
+
+<p>&#x7528;&#x4E8E;&#x5F00;&#x53D1;&#x9636;&#x6BB5;&#x542F;&#x7528;&#x70ED;&#x6A21;&#x5757;&#x66FF;&#x6362;(HMR)&#xFF0C;&#x5F53;&#x914D;&#x7F6E; <code>devServer.hot</code> &#x7684;&#x503C;&#x4E3A; <code>true</code> &#x65F6;&#x4F1A;&#x81EA;&#x52A8;&#x6DFB;&#x52A0;&#x4F7F;&#x7528;&#x8BE5;&#x63D2;&#x4EF6;&#xFF0C;&#x65E0;&#x9700;&#x624B;&#x52A8;&#x5F15;&#x7528;&#xFF0C;&#x5B83;&#x7528;&#x4E8E;&#x63D0;&#x9AD8;&#x6784;&#x5EFA;&#x6027;&#x80FD;&#x3002;<sup class="footnote-ref"><a href="#fn3" id="fnref3:4">[3:4]</a></sup></p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">new</span> <span class="token class-name">webpack<span class="token punctuation">.</span>HotModuleReplacementPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+     <span class="token comment">// &#x5927;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#x4E0D;&#x9700;&#x8981;&#x914D;&#x7F6E;&#x4EFB;&#x4F55;&#x9009;&#x9879;&#x3002;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><h3 class="mume-header" id="dllplugin">DllPlugin</h3>
+
+<p>&#x8FD9;&#x4E2A;&#x63D2;&#x4EF6;&#x4F1A;&#x751F;&#x4E00;&#x4E2A;&#x540D;&#x4E3A; <code>manifest.json</code> &#x7684;&#x6587;&#x4EF6;&#x4F5C;&#x4E3A;&#x8D44;&#x6E90;&#x6E05;&#x5355;&#x3002;&#x4E0E; <code>output.library</code> &#x7684;&#x9009;&#x9879;&#x76F8;&#x7ED3;&#x5408;&#x53EF;&#x4EE5;&#x66B4;&#x9732;&#x51FA; dll &#x51FD;&#x6570;&#xFF0C;&#x5E76;&#x4E0E; DllReferencePlugin &#x63D2;&#x4EF6;&#x914D;&#x5408;&#x53EF;&#x5B9E;&#x73B0;&#x5206;&#x5305;&#x529F;&#x80FD;&#xFF0C;&#x4EE5;&#x63D0;&#x9AD8;&#x4F20;&#x8F93;&#x6027;&#x80FD;&#x3002;<sup class="footnote-ref"><a href="#fn1" id="fnref1:2">[1:2]</a></sup></p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">new</span> <span class="token class-name">webpack<span class="token punctuation">.</span>DllPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    context<span class="token punctuation">:</span> __dirname<span class="token punctuation">,</span>
+    name<span class="token punctuation">:</span> <span class="token string">&quot;[name]_[hash]&quot;</span><span class="token punctuation">,</span>
+    path<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">&quot;manifest.json&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><h3 class="mume-header" id="dllreferenceplugin">DllReferencePlugin</h3>
+
+<p>&#x8FD9;&#x4E2A;&#x63D2;&#x4EF6;&#x628A;&#x53EA;&#x6709; dll &#x7684; bundle &#x5F15;&#x7528;&#x5230;&#x9700;&#x8981;&#x7684;&#x9884;&#x7F16;&#x8BD1;&#x7684;&#x4F9D;&#x8D56;&#x3002;&#x4E0E; DllPlugin &#x63D2;&#x4EF6;&#x914D;&#x5408;&#x53EF;&#x5B9E;&#x73B0;&#x5206;&#x5305;&#x529F;&#x80FD;&#xFF0C;&#x4EE5;&#x63D0;&#x9AD8;&#x4F20;&#x8F93;&#x6027;&#x80FD;&#x3002;<sup class="footnote-ref"><a href="#fn1" id="fnref1:3">[1:3]</a></sup></p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">new</span> <span class="token class-name">webpack<span class="token punctuation">.</span>DllReferencePlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    context<span class="token punctuation">:</span> __dirname<span class="token punctuation">,</span>
+    manifest<span class="token punctuation">:</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./manifest.json&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    name<span class="token punctuation">:</span> <span class="token string">&quot;./my-dll.js&quot;</span><span class="token punctuation">,</span>
+    scope<span class="token punctuation">:</span> <span class="token string">&quot;xyz&quot;</span><span class="token punctuation">,</span>
+    sourceType<span class="token punctuation">:</span> <span class="token string">&quot;commonjs2&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><h3 class="mume-header" id="splitchunksplugin">SplitChunksPlugin</h3>
+
+<p>&#x7528;&#x4E8E;&#x5B9E;&#x73B0;&#x81EA;&#x52A8;&#x5206;&#x5305;&#xFF0C;&#x901A;&#x8FC7;&#x914D;&#x7F6E; <code>optimization.splitChunks</code> &#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x8BE5;&#x63D2;&#x4EF6;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E00;&#x5957;&#x9ED8;&#x8BA4;&#x914D;&#x7F6E;&#x4F5C;&#x4E3A; web &#x6027;&#x80FD;&#x7684;&#x6700;&#x4F73;&#x5B9E;&#x8DF5;&#xFF0C;&#x5B83;&#x7528;&#x4E8E;&#x63D0;&#x9AD8;&#x4F20;&#x8F93;&#x6027;&#x80FD;&#x3002;<sup class="footnote-ref"><a href="#fn1" id="fnref1:4">[1:4]</a></sup></p>
+<h2 class="mume-header" id="%E9%93%BE%E6%8E%A5">&#x94FE;&#x63A5;</h2>
+
+<ul>
+<li><a href="https://stoneryao.github.io/StuNote/Webpack/extensionsNote.html">webpack &#x7B2C;&#x4E09;&#x65B9;&#x5E38;&#x7528;&#x6269;&#x5C55;</a></li>
+</ul>
+<h2 class="mume-header" id="%E5%8F%82%E8%80%83">&#x53C2;&#x8003;</h2>
+
+<ul>
+<li><a href="https://www.webpackjs.com/">webpack</a></li>
+<li><a href="https://github.com/DuYi-Edu/DuYi-Webpack">DuYi-Edu/DuYi-Webpack</a></li>
+</ul>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://stoneryao.github.io/StuNote/Webpack/transmissionperformanceNote.html">transmission performance &#x4F20;&#x8F93;&#x6027;&#x80FD;</a><br>
+&#x8FD9;&#x91CC;&#x7684;&#x4F20;&#x8F93;&#x6027;&#x80FD;&#x662F;&#x6307;&#x6253;&#x5305;&#x540E;&#x7684; JS &#x4EE3;&#x7801;&#x4F20;&#x8F93;&#x5230;&#x6D4F;&#x89C8;&#x5668;&#x6240;&#x7ECF;&#x8FC7;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x53EA;&#x4F1A;&#x5F71;&#x54CD;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#x6587;&#x4EF6;&#x4F20;&#x8F93;&#x7684;&#x6548;&#x7387;&#x3002; <a href="#fnref1" class="footnote-backref">&#x21A9;&#xFE0E;</a> <a href="#fnref1:1" class="footnote-backref">&#x21A9;&#xFE0E;</a> <a href="#fnref1:2" class="footnote-backref">&#x21A9;&#xFE0E;</a> <a href="#fnref1:3" class="footnote-backref">&#x21A9;&#xFE0E;</a> <a href="#fnref1:4" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://stoneryao.github.io/StuNote/Webpack/sourcemapNote.html">source map &#x6E90;&#x7801;&#x5730;&#x56FE;</a><br>
+source map &#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x4E00;&#x4E2A;&#x914D;&#x7F6E;&#xFF0C;&#x914D;&#x7F6E;&#x4E2D;&#x4E0D;&#x4EC5;&#x8BB0;&#x5F55;&#x4E86;&#x6240;&#x6709;&#x6E90;&#x7801;&#x5185;&#x5BB9;&#xFF0C;&#x8FD8;&#x8BB0;&#x5F55;&#x4E86;&#x548C;&#x8F6C;&#x6362;&#x540E;&#x7684;&#x4EE3;&#x7801;&#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;&#x3002; <a href="#fnref2" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p><a href="https://stoneryao.github.io/StuNote/Webpack/buildperformanceNote.html">build performance &#x6784;&#x5EFA;&#x6027;&#x80FD;</a><br>
+&#x8FD9;&#x91CC;&#x7684;&#x6784;&#x5EFA;&#x6027;&#x80FD;&#x6307;&#x7684;&#x662F;&#x5728;&#x5F00;&#x53D1;&#x9636;&#x6BB5;&#x7684;&#x6784;&#x5EFA;&#x6027;&#x80FD;&#xFF0C;&#x5E76;&#x4E14;&#x53EA;&#x4F1A;&#x5F71;&#x54CD;&#x5F00;&#x53D1;&#x6548;&#x7387;&#x3002;&#x4E3B;&#x8981;&#x76EE;&#x7684;&#x662F;&#x964D;&#x4F4E;&#x4ECE;&#x6253;&#x5305;&#x5F00;&#x59CB;&#x5230;&#x4EE3;&#x7801;&#x6548;&#x679C;&#x5448;&#x73B0;&#x6240;&#x7ECF;&#x8FC7;&#x7684;&#x65F6;&#x95F4;&#x3002;&#x6784;&#x5EFA;&#x6027;&#x80FD;&#x8D8A;&#x9AD8;&#xFF0C;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#x65F6;&#x95F4;&#x7684;&#x6D6A;&#x8D39;&#x8D8A;&#x5C11;&#x3002; <a href="#fnref3" class="footnote-backref">&#x21A9;&#xFE0E;</a> <a href="#fnref3:1" class="footnote-backref">&#x21A9;&#xFE0E;</a> <a href="#fnref3:2" class="footnote-backref">&#x21A9;&#xFE0E;</a> <a href="#fnref3:3" class="footnote-backref">&#x21A9;&#xFE0E;</a> <a href="#fnref3:4" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p><a href="https://www.npmjs.com/package/http-proxy-middleware">http-proxy-middleware</a><br>
+&#x4EE3;&#x7406;&#x4E2D;&#x95F4;&#x4EF6;&#x914D;&#x7F6E;&#x3002;&#x8F7B;&#x677E;&#x914D;&#x7F6E;&#x4EE3;&#x7406;&#x4E2D;&#x95F4;&#x4EF6;&#x4EE5;&#x5B9E;&#x73B0;&#x8FDE;&#x63A5;&#x3001;&#x8868;&#x8FBE;&#x3001;&#x6D4F;&#x89C8;&#x5668;&#x540C;&#x6B65;&#x7B49;&#x529F;&#x80FD;&#x3002; <a href="#fnref4" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p>hash<br>
+hash &#x662F;&#x4E00;&#x79CD;&#x7B97;&#x6CD5;&#xFF0C;&#x5177;&#x4F53;&#x6709;&#x5F88;&#x591A;&#x5206;&#x7C7B;&#xFF0C;&#x7279;&#x70B9;&#x662F;&#x5C06;&#x4E00;&#x4E2A;&#x4EFB;&#x610F;&#x957F;&#x5EA6;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x4E3A;&#x4E00;&#x4E2A;&#x56FA;&#x5B9A;&#x957F;&#x5EA6;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x800C;&#x4E14;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x539F;&#x59CB;&#x5185;&#x5BB9;&#x4E0D;&#x53D8;&#xFF0C;&#x4EA7;&#x751F;&#x7684;hash&#x5B57;&#x7B26;&#x4E32;&#x5C31;&#x4E0D;&#x53D8;&#x3002; <a href="#fnref5" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+</ol>
+</section>
+
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#webpack-cli-%E6%89%93%E5%8C%85%E6%96%87%E4%BB%B6">webpack CLI &#x6253;&#x5305;&#x6587;&#x4EF6;</a></li>
+<li><a href="#webpack-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">webpack &#x914D;&#x7F6E;&#x6587;&#x4EF6;</a></li>
+<li><a href="#webpack-%E4%B8%AD%E7%9A%84-loader-%E6%A8%A1%E5%9D%97%E6%96%87%E4%BB%B6">webpack &#x4E2D;&#x7684; loader &#x6A21;&#x5757;&#x6587;&#x4EF6;</a></li>
+<li><a href="#webpack-%E4%B8%AD%E7%9A%84-plugin-%E6%A8%A1%E5%9D%97%E6%96%87%E4%BB%B6">webpack &#x4E2D;&#x7684; plugin &#x6A21;&#x5757;&#x6587;&#x4EF6;</a></li>
+<li><a href="#webpack-%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9">webpack &#x914D;&#x7F6E;&#x9009;&#x9879;</a></li>
+<li><a href="#webpack-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%85%BC%E5%AE%B9%E6%80%A7">webpack &#x6A21;&#x5757;&#x5316;&#x517C;&#x5BB9;&#x6027;</a></li>
+<li><a href="#webpack-%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B">webpack &#x7F16;&#x8BD1;&#x8FC7;&#x7A0B;</a>
+<ul>
+<li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96">&#x521D;&#x59CB;&#x5316;</a></li>
+<li><a href="#%E7%BC%96%E8%AF%91">&#x7F16;&#x8BD1;</a></li>
+<li><a href="#%E8%BE%93%E5%87%BA">&#x8F93;&#x51FA;</a></li>
+</ul>
+</li>
+<li><a href="#webpack-%E6%8F%92%E4%BB%B6">webpack &#x63D2;&#x4EF6;</a></li>
+<li><a href="#webpack-dev-server">webpack-dev-server</a></li>
+<li><a href="#webpaack-%E5%86%85%E7%BD%AE%E6%8F%92%E4%BB%B6">webpaack &#x5185;&#x7F6E;&#x63D2;&#x4EF6;</a>
+<ul>
+<li><a href="#defineplugin">DefinePlugin</a></li>
+<li><a href="#bannerplugin">BannerPlugin</a></li>
+<li><a href="#provideplugin">ProvidePlugin</a></li>
+<li><a href="#hotmodulereplacementplugin">HotModuleReplacementPlugin</a></li>
+<li><a href="#dllplugin">DllPlugin</a></li>
+<li><a href="#dllreferenceplugin">DllReferencePlugin</a></li>
+<li><a href="#splitchunksplugin">SplitChunksPlugin</a></li>
+</ul>
+</li>
+<li><a href="#%E9%93%BE%E6%8E%A5">&#x94FE;&#x63A5;</a></li>
+<li><a href="#%E5%8F%82%E8%80%83">&#x53C2;&#x8003;</a></li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">&#x2261;</a>
+    
+    
+    
+    
+    
+    
+    
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  
+    </body></html>
