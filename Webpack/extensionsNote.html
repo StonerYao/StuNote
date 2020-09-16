@@ -578,6 +578,28 @@ module<span class="token punctuation">.</span>exports <span class="token operato
         <span class="token punctuation">}</span><span class="token punctuation">)</span>
     <span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
+</pre><h2 class="mume-header" id="webpack-bundle-analyzerhttpswwwnpmjscompackagewebpack-bundle-analyzer"><a href="https://www.npmjs.com/package/webpack-bundle-analyzer">webpack-bundle-analyzer</a></h2>
+
+<p>&#x4F7F;&#x7528;&#x4EA4;&#x4E92;&#x5F0F;&#x53EF;&#x7F29;&#x653E;&#x6811;&#x72B6;&#x56FE;&#x53EF;&#x89C6;&#x5316; webpack &#x8F93;&#x51FA;&#x6587;&#x4EF6;&#x7684;&#x5927;&#x5C0F;&#x3002;webpack-bundle-analyzer &#x7528;&#x4E8E;&#x8F85;&#x52A9;&#x5206;&#x6790;&#xFF0C;<a href="https://stoneryao.github.io/StuNote/Webpack/otheroptimizationsNote.html">&#x8BE6;&#x7EC6;&#x4E86;&#x89E3;</a>&#x3002;</p>
+<p><i class="fa fa-cloud-download" aria-hidden="true"></i> &#x5B89;&#x88C5;&#xFF1A;<code>npm i -D webpack-bundle-analyzer</code></p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> BundleAnalyzerPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;webpack-bundle-analyzer&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span>BundleAnalyzerPlugin<span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token keyword">new</span> <span class="token class-name">BundleAnalyzerPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</pre><h2 class="mume-header" id="compression-webpack-pluginhttpswwwnpmjscompackagecompression-webpack-plugin"><a href="https://www.npmjs.com/package/compression-webpack-plugin">compression-webpack-plugin</a></h2>
+
+<p>&#x51C6;&#x5907;&#x8D44;&#x6E90;&#x7684;&#x538B;&#x7F29;&#x7248;&#x672C;&#xFF0C;&#x7528;&#x5185;&#x5BB9;&#x7F16;&#x7801;&#x4E3A;&#x5B83;&#x4EEC;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#x3002;compression-webpack-plugin &#x7528;&#x4E8E;&#x4F18;&#x5316;&#x4F20;&#x8F93;&#x6027;&#x80FD;&#xFF0C;<a href="https://stoneryao.github.io/StuNote/Webpack/transmissionperformanceNote.html">&#x8BE6;&#x7EC6;&#x4E86;&#x89E3;</a>&#x3002;</p>
+<p><i class="fa fa-cloud-download" aria-hidden="true"></i> &#x5B89;&#x88C5;&#xFF1A;<code>npm i -D compression-webpack-plugin</code></p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> CompressionPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;compression-webpack-plugin&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token keyword">new</span> <span class="token class-name">CompressionPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
 </pre><hr class="footnotes-sep">
 <section class="footnotes">
 <ol class="footnotes-list">
@@ -618,6 +640,8 @@ Terser &#x662F;&#x4E00;&#x4E2A;&#x4EE3;&#x7801;&#x538B;&#x7F29;&#x5DE5;&#x5177;&
 <li><a href="#optimize-css-assets-webpack-pluginhttpswwwnpmjscompackageoptimize-css-assets-webpack-plugin">optimize-css-assets-webpack-plugin</a></li>
 <li><a href="#webpack-deep-scope-pluginhttpswwwnpmjscompackagewebpack-deep-scope-plugin">webpack-deep-scope-plugin</a></li>
 <li><a href="#purgecss-webpack-pluginhttpswwwnpmjscompackagepurgecss-webpack-plugin">purgecss-webpack-plugin</a></li>
+<li><a href="#webpack-bundle-analyzerhttpswwwnpmjscompackagewebpack-bundle-analyzer">webpack-bundle-analyzer</a></li>
+<li><a href="#compression-webpack-pluginhttpswwwnpmjscompackagecompression-webpack-plugin">compression-webpack-plugin</a></li>
 </ul>
 </div>
       <a id="sidebar-toc-btn">&#x2261;</a>
