@@ -1,0 +1,1011 @@
+<!DOCTYPE html><html><head>
+      <title>VuexNote</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+.markdown-preview.markdown-preview {
+  font-family: "consolas", "Noto Sans S Chinese";
+  font-size: 1em;
+}
+.markdown-img-description {
+  text-align: center;
+  margin-top: -1em;
+  color: #666;
+  margin-bottom: 2em;
+}
+html body img {
+  border: 2px solid #ccc;
+}
+.markdown-p-center {
+  text-align: center;
+}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      
+<script>
+    function setCurrent(){
+        const links = document.querySelectorAll(".md-sidebar-toc a")
+        for(const link of links){
+            link.style.color="";
+        }
+        const hash = location.hash;
+        const a = document.querySelector('a[href="'+hash+'"]');
+        if(a){
+            a.style.color = "#f40";
+        }
+    }
+    setCurrent();
+    window.onhashchange = setCurrent;
+</script>
+<h1 class="mume-header undefined" id="vuex">Vuex</h1>
+
+<p>Vuex &#x662F;&#x4E00;&#x4E2A;&#x4E13;&#x4E3A; Vue &#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5F00;&#x53D1;&#x7684;&#x72B6;&#x6001;&#x7BA1;&#x7406;&#x6A21;&#x5F0F;&#xFF0C;&#x7528;&#x4E8E;&#x5B9E;&#x73B0;&#x591A;&#x7EC4;&#x4EF6;&#x7684;&#x72B6;&#x6001;&#x5171;&#x4EAB;&#x3002;&#x591A;&#x7528;&#x4E8E;&#x4E2D;&#x5927;&#x578B;&#x5355;&#x9875;&#x5E94;&#x7528;&#x3002;&#x8BA9;&#x4EE3;&#x7801;&#x53D8;&#x5F97;&#x66F4;&#x7ED3;&#x6784;&#x5316;&#x4E14;&#x6613;&#x7EF4;&#x62A4;&#x3002;</p>
+<p>Vuex &#x91C7;&#x7528;&#x96C6;&#x4E2D;&#x5F0F;&#x5B58;&#x50A8;&#x7BA1;&#x7406;&#x5E94;&#x7528;&#x7684;&#x6240;&#x6709;&#x7EC4;&#x4EF6;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x4EFB;&#x4F55;&#x7EC4;&#x4EF6;&#x90FD;&#x80FD;&#x83B7;&#x53D6;&#x72B6;&#x6001;&#x6216;&#x8005;&#x89E6;&#x53D1;&#x884C;&#x4E3A;&#xFF0C;&#x5E76;&#x4EE5;&#x76F8;&#x5E94;&#x7684;&#x89C4;&#x5219;&#x4FDD;&#x8BC1;&#x72B6;&#x6001;&#x4EE5;&#x4E00;&#x79CD;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x65B9;&#x5F0F;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x3002;</p>
+<p class="markdown-p-center">
+  <img src="assets/vuex.png" alt="Vuex" style="max-width:100%">
+</p>
+<p class="markdown-img-description">
+  Vuex
+</p>
+<h2 class="mume-header" id="%E5%AE%89%E8%A3%85httpsvuexvuejsorgzhinstallationhtml"><a href="https://vuex.vuejs.org/zh/installation.html">&#x5B89;&#x88C5;</a></h2>
+
+<ul>
+<li>&#x76F4;&#x63A5;&#x4E0B;&#x8F7D; / CDN: <code>https://unpkg.com/vuex</code></li>
+<li>NPM: <code>npm install vuex --save</code></li>
+</ul>
+<blockquote>
+<p>&#x6CE8;&#x610F;: Vuex &#x4F9D;&#x8D56; Promise&#x3002;&#x5982;&#x679C;&#x6240;&#x652F;&#x6301;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x6CA1;&#x6709;&#x5B9E;&#x73B0; Promise (&#x6BD4;&#x5982; IE)&#xFF0C;&#x9700;&#x8981;&#x5148;&#x5B89;&#x88C5;&#x4E00;&#x4E2A; polyfill &#x7684;&#x5E93;&#xFF0C;&#x4F8B;&#x5982; <code>es6-promise</code>&#x3002;</p>
+</blockquote>
+<h2 class="mume-header" id="%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8httpsvuexvuejsorgzhguide"><a href="https://vuex.vuejs.org/zh/guide/">&#x57FA;&#x672C;&#x4F7F;&#x7528;</a></h2>
+
+<ol>
+<li>
+<p>&#x5F15;&#x5165; Vuex</p>
+<pre data-role="codeBlock" data-info="html" class="language-html"><span class="token comment">&lt;!-- &#x76F4;&#x63A5;&#x4E0B;&#x8F7D; / CDN --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>/path/to/vue.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>/path/to/vuex.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</pre><pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// NPM + &#x6A21;&#x5757;&#x5316;</span>
+<span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">&apos;vue&apos;</span>
+<span class="token keyword">import</span> Vuex <span class="token keyword">from</span> <span class="token string">&apos;vuex&apos;</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Vuex<span class="token punctuation">)</span>
+</pre></li>
+<li>
+<p>&#x521B;&#x5EFA; <code>store</code> &#x5B9E;&#x4F8B;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  state<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    count<span class="token punctuation">:</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  mutations<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">increment</span> <span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      state<span class="token punctuation">.</span>count<span class="token operator">++</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre></li>
+<li>
+<p>&#x521B;&#x5EFA;&#x548C;&#x6302;&#x8F7D;&#x6839;&#x5B9E;&#x4F8B;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment">// &#x7B49;&#x540C;&#x4E8E; `store: store`</span>
+  store
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">&apos;#app&apos;</span><span class="token punctuation">)</span>
+</pre></li>
+<li>
+<p>&#x5728;&#x7EC4;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528;&#x72B6;&#x6001;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// &#x83B7;&#x53D6;&#x72B6;&#x6001;</span>
+computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token function">count</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>state<span class="token punctuation">.</span>count
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token comment">// &#x4FEE;&#x6539;&#x72B6;&#x6001;</span>
+methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token function">increment</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">&apos;increment&apos;</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></li>
+</ol>
+<h2 class="mume-header" id="store">Store</h2>
+
+<p>Store (&#x4ED3;&#x5E93;) &#x7531; <code>Vuex.Store</code> &#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#xFF0C;&#x4F5C;&#x4E3A; Vuex &#x5E94;&#x7528;&#x7684;&#x6838;&#x5FC3;&#x5BB9;&#x5668;&#xFF0C;&#x6BCF;&#x4E2A;&#x5E94;&#x7528;&#x4E2D;&#x53EA;&#x80FD;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x4ED3;&#x5E93;&#x5B9E;&#x4F8B;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x5728;&#x6839;&#x5B9E;&#x4F8B;&#x4E2D;&#x6CE8;&#x518C; <code>store</code> &#x9009;&#x9879;&#xFF0C;&#x5C06;&#x4ED3;&#x5E93;&#x5B9E;&#x4F8B;&#x6CE8;&#x5165;&#x5230;&#x5176;&#x4E0B;&#x7684;&#x6240;&#x6709;&#x5B50;&#x7EC4;&#x4EF6;&#x4E2D;&#xFF0C;&#x4E14;&#x5B50;&#x7EC4;&#x4EF6;&#x80FD;&#x901A;&#x8FC7; <code>this.$store</code> &#x8BBF;&#x95EE;&#x5230;&#x3002;</p>
+<h2 class="mume-header" id="statehttpsvuexvuejsorgzhguidestatehtml"><a href="https://vuex.vuejs.org/zh/guide/state.html">State</a></h2>
+
+<p>State (&#x72B6;&#x6001;) &#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x5168;&#x90E8;&#x7684;&#x5E94;&#x7528;&#x5C42;&#x7EA7;&#x72B6;&#x6001;&#xFF0C;&#x4F5C;&#x4E3A;&#x552F;&#x4E00;&#x7684;&#x6570;&#x636E;&#x6E90;&#x3002;Vuex &#x7684;&#x72B6;&#x6001;&#x5B58;&#x50A8;&#x662F;&#x54CD;&#x5E94;&#x5F0F;&#x7684;&#xFF0C;&#x4E14;&#x53EA;&#x80FD;&#x901A;&#x8FC7;&#x663E;&#x5F0F;&#x5730;&#x63D0;&#x4EA4; mutation &#x6765;&#x6539;&#x53D8;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x5728;&#x5B50;&#x7EC4;&#x4EF6;&#x4E2D;&#x901A;&#x8FC7;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;&#x4ECE;&#x4ED3;&#x5E93;&#x5B9E;&#x4F8B;&#x4E2D;&#x83B7;&#x53D6;&#x72B6;&#x6001;&#x3002;</p>
+<blockquote>
+<p>&#x6CE8;&#x610F;: &#x5B58;&#x50A8;&#x5728; Vuex &#x4E2D;&#x7684;&#x6570;&#x636E;&#x548C; Vue &#x5B9E;&#x4F8B;&#x4E2D;&#x7684; <code>data</code> &#x9075;&#x5FAA;&#x76F8;&#x540C;&#x7684;&#x89C4;&#x5219;&#x3002;</p>
+</blockquote>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>mapState</code> &#x8F85;&#x52A9;&#x51FD;&#x6570;&#x5C06; <code>store</code> &#x4E2D;&#x7684; <code>state</code> &#x6620;&#x5C04;&#x5230;&#x5C40;&#x90E8;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// &#x5728;&#x5355;&#x72EC;&#x6784;&#x5EFA;&#x7684;&#x7248;&#x672C;&#x4E2D;&#x8F85;&#x52A9;&#x51FD;&#x6570;&#x4E3A; Vuex.mapState</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> mapState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;vuex&apos;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  computed<span class="token punctuation">:</span> <span class="token function">mapState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    count<span class="token punctuation">:</span> state <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>count<span class="token punctuation">,</span>
+    
+    <span class="token comment">// &#x7B49;&#x540C;&#x4E8E; state =&gt; state.count</span>
+    countAlias<span class="token punctuation">:</span> <span class="token string">&apos;count&apos;</span><span class="token punctuation">,</span>
+    
+    <span class="token comment">// &#x4F7F;&#x7528; this &#x83B7;&#x53D6;&#x5C40;&#x90E8;&#x72B6;&#x6001;</span>
+    <span class="token function">countPlusLocalState</span> <span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> state<span class="token punctuation">.</span>count <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>localCount
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x5F53;&#x6620;&#x5C04;&#x7684;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;&#x7684;&#x540D;&#x79F0;&#x4E0E; <code>state</code> &#x7684;&#x5B50;&#x8282;&#x70B9;&#x540D;&#x79F0;&#x76F8;&#x540C;&#x65F6;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x7ED9; <code>mapState</code> &#x4F20;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x6570;&#x7EC4;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">computed<span class="token punctuation">:</span> <span class="token function">mapState</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+  <span class="token comment">// &#x6620;&#x5C04; this.count &#x4E3A; store.state.count</span>
+  <span class="token string">&apos;count&apos;</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</pre><p>&#x4F7F;&#x7528;&#x5BF9;&#x8C61;&#x5C55;&#x5F00;&#x8FD0;&#x7B97;&#x7B26;&#x5C06; <code>mapState</code> &#x521B;&#x5EFA;&#x7684;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;&#x4E0E;&#x5C40;&#x90E8;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;&#x6DF7;&#x5408;&#x4F7F;&#x7528;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token function">localComputed</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// &#x5C06;&#x6B64;&#x5BF9;&#x8C61;&#x6DF7;&#x5165;&#x5230;&#x5916;&#x90E8;&#x5BF9;&#x8C61;&#x4E2D;</span>
+  <span class="token operator">...</span><span class="token function">mapState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre><h2 class="mume-header" id="getterhttpsvuexvuejsorgzhguidegettershtml"><a href="https://vuex.vuejs.org/zh/guide/getters.html">Getter</a></h2>
+
+<p>Getter &#x7528;&#x4E8E;&#x4ECE; <code>store</code> &#x4E2D;&#x7684; <code>state</code> &#x4E2D;&#x6D3E;&#x751F;&#x51FA;&#x4E00;&#x4E9B;&#x72B6;&#x6001;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA4;&#x4E3A;&#x662F; <code>store</code> &#x7684;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  state<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    todos<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> text<span class="token punctuation">:</span> <span class="token string">&apos;...&apos;</span><span class="token punctuation">,</span> done<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> text<span class="token punctuation">:</span> <span class="token string">&apos;...&apos;</span><span class="token punctuation">,</span> done<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  getters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    doneTodos<span class="token punctuation">:</span> state <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> state<span class="token punctuation">.</span>todos<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>todo <span class="token operator">=&gt;</span> todo<span class="token punctuation">.</span>done<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>Getter &#x63A5;&#x53D7; <code>state</code> &#x4F5C;&#x4E3A;&#x5176;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x63A5;&#x53D7;&#x5176;&#x5B83; <code>getters</code> &#x4F5C;&#x4E3A;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">getters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  doneTodosCount<span class="token punctuation">:</span> <span class="token punctuation">(</span>state<span class="token punctuation">,</span> getters<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> getters<span class="token punctuation">.</span>doneTodos<span class="token punctuation">.</span>length
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x53EF;&#x4EE5;&#x5728;&#x4EFB;&#x4F55;&#x7EC4;&#x4EF6;&#x4E2D;&#x901A;&#x8FC7;&#x5C5E;&#x6027;&#x8BBF;&#x95EE;&#x5B83;&#xFF0C;&#x6B64;&#x65F6; getter &#x7684;&#x8FD4;&#x56DE;&#x503C;&#x4F1A;&#x6839;&#x636E;&#x5B83;&#x7684;&#x4F9D;&#x8D56;&#x88AB;&#x7F13;&#x5B58;&#x8D77;&#x6765;&#xFF0C;&#x4E14;&#x53EA;&#x6709;&#x5F53;&#x5B83;&#x7684;&#x4F9D;&#x8D56;&#x503C;&#x53D1;&#x751F;&#x4E86;&#x6539;&#x53D8;&#x624D;&#x4F1A;&#x88AB;&#x91CD;&#x65B0;&#x8BA1;&#x7B97;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token function">doneTodosCount</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>getters<span class="token punctuation">.</span>doneTodosCount <span class="token comment">// -&gt; 1</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x5F53; getter &#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x7ED9; getter &#x4F20;&#x53C2;&#x5E76;&#x901A;&#x8FC7;&#x8C03;&#x7528;&#x65B9;&#x6CD5;&#x8BBF;&#x95EE;&#x5B83;&#xFF0C;&#x6B64;&#x65F6;&#x4E0D;&#x4F1A;&#x7F13;&#x5B58;&#x7ED3;&#x679C;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">getters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  getTodoById<span class="token punctuation">:</span> <span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> state<span class="token punctuation">.</span>todos<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>todo <span class="token operator">=&gt;</span> todo<span class="token punctuation">.</span>id <span class="token operator">===</span> id<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>getters<span class="token punctuation">.</span><span class="token function">getTodoById</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment">// -&gt; { id: 2, text: &apos;...&apos;, done: false }</span>
+</pre><p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>mapGetters</code> &#x8F85;&#x52A9;&#x51FD;&#x6570;&#x5C06; <code>store</code> &#x4E2D;&#x7684; <code>getters</code> &#x6620;&#x5C04;&#x5230;&#x5C40;&#x90E8;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> mapGetters <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;vuex&apos;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token comment">// &#x4F7F;&#x7528;&#x5BF9;&#x8C61;&#x5C55;&#x5F00;&#x8FD0;&#x7B97;&#x7B26;&#x5C06; getter &#x6DF7;&#x5165; computed &#x5BF9;&#x8C61;&#x4E2D;</span>
+    <span class="token operator">...</span><span class="token function">mapGetters</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+      <span class="token string">&apos;doneTodosCount&apos;</span><span class="token punctuation">,</span>
+      <span class="token string">&apos;anotherGetter&apos;</span><span class="token punctuation">,</span>
+      <span class="token comment">// ...</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x4F7F;&#x7528;&#x5BF9;&#x8C61;&#x5F62;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x7ED9; getter &#x5C5E;&#x6027;&#x53E6;&#x53D6;&#x4E00;&#x4E2A;&#x540D;&#x5B57;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token operator">...</span><span class="token function">mapGetters</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment">// &#x628A; this.doneCount &#x6620;&#x5C04;&#x4E3A; this.$store.getters.doneTodosCount</span>
+  doneCount<span class="token punctuation">:</span> <span class="token string">&apos;doneTodosCount&apos;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><h2 class="mume-header" id="mutationhttpsvuexvuejsorgzhguidemutationshtml"><a href="https://vuex.vuejs.org/zh/guide/mutations.html">Mutation</a></h2>
+
+<p>Mutation &#x4F5C;&#x4E3A;&#x552F;&#x4E00;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x7528;&#x4E8E;&#x66F4;&#x6539; Vuex store &#x4E2D;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E;&#x4E8B;&#x4EF6;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  state<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    count<span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  mutations<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">increment</span> <span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// &#x53D8;&#x66F4;&#x72B6;&#x6001;</span>
+      state<span class="token punctuation">.</span>count<span class="token operator">++</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>Mutation &#x63A5;&#x53D7; <code>state</code> &#x4F5C;&#x4E3A;&#x5176;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x63A5;&#x53D7;&#x53EF;&#x9009;&#x7684;&#x63D0;&#x4EA4;&#x8F7D;&#x8377; (Payload) &#x4F5C;&#x4E3A;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">mutations<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  <span class="token function">next</span> <span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    state<span class="token punctuation">.</span>count<span class="token operator">++</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">increment</span> <span class="token punctuation">(</span>state<span class="token punctuation">,</span> payload<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    state<span class="token punctuation">.</span>count <span class="token operator">+=</span> payload
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">reduction</span> <span class="token punctuation">(</span>state<span class="token punctuation">,</span> payload<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    state<span class="token punctuation">.</span>count <span class="token operator">-=</span> payload<span class="token punctuation">.</span>amount
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x53EF;&#x4EE5;&#x5728;&#x4EFB;&#x4F55;&#x7EC4;&#x4EF6;&#x4E2D;&#x901A;&#x8FC7;&#x8C03;&#x7528; <code>this.$store.commit</code> &#x65B9;&#x6CD5;&#x63D0;&#x4EA4;&#x4E00;&#x4E2A; mutation&#x3002;&#x53E6;&#x5916;&#x5728;&#x63D0;&#x4EA4;&#x8F7D;&#x8377;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x4F20;&#x5165;&#x989D;&#x5916;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x5F53;&#x8F7D;&#x8377;&#x5305;&#x542B;&#x591A;&#x4E2A;&#x5B57;&#x6BB5;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x91C7;&#x7528;&#x5BF9;&#x8C61;&#x7684;&#x5F62;&#x5F0F;&#x4F20;&#x5165;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">&apos;next&apos;</span><span class="token punctuation">)</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">&apos;increment&apos;</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">&apos;reduction&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> amount<span class="token punctuation">:</span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x63D0;&#x4EA4; mutation &#x7684;&#x53E6;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#x662F;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5305;&#x542B; <code>type</code> &#x5C5E;&#x6027;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5BF9;&#x8C61;&#x5C06;&#x4F5C;&#x4E3A;&#x8F7D;&#x8377;&#x4F20;&#x7ED9; mutation &#x51FD;&#x6570;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  type<span class="token punctuation">:</span> <span class="token string">&apos;reduction&apos;</span><span class="token punctuation">,</span>
+  amount<span class="token punctuation">:</span> <span class="token number">10</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><blockquote>
+<p>&#x6CE8;&#x610F;: Mutation &#x9700;&#x9075;&#x5B88; Vue &#x7684;&#x54CD;&#x5E94;&#x89C4;&#x5219;&#xFF0C;&#x56E0;&#x6B64;&#x6700;&#x597D;&#x63D0;&#x524D;&#x5728; store &#x4E2D;&#x521D;&#x59CB;&#x5316;&#x597D;&#x6240;&#x6709;&#x6240;&#x9700;&#x5C5E;&#x6027;&#x3002;&#x5F53;&#x9700;&#x8981;&#x5728;&#x5BF9;&#x8C61;&#x4E0A;&#x6DFB;&#x52A0;&#x65B0;&#x5C5E;&#x6027;&#x65F6;&#xFF0C;&#x5E94;&#x8BE5;&#x4F7F;&#x7528; <code>Vue.set()</code> &#x65B9;&#x6CD5;, &#x6216;&#x8005;&#x5229;&#x7528;&#x5BF9;&#x8C61;&#x5C55;&#x5F00;&#x8FD0;&#x7B97;&#x7B26;&#x4EE5;&#x65B0;&#x5BF9;&#x8C61;&#x66FF;&#x6362;&#x8001;&#x5BF9;&#x8C61;&#x3002;</p>
+</blockquote>
+<p>&#x5728;&#x5927;&#x578B;&#x9879;&#x76EE;&#x4E2D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5E38;&#x91CF;&#x66FF;&#x4EE3; Mutation &#x4E8B;&#x4EF6;&#x7C7B;&#x578B;&#xFF0C;&#x4EE5;&#x4F7F;&#x6574;&#x4E2A; app &#x5305;&#x542B;&#x7684; mutation &#x4E00;&#x76EE;&#x4E86;&#x7136;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// mutation-types.js</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token constant">SOME_MUTATION</span> <span class="token operator">=</span> <span class="token string">&apos;SOME_MUTATION&apos;</span>
+</pre><pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// store.js</span>
+<span class="token keyword">import</span> Vuex <span class="token keyword">from</span> <span class="token string">&apos;vuex&apos;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">SOME_MUTATION</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;./mutation-types&apos;</span>
+
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  state<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  mutations<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// &#x4F7F;&#x7528; ES2015 &#x98CE;&#x683C;&#x7684;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;&#x547D;&#x540D;&#x529F;&#x80FD; &#x7528;&#x4E00;&#x4E2A;&#x5E38;&#x91CF;&#x4F5C;&#x4E3A;&#x51FD;&#x6570;&#x540D;</span>
+    <span class="token punctuation">[</span><span class="token constant">SOME_MUTATION</span><span class="token punctuation">]</span> <span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// mutate state</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>Mutation &#x4F5C;&#x4E3A;&#x66F4;&#x6539; Vuex store &#x4E2D;&#x72B6;&#x6001;&#x7684;&#x552F;&#x4E00;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x6240;&#x4EE5;&#x5B83;&#x7684;&#x56DE;&#x8C03;&#x5FC5;&#x987B;&#x662F;&#x540C;&#x6B65;&#x51FD;&#x6570;&#xFF0C;&#x4EE5;&#x65B9;&#x4FBF;&#x8FFD;&#x8E2A;&#x72B6;&#x6001;&#x7684;&#x6539;&#x53D8;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x65B9;&#x4FBF;&#x4F7F;&#x7528; devtools &#x8FDB;&#x884C;&#x8C03;&#x8BD5;&#x3002;&#x5E76;&#x4E14;&#x5728; Vuex store &#x7684;&#x4E25;&#x683C;&#x6A21;&#x5F0F;&#x4E0B; (&#x521B;&#x5EFA; <code>store</code> &#x65F6;&#x4F20;&#x5165; <code>strict: true</code>)&#xFF0C;&#x4EFB;&#x4F55; mutation &#x5904;&#x7406;&#x51FD;&#x6570;&#x4EE5;&#x5916;&#x4FEE;&#x6539; state &#x90FD;&#x4F1A;&#x629B;&#x51FA;&#x9519;&#x8BEF;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// &#x786E;&#x4FDD;&#x5728;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#x5173;&#x95ED;&#x4E25;&#x683C;&#x6A21;&#x5F0F;</span>
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  strict<span class="token punctuation">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">!==</span> <span class="token string">&apos;production&apos;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><blockquote>
+<p>&#x6CE8;&#x610F;: &#x4E0D;&#x8981;&#x5728;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E0B;&#x542F;&#x7528;&#x4E25;&#x683C;&#x6A21;&#x5F0F;&#x3002;&#x4E25;&#x683C;&#x6A21;&#x5F0F;&#x4F1A;&#x6DF1;&#x5EA6;&#x76D1;&#x6D4B;&#x72B6;&#x6001;&#x6811;&#x6765;&#x68C0;&#x6D4B;&#x4E0D;&#x5408;&#x89C4;&#x7684;&#x72B6;&#x6001;&#x53D8;&#x66F4;&#xFF0C;&#x4ECE;&#x800C;&#x9020;&#x6210;&#x6027;&#x80FD;&#x635F;&#x5931;&#x3002;</p>
+</blockquote>
+<p>&#x5F53; Vuex &#x4E0E;&#x8868;&#x5355;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x8054;&#x7528;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>v-bind</code> &#x548C; <code>v-on</code> &#x6A21;&#x62DF; <code>v-model</code>&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;&#x7684; setter&#xFF0C;&#x6765;&#x5B9E;&#x73B0;&#x8868;&#x5355;&#x4E2D;&#x6570;&#x636E;&#x4E0E; Vuex store &#x4E2D;&#x72B6;&#x6001;&#x7684;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x529F;&#x80FD;&#x3002;</p>
+<pre data-role="codeBlock" data-info="html" class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>msg<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+</pre><pre data-role="codeBlock" data-info="js" class="language-javascript">computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  msg<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token keyword">get</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>state<span class="token punctuation">.</span>obj<span class="token punctuation">.</span>msg<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token keyword">set</span> <span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">&apos;update&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> value <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>mapMutations</code> &#x8F85;&#x52A9;&#x51FD;&#x6570;&#x5C06; <code>store</code> &#x4E2D;&#x7684; <code>mutations</code> &#x7684; <code>commit</code> &#x8C03;&#x7528;&#x6620;&#x5C04;&#x5230;&#x5C40;&#x90E8;&#x65B9;&#x6CD5;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> mapMutations <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;vuex&apos;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span><span class="token function">mapMutations</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+      <span class="token comment">// &#x5C06; this.increment() &#x6620;&#x5C04;&#x4E3A; this.$store.commit(&apos;increment&apos;)</span>
+      <span class="token string">&apos;increment&apos;</span><span class="token punctuation">,</span>
+
+      <span class="token comment">// &#x5C06; this.incrementBy(amount) &#x6620;&#x5C04;&#x4E3A; this.$store.commit(&apos;incrementBy&apos;, amount)</span>
+      <span class="token string">&apos;incrementBy&apos;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span><span class="token function">mapMutations</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token comment">// &#x5C06; this.add() &#x6620;&#x5C04;&#x4E3A; this.$store.commit(&apos;increment&apos;)</span>
+      add<span class="token punctuation">:</span> <span class="token string">&apos;increment&apos;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><h2 class="mume-header" id="actionhttpsvuexvuejsorgzhguideactionshtml"><a href="https://vuex.vuejs.org/zh/guide/actions.html">Action</a></h2>
+
+<p>Action &#x901A;&#x8FC7;&#x63D0;&#x4EA4; mutation &#x4ECE;&#x800C;&#x66F4;&#x6539; Vuex store &#x4E2D;&#x7684;&#x72B6;&#x6001;&#x3002;</p>
+<p>Action &#x51FD;&#x6570;&#x63A5;&#x53D7;&#x4E00;&#x4E2A;&#x4E0E; <code>store</code> &#x5B9E;&#x4F8B;&#x5177;&#x6709;&#x76F8;&#x540C;&#x65B9;&#x6CD5;&#x548C;&#x5C5E;&#x6027;&#x7684; <code>context</code> &#x5BF9;&#x8C61;&#x4F5C;&#x4E3A;&#x5176;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x8C03;&#x7528; <code>context.commit</code> &#x63D0;&#x4EA4;&#x4E00;&#x4E2A; mutation&#xFF0C;&#x6216;&#x8005;&#x901A;&#x8FC7; <code>context.state</code> &#x548C; <code>context.getters</code> &#x6765;&#x83B7;&#x53D6; state &#x548C; getters&#x3002;&#x4E5F;&#x53EF;&#x4EE5;&#x5C06; <code>context</code> &#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#x548C;&#x5C5E;&#x6027;&#x901A;&#x8FC7; ES2015 &#x7684;&#x53C2;&#x6570;&#x89E3;&#x6784;&#x6765;&#x7B80;&#x5316;&#x4EE3;&#x7801;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  state<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    count<span class="token punctuation">:</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  mutations<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">increment</span> <span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      state<span class="token punctuation">.</span>count<span class="token operator">++</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  actions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">increment</span> <span class="token punctuation">(</span>context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      context<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">&apos;increment&apos;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><blockquote>
+<p>&#x6CE8;&#x610F;: <code>context</code> &#x5BF9;&#x8C61;&#x5E76;&#x4E0D;&#x662F; <code>store</code> &#x5B9E;&#x4F8B;&#x672C;&#x8EAB;&#x3002;</p>
+</blockquote>
+<p>&#x540C;&#x6837; Action &#x51FD;&#x6570;&#x4E5F;&#x63A5;&#x53D7;&#x53EF;&#x9009;&#x7684;&#x63D0;&#x4EA4;&#x8F7D;&#x8377;&#x4F5C;&#x4E3A;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">actions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  <span class="token function">increment</span> <span class="token punctuation">(</span>context<span class="token punctuation">,</span> payload<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    context<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">&apos;increment&apos;</span><span class="token punctuation">,</span> payload<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x53EF;&#x4EE5;&#x5728;&#x4EFB;&#x4F55;&#x7EC4;&#x4EF6;&#x4E2D;&#x901A;&#x8FC7;&#x8C03;&#x7528; <code>this.$store.dispatch</code> &#x65B9;&#x6CD5;&#x5206;&#x53D1; Action&#x3002;&#x53E6;&#x5916; Actions &#x4E5F;&#x652F;&#x6301;&#x540C;&#x6837;&#x7684;&#x8F7D;&#x8377;&#x65B9;&#x5F0F;&#x548C;&#x5BF9;&#x8C61;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x5206;&#x53D1;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token string">&apos;increment&apos;</span><span class="token punctuation">)</span>
+
+<span class="token comment">// &#x4EE5;&#x8F7D;&#x8377;&#x5F62;&#x5F0F;&#x5206;&#x53D1;</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token string">&apos;increment&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> amount<span class="token punctuation">:</span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// &#x4EE5;&#x5BF9;&#x8C61;&#x5F62;&#x5F0F;&#x5206;&#x53D1;</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  type<span class="token punctuation">:</span> <span class="token string">&apos;increment&apos;</span><span class="token punctuation">,</span>
+  amount<span class="token punctuation">:</span> <span class="token number">10</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x4E0E; mutation &#x4E0D;&#x540C;&#xFF0C;Action &#x53EF;&#x4EE5;&#x5305;&#x542B;&#x4EFB;&#x610F;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">actions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token function">incrementAsync</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> commit <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">&apos;increment&apos;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p><code>store.dispatch</code> &#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x5904;&#x7406;&#x88AB;&#x89E6;&#x53D1;&#x7684; action &#x7684;&#x5904;&#x7406;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x7684; Promise&#xFF0C;&#x5E76;&#x4E14; <code>store.dispatch</code> &#x4ECD;&#x65E7;&#x8FD4;&#x56DE; Promise&#x3002;&#x4ECE;&#x800C;&#x53EF;&#x4EE5;&#x7EC4;&#x5408;&#x591A;&#x4E2A; action&#xFF0C;&#x4EE5;&#x5904;&#x7406;&#x66F4;&#x52A0;&#x590D;&#x6742;&#x7684;&#x5F02;&#x6B65;&#x6D41;&#x7A0B;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">actions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token function">actionA</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> commit <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">&apos;someMutation&apos;</span><span class="token punctuation">)</span>
+        <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">actionB</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> dispatch<span class="token punctuation">,</span> commit <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token string">&apos;actionA&apos;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">&apos;someOtherMutation&apos;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x5229;&#x7528; <code>async / await</code> &#x7EC4;&#x5408;&#x591A;&#x4E2A; action&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// &#x5047;&#x8BBE; getData() &#x548C; getOtherData() &#x8FD4;&#x56DE;&#x7684;&#x662F; Promise</span>
+
+actions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token keyword">async</span> <span class="token function">actionA</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> commit <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">&apos;gotData&apos;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token keyword">async</span> <span class="token function">actionB</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> dispatch<span class="token punctuation">,</span> commit <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">await</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token string">&apos;actionA&apos;</span><span class="token punctuation">)</span> <span class="token comment">// &#x7B49;&#x5F85; actionA &#x5B8C;&#x6210;</span>
+    <span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">&apos;gotOtherData&apos;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> <span class="token function">getOtherData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><blockquote>
+<p>&#x6CE8;&#x610F;: &#x4E00;&#x4E2A; <code>store.dispatch</code> &#x5728;&#x4E0D;&#x540C;&#x6A21;&#x5757;&#x4E2D;&#x53EF;&#x4EE5;&#x89E6;&#x53D1;&#x591A;&#x4E2A; action &#x51FD;&#x6570;&#x3002;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x53EA;&#x6709;&#x5F53;&#x6240;&#x6709;&#x89E6;&#x53D1;&#x51FD;&#x6570;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x8FD4;&#x56DE;&#x7684; Promise &#x624D;&#x4F1A;&#x6267;&#x884C;&#x3002;</p>
+</blockquote>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>mapActions</code> &#x8F85;&#x52A9;&#x51FD;&#x6570;&#x5C06; <code>store</code> &#x4E2D;&#x7684; <code>actions</code> &#x7684; <code>dispatch</code> &#x8C03;&#x7528;&#x6620;&#x5C04;&#x5230;&#x5C40;&#x90E8;&#x65B9;&#x6CD5;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> mapActions <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;vuex&apos;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span><span class="token function">mapActions</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+      <span class="token comment">// &#x5C06; this.increment() &#x6620;&#x5C04;&#x4E3A; this.$store.dispatch(&apos;increment&apos;)</span>
+      <span class="token string">&apos;increment&apos;</span><span class="token punctuation">,</span>
+
+      <span class="token comment">// &#x5C06; this.incrementBy(amount) &#x6620;&#x5C04;&#x4E3A; this.$store.dispatch(&apos;incrementBy&apos;, amount)</span>
+      <span class="token string">&apos;incrementBy&apos;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span><span class="token function">mapActions</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token comment">// &#x5C06; this.add() &#x6620;&#x5C04;&#x4E3A; this.$store.dispatch(&apos;increment&apos;)</span>
+      add<span class="token punctuation">:</span> <span class="token string">&apos;increment&apos;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><h2 class="mume-header" id="modulehttpsvuexvuejsorgzhguidemoduleshtml"><a href="https://vuex.vuejs.org/zh/guide/modules.html">Module</a></h2>
+
+<p>Module &#x7528;&#x4E8E;&#x5C06; store &#x5206;&#x5272;&#x6210;&#x6A21;&#x5757;&#xFF0C;&#x6BCF;&#x4E2A;&#x6A21;&#x5757;&#x62E5;&#x6709;&#x81EA;&#x5DF1;&#x7684; state&#x3001;mutation&#x3001;action&#x3001;getter&#x3001;&#x751A;&#x81F3;&#x662F;&#x5D4C;&#x5957;&#x5B50;&#x6A21;&#x5757;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> moduleA <span class="token operator">=</span> <span class="token punctuation">{</span>
+  state<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  mutations<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  actions<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  getters<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> moduleB <span class="token operator">=</span> <span class="token punctuation">{</span>
+  state<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  mutations<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  actions<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  modules<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    a<span class="token punctuation">:</span> moduleA<span class="token punctuation">,</span>
+    b<span class="token punctuation">:</span> moduleB
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+store<span class="token punctuation">.</span>state<span class="token punctuation">.</span>a <span class="token comment">// -&gt; moduleA &#x7684;&#x72B6;&#x6001;</span>
+store<span class="token punctuation">.</span>state<span class="token punctuation">.</span>b <span class="token comment">// -&gt; moduleB &#x7684;&#x72B6;&#x6001;</span>
+</pre><blockquote>
+<p>&#x6CE8;&#x610F;: &#x5728;&#x6A21;&#x5757;&#x4E2D;&#x4F7F;&#x7528;&#x51FD;&#x6570;&#x6765;&#x58F0;&#x660E;&#x5C40;&#x90E8;&#x72B6;&#x6001;&#xFF0C;&#x53EF;&#x4EE5;&#x907F;&#x514D;&#x5728;&#x6A21;&#x5757;&#x91CD;&#x7528;&#x65F6;&#x6570;&#x636E;&#x6C61;&#x67D3;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+</blockquote>
+<p>&#x6A21;&#x5757;&#x7684;&#x5C40;&#x90E8;&#x72B6;&#x6001;&#xFF0C;&#x5728;&#x6A21;&#x5757;&#x5185;&#x90E8;&#x7684; mutation &#x548C; getter &#x4E2D;&#x901A;&#x8FC7;&#x63A5;&#x6536;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570; <code>state</code> &#x66B4;&#x9732;&#x51FA;&#x6765;&#xFF0C;&#x5728;&#x6A21;&#x5757;&#x5185;&#x90E8;&#x7684; action &#x4E2D;&#x901A;&#x8FC7; <code>context.state</code> &#x66B4;&#x9732;&#x51FA;&#x6765;&#x3002;</p>
+<p>&#x6839;&#x8282;&#x70B9;&#x7684;&#x5168;&#x5C40;&#x72B6;&#x6001;&#xFF0C;&#x5728;&#x6A21;&#x5757;&#x5185;&#x90E8;&#x7684; getter &#x4E2D;&#x901A;&#x8FC7;&#x63A5;&#x6536;&#x7684;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570; <code>rootState</code> &#x66B4;&#x9732;&#x51FA;&#x6765;&#xFF0C;&#x5728;&#x6A21;&#x5757;&#x5185;&#x90E8;&#x7684; action &#x4E2D;&#x901A;&#x8FC7; <code>context.rootState</code> &#x66B4;&#x9732;&#x51FA;&#x6765;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> moduleA <span class="token operator">=</span> <span class="token punctuation">{</span>
+  state<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+    count<span class="token punctuation">:</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  mutations<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">increment</span> <span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      state<span class="token punctuation">.</span>count<span class="token operator">++</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  getters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">sumWithRootCount</span> <span class="token punctuation">(</span>state<span class="token punctuation">,</span> getters<span class="token punctuation">,</span> rootState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> state<span class="token punctuation">.</span>count <span class="token operator">+</span> rootState<span class="token punctuation">.</span>count
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  actions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">incrementIfOddOnRootSum</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> state<span class="token punctuation">,</span> commit<span class="token punctuation">,</span> rootState <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>count <span class="token operator">+</span> rootState<span class="token punctuation">.</span>count<span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">&apos;increment&apos;</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x6A21;&#x5757;&#x5185;&#x90E8;&#x7684; action&#x3001;mutation &#x548C; getter &#x9ED8;&#x8BA4;&#x6CE8;&#x518C;&#x5728;&#x5168;&#x5C40;&#x7684;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x4E2D;&#xFF0C;&#x4ECE;&#x800C;&#x4F7F;&#x5F97;&#x591A;&#x4E2A;&#x6A21;&#x5757;&#x80FD;&#x591F;&#x5BF9;&#x540C;&#x4E00; mutation &#x6216; action &#x4F5C;&#x51FA;&#x54CD;&#x5E94;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x5E0C;&#x671B;&#x6A21;&#x5757;&#x5177;&#x6709;&#x66F4;&#x9AD8;&#x7684;&#x5C01;&#x88C5;&#x5EA6;&#x548C;&#x590D;&#x7528;&#x6027;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6DFB;&#x52A0; <code>namespaced: true</code> &#x7684;&#x65B9;&#x5F0F;&#x4F7F;&#x5176;&#x6210;&#x4E3A;&#x5E26;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x7684;&#x6A21;&#x5757;&#x3002;&#x5E76;&#x4E14;&#x5F53;&#x6A21;&#x5757;&#x88AB;&#x6CE8;&#x518C;&#x540E;&#xFF0C;&#x5B83;&#x7684;&#x6240;&#x6709; getter&#x3001;action &#x53CA; mutation &#x90FD;&#x4F1A;&#x81EA;&#x52A8;&#x6839;&#x636E;&#x6A21;&#x5757;&#x6CE8;&#x518C;&#x7684;&#x8DEF;&#x5F84;&#x8C03;&#x6574;&#x547D;&#x540D;&#x3002;&#x5BF9;&#x4E8E;&#x5D4C;&#x5957;&#x6A21;&#x5757;&#xFF0C;&#x5C06;&#x7EE7;&#x627F;&#x7236;&#x6A21;&#x5757;&#x7684;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  modules<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    account<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      namespaced<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+
+      <span class="token comment">// &#x6A21;&#x5757;&#x5185;&#x5BB9;</span>
+      state<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+        foo<span class="token punctuation">:</span> <span class="token string">&apos;bar&apos;</span> <span class="token comment">// -&gt; state.account.foo</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      getters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token function">isAdmin</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token comment">// -&gt; getters[&apos;account/isAdmin&apos;]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      actions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token function">login</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token comment">// -&gt; dispatch(&apos;account/login&apos;)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      mutations<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token function">login</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token comment">// -&gt; commit(&apos;account/login&apos;)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+      <span class="token comment">// &#x5D4C;&#x5957;&#x6A21;&#x5757;</span>
+      modules<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        myPage<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          state<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          getters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token function">profile</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token comment">// -&gt; getters[&apos;account/profile&apos;]</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+        <span class="token comment">// &#x5D4C;&#x5957;&#x547D;&#x540D;&#x7A7A;&#x95F4;</span>
+        posts<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          namespaced<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+
+          state<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          getters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token function">popular</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token comment">// -&gt; getters[&apos;account/posts/popular&apos;]</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x5728;&#x5E26;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x7684;&#x6A21;&#x5757;&#x5185;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F20;&#x5165; getter &#x4E2D;&#x7684;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570; <code>getters</code> &#x4EE5;&#x53CA;&#x4F20;&#x5165; action &#x4E2D;&#x7684; <code>context.getters</code> &#x8BBF;&#x95EE;&#x5C40;&#x90E8; getter&#x3002;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F20;&#x5165; getter &#x4E2D;&#x7684;&#x7B2C;&#x56DB;&#x4E2A;&#x53C2;&#x6570; <code>rootGetters</code> &#x4EE5;&#x53CA;&#x4F20;&#x5165; action &#x4E2D;&#x7684; <code>context.rootGetters</code> &#x8BBF;&#x95EE;&#x5168;&#x5C40; getter&#x3002;</p>
+<p>&#x53E6;&#x5916;&#x5728;&#x5E26;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x7684;&#x6A21;&#x5757;&#x5185;&#xFF0C;<code>dispatch</code> &#x548C; <code>commit</code> &#x53EA;&#x80FD;&#x5728;&#x5C40;&#x90E8;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x5185;&#x5206;&#x53D1; action &#x6216;&#x63D0;&#x4EA4; mutation&#x3002;&#x53EF;&#x4EE5;&#x5C06; <code>{ root: true }</code> &#x4F5C;&#x4E3A;&#x7B2C;&#x4E09;&#x53C2;&#x6570;&#x4F20;&#x7ED9; <code>dispatch</code> &#x6216; <code>commit</code>&#xFF0C;&#x4ECE;&#x800C;&#x5728;&#x5168;&#x5C40;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x5185;&#x5206;&#x53D1; action &#x6216;&#x63D0;&#x4EA4; mutation&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">modules<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  foo<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    namespaced<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+
+    getters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token function">someGetter</span> <span class="token punctuation">(</span>state<span class="token punctuation">,</span> getters<span class="token punctuation">,</span> rootState<span class="token punctuation">,</span> rootGetters<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        getters<span class="token punctuation">.</span>someOtherGetter <span class="token comment">// -&gt; &apos;foo/someOtherGetter&apos;</span>
+        rootGetters<span class="token punctuation">.</span>someOtherGetter <span class="token comment">// -&gt; &apos;someOtherGetter&apos;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      someOtherGetter<span class="token punctuation">:</span> state <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    actions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token function">someAction</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> dispatch<span class="token punctuation">,</span> commit<span class="token punctuation">,</span> getters<span class="token punctuation">,</span> rootGetters <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        getters<span class="token punctuation">.</span>someGetter <span class="token comment">// -&gt; &apos;foo/someGetter&apos;</span>
+        rootGetters<span class="token punctuation">.</span>someGetter <span class="token comment">// -&gt; &apos;someGetter&apos;</span>
+
+        <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token string">&apos;someOtherAction&apos;</span><span class="token punctuation">)</span> <span class="token comment">// -&gt; &apos;foo/someOtherAction&apos;</span>
+        <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token string">&apos;someOtherAction&apos;</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> root<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// -&gt; &apos;someOtherAction&apos;</span>
+
+        <span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">&apos;someMutation&apos;</span><span class="token punctuation">)</span> <span class="token comment">// -&gt; &apos;foo/someMutation&apos;</span>
+        <span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">&apos;someMutation&apos;</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> root<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// -&gt; &apos;someMutation&apos;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token function">someOtherAction</span> <span class="token punctuation">(</span>ctx<span class="token punctuation">,</span> payload<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x5728;&#x5E26;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x7684;&#x6A21;&#x5757;&#x5185;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5BF9;&#x8C61;&#x5F62;&#x5F0F;&#x6CE8;&#x518C; action&#xFF0C;&#x6DFB;&#x52A0; <code>root: true</code>&#xFF0C;&#x5E76;&#x5C06;&#x8FD9;&#x4E2A; action &#x7684;&#x5B9A;&#x4E49;&#x653E;&#x5728;&#x51FD;&#x6570; <code>handler</code> &#x4E2D;&#xFF0C;&#x6CE8;&#x518C;&#x5168;&#x5C40; action&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+  actions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">someOtherAction</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>dispatch<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token string">&apos;someAction&apos;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  modules<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    foo<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      namespaced<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+
+      actions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        someAction<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          root<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          <span class="token function">handler</span> <span class="token punctuation">(</span>namespacedContext<span class="token punctuation">,</span> payload<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token comment">// -&gt; &apos;someAction&apos;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x5F53;&#x4F7F;&#x7528; <code>mapState</code>&#x3001;<code>mapGetters</code>&#x3001;<code>mapActions</code> &#x548C; <code>mapMutations</code> &#x8FD9;&#x4E9B;&#x51FD;&#x6570;&#x6765;&#x7ED1;&#x5B9A;&#x5E26;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x7684;&#x6A21;&#x5757;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x6A21;&#x5757;&#x7684;&#x7A7A;&#x95F4;&#x540D;&#x79F0;&#x5B57;&#x7B26;&#x4E32;&#x4F5C;&#x4E3A;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7ED9;&#x4E0A;&#x8FF0;&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x6837;&#x6240;&#x6709;&#x7ED1;&#x5B9A;&#x90FD;&#x4F1A;&#x81EA;&#x52A8;&#x5C06;&#x8BE5;&#x6A21;&#x5757;&#x4F5C;&#x4E3A;&#x4E0A;&#x4E0B;&#x6587;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span><span class="token function">mapState</span><span class="token punctuation">(</span><span class="token string">&apos;some/nested/module&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    a<span class="token punctuation">:</span> state <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>a<span class="token punctuation">,</span>
+    b<span class="token punctuation">:</span> state <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>b
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span><span class="token function">mapActions</span><span class="token punctuation">(</span><span class="token string">&apos;some/nested/module&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+    <span class="token string">&apos;foo&apos;</span><span class="token punctuation">,</span> <span class="token comment">// -&gt; this.foo()</span>
+    <span class="token string">&apos;bar&apos;</span> <span class="token comment">// -&gt; this.bar()</span>
+  <span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F7F;&#x7528; <code>createNamespacedHelpers</code> &#x521B;&#x5EFA;&#x57FA;&#x4E8E;&#x67D0;&#x4E2A;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x8F85;&#x52A9;&#x51FD;&#x6570;&#xFF0C;&#x5B83;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x5BF9;&#x8C61;&#x91CC;&#x6709;&#x65B0;&#x7684;&#x7ED1;&#x5B9A;&#x5728;&#x7ED9;&#x5B9A;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x503C;&#x4E0A;&#x7684;&#x7EC4;&#x4EF6;&#x7ED1;&#x5B9A;&#x8F85;&#x52A9;&#x51FD;&#x6570;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> createNamespacedHelpers <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;vuex&apos;</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">{</span> mapState<span class="token punctuation">,</span> mapActions <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">createNamespacedHelpers</span><span class="token punctuation">(</span><span class="token string">&apos;some/nested/module&apos;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// &#x5728; `some/nested/module` &#x4E2D;&#x67E5;&#x627E;</span>
+    <span class="token operator">...</span><span class="token function">mapState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      a<span class="token punctuation">:</span> state <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>a<span class="token punctuation">,</span>
+      b<span class="token punctuation">:</span> state <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>b
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// &#x5728; `some/nested/module` &#x4E2D;&#x67E5;&#x627E;</span>
+    <span class="token operator">...</span><span class="token function">mapActions</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+      <span class="token string">&apos;foo&apos;</span><span class="token punctuation">,</span>
+      <span class="token string">&apos;bar&apos;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x4E3A;&#x4E86;&#x4F7F;&#x5F97;&#x5176;&#x4ED6; Vue &#x63D2;&#x4EF6;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5728; store &#x4E2D;&#x9644;&#x52A0;&#x65B0;&#x6A21;&#x5757;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x4F7F;&#x7528; Vuex &#x7BA1;&#x7406;&#x72B6;&#x6001;&#xFF0C;&#x53EF;&#x4EE5;&#x5728; store &#x521B;&#x5EFA;&#x4E4B;&#x540E;&#x4F7F;&#x7528; <code>store.registerModule</code> &#x65B9;&#x6CD5;&#x52A8;&#x6001;&#x6CE8;&#x518C;&#x6A21;&#x5757;&#x3002;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>store.unregisterModule(moduleName)</code> &#x6765;&#x52A8;&#x6001;&#x5378;&#x8F7D;&#x6A21;&#x5757;&#xFF0C;&#x4F46;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x6B64;&#x65B9;&#x6CD5;&#x5378;&#x8F7D;&#x9759;&#x6001;&#x6A21;&#x5757; (&#x5373;&#x521B;&#x5EFA; store &#x65F6;&#x58F0;&#x660E;&#x7684;&#x6A21;&#x5757;)&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>store.hasModule(moduleName)</code> &#x65B9;&#x6CD5;&#x68C0;&#x67E5;&#x8BE5;&#x6A21;&#x5757;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x88AB;&#x6CE8;&#x518C;&#x5230; store&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">import</span> Vuex <span class="token keyword">from</span> <span class="token string">&apos;vuex&apos;</span>
+
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token comment">/* &#x9009;&#x9879; */</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// &#x6CE8;&#x518C;&#x6A21;&#x5757; myModule</span>
+store<span class="token punctuation">.</span><span class="token function">registerModule</span><span class="token punctuation">(</span><span class="token string">&apos;myModule&apos;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">// &#x6CE8;&#x518C;&#x5D4C;&#x5957;&#x6A21;&#x5757; nested/myModule</span>
+store<span class="token punctuation">.</span><span class="token function">registerModule</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&apos;nested&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;myModule&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p><code>store.registerModule(moduleName, module, preserveState)</code> &#x65B9;&#x6CD5;&#x63A5;&#x6536; <code>preserveState</code> &#x9009;&#x9879;&#x4F5C;&#x4E3A;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x5F53;&#x8BBE;&#x7F6E; <code>preserveState: true</code> &#x65F6;&#xFF0C;&#x8BE5;&#x6A21;&#x5757;&#x4F1A;&#x88AB;&#x6CE8;&#x518C;&#xFF0C;action&#x3001;mutation &#x548C; getter &#x4F1A;&#x88AB;&#x6DFB;&#x52A0;&#x5230; store &#x4E2D;&#xFF0C;&#x4F46;&#x662F; state &#x4E0D;&#x4F1A;&#x3002;&#x591A;&#x7528;&#x4E8E; store &#x7684; state &#x5DF2;&#x7ECF;&#x5305;&#x542B;&#x4E86;&#x8FD9;&#x4E2A; module &#x7684; state&#xFF0C;&#x5E76;&#x4E14;&#x4E0D;&#x5E0C;&#x671B;&#x5C06;&#x5176;&#x8986;&#x5199;&#x7684;&#x60C5;&#x51B5;&#x3002;</p>
+<h2 class="mume-header" id="vuexstore-%E6%9E%84%E9%80%A0%E5%99%A8%E9%80%89%E9%A1%B9httpsvuexvuejsorgzhapivuex-store-e69e84e980a0e599a8e98089e9a1b9"><a href="https://vuex.vuejs.org/zh/api/#vuex-store-%E6%9E%84%E9%80%A0%E5%99%A8%E9%80%89%E9%A1%B9">Vuex.Store &#x6784;&#x9020;&#x5668;&#x9009;&#x9879;</a></h2>
+
+<h3 class="mume-header" id="state-%E6%9E%84%E9%80%A0%E5%99%A8%E9%80%89%E9%A1%B9">state (&#x6784;&#x9020;&#x5668;&#x9009;&#x9879;)</h3>
+
+<p>&#x7C7B;&#x578B;: Object | Function<br>
+&#x7528;&#x4E8E;&#x5B9A;&#x4E49; Vuex store &#x4E2D;&#x7684;&#x72B6;&#x6001;&#x3002;</p>
+<h3 class="mume-header" id="getters-%E6%9E%84%E9%80%A0%E5%99%A8%E9%80%89%E9%A1%B9">getters (&#x6784;&#x9020;&#x5668;&#x9009;&#x9879;)</h3>
+
+<p>&#x7C7B;&#x578B;: { [key: string]: Function }<br>
+&#x7528;&#x4E8E;&#x5B9A;&#x4E49; Vuex store &#x4E2D;&#x6D3E;&#x751F;&#x51FA;&#x7684;&#x72B6;&#x6001;&#x3002;</p>
+<h3 class="mume-header" id="mutations">mutations</h3>
+
+<p>&#x7C7B;&#x578B;: { [type: string]: Function }<br>
+&#x7528;&#x4E8E;&#x5B9A;&#x4E49;&#x66F4;&#x6539; Vuex store &#x4E2D;&#x72B6;&#x6001;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<h3 class="mume-header" id="actions">actions</h3>
+
+<p>&#x7C7B;&#x578B;: { [type: string]: Function }<br>
+&#x7528;&#x4E8E;&#x5B9A;&#x4E49;&#x63D0;&#x4EA4; Vuex store &#x4E2D; mutation &#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<h3 class="mume-header" id="modules">modules</h3>
+
+<p>&#x7C7B;&#x578B;: { [type: string]: Object }<br>
+&#x7528;&#x4E8E;&#x5B9A;&#x4E49; Vuex store &#x4E2D;&#x7684;&#x6A21;&#x5757;&#x3002;</p>
+<h3 class="mume-header" id="strict">strict</h3>
+
+<p>&#x7C7B;&#x578B;: boolean<br>
+&#x9ED8;&#x8BA4;&#x503C;: false<br>
+&#x7528;&#x4E8E;&#x4F7F; Vuex store &#x8FDB;&#x5165;&#x4E25;&#x683C;&#x6A21;&#x5F0F;&#x3002;</p>
+<h2 class="mume-header" id="vuexstore-%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7httpsvuexvuejsorgzhapivuex-store-e5ae9ee4be8be5b19ee680a7"><a href="https://vuex.vuejs.org/zh/api/#vuex-store-%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7">Vuex.Store &#x5B9E;&#x4F8B;&#x5C5E;&#x6027;</a></h2>
+
+<h3 class="mume-header" id="state-%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7">state (&#x5B9E;&#x4F8B;&#x5C5E;&#x6027;)</h3>
+
+<p>&#x7C7B;&#x578B;: Object<br>
+&#x6839;&#x72B6;&#x6001;&#xFF0C;&#x53EA;&#x8BFB;&#x3002;</p>
+<h3 class="mume-header" id="getters-%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7">getters (&#x5B9E;&#x4F8B;&#x5C5E;&#x6027;)</h3>
+
+<p>&#x7C7B;&#x578B;: Object<br>
+&#x6CE8;&#x518C;&#x7684; getter&#xFF0C;&#x53EA;&#x8BFB;&#x3002;</p>
+<h2 class="mume-header" id="vuexstore-%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95httpsvuexvuejsorgzhapivuex-store-e5ae9ee4be8be696b9e6b395"><a href="https://vuex.vuejs.org/zh/api/#vuex-store-%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95">Vuex.Store &#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;</a></h2>
+
+<h3 class="mume-header" id="commit">commit</h3>
+
+<p>&#x7C7B;&#x578B;:<br>
+commit(type: string, payload?: any, options?: Object)<br>
+commit(mutation: Object, options?: Object)<br>
+&#x7528;&#x4E8E;&#x63D0;&#x4EA4; mutation&#x3002;</p>
+<h3 class="mume-header" id="dispatch">dispatch</h3>
+
+<p>&#x7C7B;&#x578B;:<br>
+dispatch(type: string, payload?: any, options?: Object): Promise&lt;any&gt;<br>
+dispatch(action: Object, options?: Object): Promise&lt;any&gt;<br>
+&#x7528;&#x4E8E;&#x5206;&#x53D1; action&#x3002;</p>
+<h3 class="mume-header" id="registermodule">registerModule</h3>
+
+<p>&#x7C7B;&#x578B;:<br>
+registerModule(path: string | Array&lt;string&gt;, module: Module, options?: Object)<br>
+&#x7528;&#x4E8E;&#x6CE8;&#x518C;&#x52A8;&#x6001;&#x6A21;&#x5757;&#x3002;</p>
+<h3 class="mume-header" id="unregistermodule">unregisterModule</h3>
+
+<p>&#x7C7B;&#x578B;:<br>
+unregisterModule(path: string | Array&lt;string&gt;)<br>
+&#x7528;&#x4E8E;&#x5378;&#x8F7D;&#x52A8;&#x6001;&#x6A21;&#x5757;&#x3002;</p>
+<h3 class="mume-header" id="hasmodule">hasModule</h3>
+
+<p>&#x7C7B;&#x578B;:<br>
+hasModule(path: string | Array&lt;string&gt;): boolean<br>
+&#x7528;&#x4E8E;&#x68C0;&#x67E5;&#x8BE5;&#x6A21;&#x5757;&#x7684;&#x540D;&#x5B57;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x88AB;&#x6CE8;&#x518C;&#x3002;</p>
+<h2 class="mume-header" id="%E7%BB%84%E4%BB%B6%E7%BB%91%E5%AE%9A%E7%9A%84%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0httpsvuexvuejsorgzhapie7bb84e4bbb6e7bb91e5ae9ae79a84e8be85e58aa9e587bde695b0"><a href="https://vuex.vuejs.org/zh/api/#%E7%BB%84%E4%BB%B6%E7%BB%91%E5%AE%9A%E7%9A%84%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0">&#x7EC4;&#x4EF6;&#x7ED1;&#x5B9A;&#x7684;&#x8F85;&#x52A9;&#x51FD;&#x6570;</a></h2>
+
+<h3 class="mume-header" id="mapstate">mapState</h3>
+
+<p>&#x7C7B;&#x578B;: mapState(namespace?: string, map: Array&lt;string&gt; | Object&lt;string | function&gt;): Object<br>
+&#x8FD4;&#x56DE;&#x503C;: Object<br>
+&#x4E3A;&#x7EC4;&#x4EF6;&#x521B;&#x5EFA;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;&#x4EE5;&#x8FD4;&#x56DE; Vuex store &#x4E2D;&#x7684; state&#x3002;</p>
+<h3 class="mume-header" id="mapgetters">mapGetters</h3>
+
+<p>&#x7C7B;&#x578B;: mapGetters(namespace?: string, map: Array&lt;string&gt; | Object&lt;string&gt;): Object<br>
+&#x8FD4;&#x56DE;&#x503C;: Object<br>
+&#x4E3A;&#x7EC4;&#x4EF6;&#x521B;&#x5EFA;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;&#x4EE5;&#x8FD4;&#x56DE; Vuex store &#x4E2D;&#x7684; getter&#x3002;</p>
+<h3 class="mume-header" id="mapmutations">mapMutations</h3>
+
+<p>&#x7C7B;&#x578B;: mapMutations(namespace?: string, map: Array&lt;string&gt; | Object&lt;string | function&gt;): Object<br>
+&#x8FD4;&#x56DE;&#x503C;: Object<br>
+&#x4E3A;&#x7EC4;&#x4EF6;&#x521B;&#x5EFA;&#x65B9;&#x6CD5;&#x4EE5;&#x63D0;&#x4EA4; Vuex store &#x4E2D;&#x7684; mutation&#x3002;</p>
+<h3 class="mume-header" id="mapactions">mapActions</h3>
+
+<p>&#x7C7B;&#x578B;: mapActions(namespace?: string, map: Array&lt;string&gt; | Object&lt;string | function&gt;): Object<br>
+&#x8FD4;&#x56DE;&#x503C;: Object<br>
+&#x4E3A;&#x7EC4;&#x4EF6;&#x521B;&#x5EFA;&#x65B9;&#x6CD5;&#x4EE5;&#x5206;&#x53D1; Vuex store &#x4E2D;&#x7684; action&#x3002;</p>
+<h3 class="mume-header" id="createnamespacedhelpers">createNamespacedHelpers</h3>
+
+<p>&#x7C7B;&#x578B;: createNamespacedHelpers(namespace: string): Object<br>
+&#x8FD4;&#x56DE;&#x503C;: Object<br>
+&#x4E3A;&#x7EC4;&#x4EF6;&#x521B;&#x5EFA;&#x57FA;&#x4E8E;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x7684;&#x7EC4;&#x4EF6;&#x7ED1;&#x5B9A;&#x8F85;&#x52A9;&#x51FD;&#x6570;&#x3002;</p>
+
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#%E5%AE%89%E8%A3%85httpsvuexvuejsorgzhinstallationhtml">&#x5B89;&#x88C5;</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8httpsvuexvuejsorgzhguide">&#x57FA;&#x672C;&#x4F7F;&#x7528;</a></li>
+<li><a href="#store">Store</a></li>
+<li><a href="#statehttpsvuexvuejsorgzhguidestatehtml">State</a></li>
+<li><a href="#getterhttpsvuexvuejsorgzhguidegettershtml">Getter</a></li>
+<li><a href="#mutationhttpsvuexvuejsorgzhguidemutationshtml">Mutation</a></li>
+<li><a href="#actionhttpsvuexvuejsorgzhguideactionshtml">Action</a></li>
+<li><a href="#modulehttpsvuexvuejsorgzhguidemoduleshtml">Module</a></li>
+<li><a href="#vuexstore-%E6%9E%84%E9%80%A0%E5%99%A8%E9%80%89%E9%A1%B9httpsvuexvuejsorgzhapivuex-store-e69e84e980a0e599a8e98089e9a1b9">Vuex.Store &#x6784;&#x9020;&#x5668;&#x9009;&#x9879;</a>
+<ul>
+<li><a href="#state-%E6%9E%84%E9%80%A0%E5%99%A8%E9%80%89%E9%A1%B9">state (&#x6784;&#x9020;&#x5668;&#x9009;&#x9879;)</a></li>
+<li><a href="#getters-%E6%9E%84%E9%80%A0%E5%99%A8%E9%80%89%E9%A1%B9">getters (&#x6784;&#x9020;&#x5668;&#x9009;&#x9879;)</a></li>
+<li><a href="#mutations">mutations</a></li>
+<li><a href="#actions">actions</a></li>
+<li><a href="#modules">modules</a></li>
+<li><a href="#strict">strict</a></li>
+</ul>
+</li>
+<li><a href="#vuexstore-%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7httpsvuexvuejsorgzhapivuex-store-e5ae9ee4be8be5b19ee680a7">Vuex.Store &#x5B9E;&#x4F8B;&#x5C5E;&#x6027;</a>
+<ul>
+<li><a href="#state-%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7">state (&#x5B9E;&#x4F8B;&#x5C5E;&#x6027;)</a></li>
+<li><a href="#getters-%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7">getters (&#x5B9E;&#x4F8B;&#x5C5E;&#x6027;)</a></li>
+</ul>
+</li>
+<li><a href="#vuexstore-%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95httpsvuexvuejsorgzhapivuex-store-e5ae9ee4be8be696b9e6b395">Vuex.Store &#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;</a>
+<ul>
+<li><a href="#commit">commit</a></li>
+<li><a href="#dispatch">dispatch</a></li>
+<li><a href="#registermodule">registerModule</a></li>
+<li><a href="#unregistermodule">unregisterModule</a></li>
+<li><a href="#hasmodule">hasModule</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E7%BB%91%E5%AE%9A%E7%9A%84%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0httpsvuexvuejsorgzhapie7bb84e4bbb6e7bb91e5ae9ae79a84e8be85e58aa9e587bde695b0">&#x7EC4;&#x4EF6;&#x7ED1;&#x5B9A;&#x7684;&#x8F85;&#x52A9;&#x51FD;&#x6570;</a>
+<ul>
+<li><a href="#mapstate">mapState</a></li>
+<li><a href="#mapgetters">mapGetters</a></li>
+<li><a href="#mapmutations">mapMutations</a></li>
+<li><a href="#mapactions">mapActions</a></li>
+<li><a href="#createnamespacedhelpers">createNamespacedHelpers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">&#x2261;</a>
+    
+    
+    
+    
+    
+    
+    
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  
+    </body></html>

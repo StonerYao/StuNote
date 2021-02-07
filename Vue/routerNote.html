@@ -1,0 +1,1060 @@
+<!DOCTYPE html><html><head>
+      <title>routerNote</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+.markdown-preview.markdown-preview {
+  font-family: "consolas", "Noto Sans S Chinese";
+  font-size: 1em;
+}
+.markdown-img-description {
+  text-align: center;
+  margin-top: -1em;
+  color: #666;
+  margin-bottom: 2em;
+}
+html body img {
+  border: 2px solid #ccc;
+}
+.markdown-p-center {
+  text-align: center;
+}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      
+<script>
+    function setCurrent(){
+        const links = document.querySelectorAll(".md-sidebar-toc a")
+        for(const link of links){
+            link.style.color="";
+        }
+        const hash = location.hash;
+        const a = document.querySelector('a[href="'+hash+'"]');
+        if(a){
+            a.style.color = "#f40";
+        }
+    }
+    setCurrent();
+    window.onhashchange = setCurrent;
+</script>
+<h1 class="mume-header undefined" id="vue-router">Vue Router</h1>
+
+<p>Vue Router &#x662F; Vue &#x5B98;&#x65B9;&#x7684;&#x8DEF;&#x7531;&#x7BA1;&#x7406;&#x5668;&#x3002;&#x591A;&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x5355;&#x9875;&#x5E94;&#x7528;&#x3002;&#x8BA9;&#x9875;&#x9762;&#x5B9E;&#x73B0;&#x975E;&#x91CD;&#x8F7D;&#x5C31;&#x80FD;&#x5237;&#x65B0;&#x6570;&#x636E;&#x3002;</p>
+<h2 class="mume-header" id="%E5%AE%89%E8%A3%85httpsroutervuejsorgzhinstallationhtml"><a href="https://router.vuejs.org/zh/installation.html">&#x5B89;&#x88C5;</a></h2>
+
+<ul>
+<li>&#x76F4;&#x63A5;&#x4E0B;&#x8F7D; / CDN: <code>https://unpkg.com/vue-router/dist/vue-router.js</code></li>
+<li>NPM: <code>npm install vue-router</code></li>
+<li>Vue CLI: <code>vue add router</code></li>
+</ul>
+<h2 class="mume-header" id="%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8httpsroutervuejsorgzhguide"><a href="https://router.vuejs.org/zh/guide/">&#x57FA;&#x672C;&#x4F7F;&#x7528;</a></h2>
+
+<ul>
+<li>
+<p>JavaScript</p>
+<ol>
+<li>
+<p>&#x5F15;&#x5165;&#x8DEF;&#x7531;</p>
+<pre data-role="codeBlock" data-info="html" class="language-html"><span class="token comment">&lt;!-- &#x76F4;&#x63A5;&#x4E0B;&#x8F7D; / CDN --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>/path/to/vue.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>/path/to/vue-router.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</pre><pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// NPM + &#x6A21;&#x5757;&#x5316;</span>
+<span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">&apos;vue&apos;</span>
+<span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">&apos;vue-router&apos;</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span>
+</pre></li>
+<li>
+<p>&#x5B9A;&#x4E49; (&#x8DEF;&#x7531;) &#x7EC4;&#x4EF6;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> Foo <span class="token operator">=</span> <span class="token punctuation">{</span> template<span class="token punctuation">:</span> <span class="token string">&apos;&lt;div&gt;foo&lt;/div&gt;&apos;</span> <span class="token punctuation">}</span>
+<span class="token keyword">const</span> Bar <span class="token operator">=</span> <span class="token punctuation">{</span> template<span class="token punctuation">:</span> <span class="token string">&apos;&lt;div&gt;bar&lt;/div&gt;&apos;</span> <span class="token punctuation">}</span>
+</pre></li>
+<li>
+<p>&#x5B9A;&#x4E49;&#x8DEF;&#x7531;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">&apos;/foo&apos;</span><span class="token punctuation">,</span> component<span class="token punctuation">:</span> Foo <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">&apos;/bar&apos;</span><span class="token punctuation">,</span> component<span class="token punctuation">:</span> Bar <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</pre></li>
+<li>
+<p>&#x521B;&#x5EFA; <code>router</code> &#x5B9E;&#x4F8B;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre></li>
+<li>
+<p>&#x521B;&#x5EFA;&#x548C;&#x6302;&#x8F7D;&#x6839;&#x5B9E;&#x4F8B;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  router
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">&apos;#app&apos;</span><span class="token punctuation">)</span>
+</pre></li>
+</ol>
+</li>
+<li>
+<p>HTML</p>
+<ol>
+<li>
+<p>&#x4F7F;&#x7528; <code>router-link</code> &#x7EC4;&#x4EF6;&#x6765;&#x5BFC;&#x822A;</p>
+<pre data-role="codeBlock" data-info="html" class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>/foo<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Go to Foo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>/bar<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Go to Bar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span>
+</pre></li>
+<li>
+<p>&#x4F7F;&#x7528; <code>router-view</code> &#x7EC4;&#x4EF6;&#x6765;&#x6E32;&#x67D3;</p>
+<pre data-role="codeBlock" data-info="html" class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-view</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-view</span><span class="token punctuation">&gt;</span></span>
+</pre></li>
+</ol>
+</li>
+</ul>
+<h2 class="mume-header" id="%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8Fhttpsroutervuejsorgzhguideessentialshistory-modehtml"><a href="https://router.vuejs.org/zh/guide/essentials/history-mode.html">&#x8DEF;&#x7531;&#x6A21;&#x5F0F;</a></h2>
+
+<p>&#x8DEF;&#x7531;&#x6A21;&#x5F0F;&#x7531; <code>mode</code> &#x9009;&#x9879;&#x914D;&#x7F6E;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  mode<span class="token punctuation">:</span> <span class="token string">&apos;history&apos;</span><span class="token punctuation">,</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><ul>
+<li><code>hash</code>: &#x4F7F;&#x7528; URL hash &#x503C;&#x3002;&#x5F53; URL &#x6539;&#x53D8;&#x65F6;&#xFF0C;&#x9875;&#x9762;&#x4E0D;&#x4F1A;&#x91CD;&#x65B0;&#x52A0;&#x8F7D;&#x3002;</li>
+<li><code>history</code>: &#x4F9D;&#x8D56; HTML5 History API &#x548C;&#x670D;&#x52A1;&#x5668;&#x914D;&#x7F6E;&#x3002;&#x5F53; URL &#x6539;&#x53D8;&#x65F6;&#xFF0C;&#x9875;&#x9762;&#x4E0D;&#x4F1A;&#x91CD;&#x65B0;&#x52A0;&#x8F7D;&#x3002;</li>
+<li><code>abstract</code>: &#x5982;&#x679C;&#x53D1;&#x73B0;&#x6CA1;&#x6709;&#x6D4F;&#x89C8;&#x5668;&#x7684; API&#xFF0C;&#x8DEF;&#x7531;&#x4F1A;&#x81EA;&#x52A8;&#x5F3A;&#x5236;&#x8FDB;&#x5165;&#x8FD9;&#x4E2A;&#x6A21;&#x5F0F;&#x3002;&#x7528;&#x4E8E; Node.js &#x670D;&#x52A1;&#x5668;&#x7AEF;&#x3002;</li>
+</ul>
+<blockquote>
+<p>&#x6CE8;&#x610F;: &#x4F7F;&#x7528; history &#x6A21;&#x5F0F;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x540E;&#x53F0;&#x6CA1;&#x6709;&#x6B63;&#x786E;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x5F53;&#x4ECE;&#x6D4F;&#x89C8;&#x5668;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x5339;&#x914D;&#x4E0D;&#x5230;&#x4EFB;&#x4F55;&#x9759;&#x6001;&#x8D44;&#x6E90;&#x7684; URL &#x5C31;&#x4F1A;&#x8FD4;&#x56DE; 404&#x3002;&#x6240;&#x4EE5;&#x8981;&#x5728;&#x670D;&#x52A1;&#x7AEF;&#x589E;&#x52A0;&#x4E00;&#x4E2A;&#x8986;&#x76D6;&#x6240;&#x6709;&#x60C5;&#x51B5;&#x7684;&#x5019;&#x9009;&#x8D44;&#x6E90;&#x3002;&#x6216;&#x8005;&#x53EF;&#x4EE5;&#x7528;&#x670D;&#x52A1;&#x7AEF;&#x8DEF;&#x7531;&#x5339;&#x914D;&#x5230;&#x6765;&#x7684; URL&#xFF0C;&#x5E76;&#x5728;&#x6CA1;&#x6709;&#x5339;&#x914D;&#x5230;&#x8DEF;&#x7531;&#x7684;&#x65F6;&#x5019;&#x8FD4;&#x56DE; 404&#xFF0C;&#x4EE5;&#x5B9E;&#x73B0;&#x56DE;&#x9000;&#x3002;</p>
+</blockquote>
+<h2 class="mume-header" id="%E5%91%BD%E5%90%8D%E8%B7%AF%E7%94%B1httpsroutervuejsorgzhguideessentialsnamed-routeshtml"><a href="https://router.vuejs.org/zh/guide/essentials/named-routes.html">&#x547D;&#x540D;&#x8DEF;&#x7531;</a></h2>
+
+<p>&#x547D;&#x540D;&#x8DEF;&#x7531;&#x7531; <code>routes</code> &#x914D;&#x7F6E;&#x4E2D;&#x7684; <code>name</code> &#x9009;&#x9879;&#x914D;&#x7F6E;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      path<span class="token punctuation">:</span> <span class="token string">&apos;/user/:userId&apos;</span><span class="token punctuation">,</span>
+      name<span class="token punctuation">:</span> <span class="token string">&apos;user&apos;</span><span class="token punctuation">,</span>
+      component<span class="token punctuation">:</span> User
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><pre data-role="codeBlock" data-info="html" class="language-html"><span class="token comment">&lt;!-- &#x628A;&#x8DEF;&#x7531;&#x5BFC;&#x822A;&#x5230; /user/123 &#x8DEF;&#x5F84; --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">:to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>{ name: <span class="token punctuation">&apos;</span>user<span class="token punctuation">&apos;</span>, params: { userId: 123 }}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>User<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span>
+</pre><p>&#x6216;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// &#x628A;&#x8DEF;&#x7531;&#x5BFC;&#x822A;&#x5230; /user/123 &#x8DEF;&#x5F84;</span>
+router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">&apos;user&apos;</span><span class="token punctuation">,</span> params<span class="token punctuation">:</span> <span class="token punctuation">{</span> userId<span class="token punctuation">:</span> <span class="token number">123</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x5F53;&#x8DEF;&#x7531;&#x8F83;&#x4E3A;&#x590D;&#x6742;&#x65F6;&#xFF0C;&#x901A;&#x8FC7;&#x547D;&#x540D;&#x8DEF;&#x7531;&#x94FE;&#x63A5;&#x6216;&#x8DF3;&#x8F6C;&#xFF0C;&#x4F1A;&#x66F4;&#x65B9;&#x4FBF;&#x4E00;&#x4E9B;&#x3002;</p>
+<h2 class="mume-header" id="%E5%B5%8C%E5%A5%97%E8%B7%AF%E7%94%B1httpsroutervuejsorgzhguideessentialsnested-routeshtml"><a href="https://router.vuejs.org/zh/guide/essentials/nested-routes.html">&#x5D4C;&#x5957;&#x8DEF;&#x7531;</a></h2>
+
+<p>&#x5D4C;&#x5957;&#x8DEF;&#x7531;&#x7531; <code>routes</code> &#x914D;&#x7F6E;&#x4E2D;&#x7684; <code>children</code> &#x9009;&#x9879;&#x914D;&#x7F6E;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">&apos;/user/:id&apos;</span><span class="token punctuation">,</span>
+      component<span class="token punctuation">:</span> User<span class="token punctuation">,</span>
+      children<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          <span class="token comment">// &#x5F53; /user/:id &#x5339;&#x914D;&#x6210;&#x529F;</span>
+          <span class="token comment">// UserHome &#x4F1A;&#x88AB;&#x6E32;&#x67D3;&#x5728; User &#x7684; &lt;router-view&gt; &#x4E2D;</span>
+          path<span class="token punctuation">:</span> <span class="token string">&apos;&apos;</span><span class="token punctuation">,</span>
+          component<span class="token punctuation">:</span> UserHome
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          <span class="token comment">// &#x5F53; /user/:id/posts &#x5339;&#x914D;&#x6210;&#x529F;</span>
+          <span class="token comment">// UserPosts &#x4F1A;&#x88AB;&#x6E32;&#x67D3;&#x5728; User &#x7684; &lt;router-view&gt; &#x4E2D;</span>
+          path<span class="token punctuation">:</span> <span class="token string">&apos;posts&apos;</span><span class="token punctuation">,</span>
+          component<span class="token punctuation">:</span> UserPosts
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><blockquote>
+<p>&#x6CE8;&#x610F;: &#x4EE5; <code>/</code> &#x5F00;&#x5934;&#x7684;&#x5D4C;&#x5957;&#x8DEF;&#x5F84;&#x4F1A;&#x88AB;&#x5F53;&#x4F5C;&#x6839;&#x8DEF;&#x5F84;&#x5904;&#x7406;&#xFF0C;&#x4ECE;&#x800C;&#x4F7F;&#x7528;&#x5D4C;&#x5957;&#x7EC4;&#x4EF6;&#x800C;&#x65E0;&#x987B;&#x8BBE;&#x7F6E;&#x5D4C;&#x5957;&#x7684;&#x8DEF;&#x5F84;&#x3002;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> User <span class="token operator">=</span> <span class="token punctuation">{</span>
+  template<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`
+    &lt;div class=&quot;user&quot;&gt;
+      &lt;h2&gt;User {{ $route.params.id }}&lt;/h2&gt;
+      &lt;router-view&gt;&lt;/router-view&gt;
+    &lt;/div&gt;
+  `</span></span>
+<span class="token punctuation">}</span>
+</pre><p>&#x901A;&#x8FC7;&#x5D4C;&#x5957;&#x8DEF;&#x7531;&#x53EF;&#x4EE5;&#x5728;&#x5E94;&#x7528;&#x9875;&#x9762;&#x4E0A;&#x5B9E;&#x73B0;&#x591A;&#x5C42;&#x7EC4;&#x4EF6;&#x7684;&#x5D4C;&#x5957;&#x3002;</p>
+<h2 class="mume-header" id="%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E5%88%AB%E5%90%8Dhttpsroutervuejsorgzhguideessentialsredirect-and-aliashtml"><a href="https://router.vuejs.org/zh/guide/essentials/redirect-and-alias.html">&#x91CD;&#x5B9A;&#x5411;&#x548C;&#x522B;&#x540D;</a></h2>
+
+<p>&#x91CD;&#x5B9A;&#x5411;&#x7531; <code>routes</code> &#x914D;&#x7F6E;&#x4E2D;&#x7684; <code>redirect</code> &#x9009;&#x9879;&#x914D;&#x7F6E;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">&apos;/a&apos;</span><span class="token punctuation">,</span> redirect<span class="token punctuation">:</span> <span class="token string">&apos;/b&apos;</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">&apos;/b&apos;</span><span class="token punctuation">,</span> redirect<span class="token punctuation">:</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">&apos;foo&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+    <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">&apos;/c&apos;</span><span class="token punctuation">,</span> redirect<span class="token punctuation">:</span> to <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// &#x65B9;&#x6CD5;&#x63A5;&#x6536; &#x76EE;&#x6807;&#x8DEF;&#x7531; &#x4F5C;&#x4E3A;&#x53C2;&#x6570;</span>
+      <span class="token comment">// return &#x91CD;&#x5B9A;&#x5411;&#x7684; &#x5B57;&#x7B26;&#x4E32;&#x8DEF;&#x5F84;/&#x8DEF;&#x5F84;&#x5BF9;&#x8C61;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><blockquote>
+<p>&#x6CE8;&#x610F;: &#x5BFC;&#x822A;&#x5B88;&#x536B;&#x5E76;&#x6CA1;&#x6709;&#x5E94;&#x7528;&#x5728;&#x8DF3;&#x8F6C;&#x8DEF;&#x7531;&#x4E0A;&#xFF0C;&#x800C;&#x4EC5;&#x4EC5;&#x5E94;&#x7528;&#x5728;&#x5176;&#x76EE;&#x6807;&#x4E0A;&#x3002;</p>
+</blockquote>
+<p>&#x901A;&#x8FC7;&#x91CD;&#x5B9A;&#x5411;&#x53EF;&#x4EE5;&#x4F7F;&#x4E00;&#x4E2A;&#x8DEF;&#x7531;&#x8DF3;&#x8F6C;&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x8DEF;&#x7531;&#x4E0A;&#x3002;</p>
+<p>&#x522B;&#x540D;&#x7531; <code>routes</code> &#x914D;&#x7F6E;&#x4E2D;&#x7684; <code>alias</code> &#x9009;&#x9879;&#x914D;&#x7F6E;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">&apos;/a&apos;</span><span class="token punctuation">,</span> component<span class="token punctuation">:</span> <span class="token constant">A</span><span class="token punctuation">,</span> alias<span class="token punctuation">:</span> <span class="token string">&apos;/b&apos;</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x901A;&#x8FC7;&#x522B;&#x540D;&#x53EF;&#x4EE5;&#x4F7F;&#x4E0D;&#x540C;&#x7684;&#x8DEF;&#x7531;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x8DEF;&#x7531;&#x3002;&#x4ECE;&#x800C;&#x53EF;&#x4EE5;&#x81EA;&#x7531;&#x5730;&#x5C06; UI &#x7ED3;&#x6784;&#x6620;&#x5C04;&#x5230;&#x4EFB;&#x610F;&#x7684; URL&#x3002;</p>
+<h2 class="mume-header" id="%E7%BC%96%E7%A8%8B%E5%BC%8F%E7%9A%84%E5%AF%BC%E8%88%AAhttpsroutervuejsorgzhguideessentialsnavigationhtml"><a href="https://router.vuejs.org/zh/guide/essentials/navigation.html">&#x7F16;&#x7A0B;&#x5F0F;&#x7684;&#x5BFC;&#x822A;</a></h2>
+
+<p>&#x501F;&#x52A9; <code>router</code> &#x7684;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#xFF0C;&#x901A;&#x8FC7;&#x7F16;&#x5199;&#x4EE3;&#x7801;&#x6765;&#x5B9E;&#x73B0;&#x5BFC;&#x822A;&#x3002;</p>
+<blockquote>
+<p>&#x6CE8;&#x610F;: &#x5728; Vue &#x5B9E;&#x4F8B;&#x5185;&#x90E8;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>$router</code> &#x8BBF;&#x95EE;&#x8DEF;&#x7531;&#x5B9E;&#x4F8B;&#x3002;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x8C03;&#x7528; <code>this.$router.push</code>&#x3002;</p>
+</blockquote>
+<p>&#x70B9;&#x51FB; <code>&lt;router-link :to=&quot;...&quot;&gt;</code> &#x7B49;&#x540C;&#x4E8E;&#x8C03;&#x7528; <code>router.push(...)</code>&#x3002;<br>
+&#x70B9;&#x51FB; <code>&lt;router-link :to=&quot;...&quot; replace&gt;</code> &#x7B49;&#x540C;&#x4E8E;&#x8C03;&#x7528; <code>router.replace(...)</code>&#x3002;</p>
+<p><code>router.push</code> &#x6216; <code>router.replace</code> &#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x662F;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x8DEF;&#x5F84;&#xFF0C;&#x6216;&#x8005;&#x4E00;&#x4E2A;&#x63CF;&#x8FF0;&#x5730;&#x5740;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x540C;&#x6837;&#x7684;&#x89C4;&#x5219;&#x4E5F;&#x9002;&#x7528;&#x4E8E; <code>router-link</code> &#x7EC4;&#x4EF6;&#x7684; <code>to</code> &#x5C5E;&#x6027;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// &#x5B57;&#x7B26;&#x4E32;</span>
+router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">&apos;home&apos;</span><span class="token punctuation">)</span>
+
+<span class="token comment">// &#x5BF9;&#x8C61;</span>
+router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">&apos;home&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// &#x5E26;&#x67E5;&#x8BE2;&#x53C2;&#x6570; =&gt; /register?plan=private</span>
+router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">&apos;register&apos;</span><span class="token punctuation">,</span> query<span class="token punctuation">:</span> <span class="token punctuation">{</span> plan<span class="token punctuation">:</span> <span class="token string">&apos;private&apos;</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// &#x547D;&#x540D;&#x7684;&#x8DEF;&#x7531; =&gt; /user/123</span>
+<span class="token keyword">const</span> userId <span class="token operator">=</span> <span class="token string">&apos;123&apos;</span>
+router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">&apos;user&apos;</span><span class="token punctuation">,</span> params<span class="token punctuation">:</span> <span class="token punctuation">{</span> userId <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// &#x4F7F;&#x7528;&#x5E26;&#x6709;&#x53C2;&#x6570;&#x7684; path &#x66FF;&#x4EE3; params =&gt; /user/123</span>
+<span class="token keyword">const</span> userId <span class="token operator">=</span> <span class="token string">&apos;123&apos;</span>
+router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`/user/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>userId<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><blockquote>
+<p>&#x6CE8;&#x610F;: &#x5982;&#x679C;&#x63D0;&#x4F9B;&#x4E86; <code>path</code>&#xFF0C;<code>params</code> &#x4F1A;&#x88AB;&#x5FFD;&#x7565;&#xFF0C;&#x4F46; <code>query</code> &#x4E0D;&#x4F1A;&#x88AB;&#x5FFD;&#x7565;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x63D0;&#x4F9B; <code>name</code> &#x6216;&#x5B8C;&#x6574;&#x7684;&#x5E26;&#x6709;&#x53C2;&#x6570;&#x7684; <code>path</code> &#x6765;&#x89E3;&#x51B3;&#x3002;</p>
+</blockquote>
+<p>&#x5728; <code>router.push</code> &#x6216; <code>router.replace</code> &#x4E2D;&#x63D0;&#x4F9B; <code>onComplete</code> &#x548C; <code>onAbort</code> &#x56DE;&#x8C03;&#x4F5C;&#x4E3A;&#x7B2C;&#x4E8C;&#x4E2A;&#x548C;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x3002;&#x8FD9;&#x4E9B;&#x56DE;&#x8C03;&#x5C06;&#x4F1A;&#x5728;&#x5BFC;&#x822A;&#x6210;&#x529F;&#x5B8C;&#x6210; (&#x5728;&#x6240;&#x6709;&#x7684;&#x5F02;&#x6B65;&#x94A9;&#x5B50;&#x88AB;&#x89E3;&#x6790;&#x4E4B;&#x540E;) &#x6216;&#x7EC8;&#x6B62; (&#x5BFC;&#x822A;&#x5230;&#x76F8;&#x540C;&#x7684;&#x8DEF;&#x7531;&#x3001;&#x6216;&#x5728;&#x5F53;&#x524D;&#x5BFC;&#x822A;&#x5B8C;&#x6210;&#x4E4B;&#x524D;&#x5BFC;&#x822A;&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x8DEF;&#x7531;) &#x7684;&#x65F6;&#x5019;&#x8FDB;&#x884C;&#x76F8;&#x5E94;&#x7684;&#x8C03;&#x7528;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> onComplete<span class="token operator">?</span><span class="token punctuation">,</span> onAbort<span class="token operator">?</span><span class="token punctuation">)</span>
+router<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> onComplete<span class="token operator">?</span><span class="token punctuation">,</span> onAbort<span class="token operator">?</span><span class="token punctuation">)</span>
+</pre><p>&#x53EF;&#x4EE5;&#x7701;&#x7565;&#x7B2C;&#x4E8C;&#x4E2A;&#x548C;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x6B64;&#x65F6;&#x5982;&#x679C;&#x652F;&#x6301; Promise&#xFF0C;<code>router.push</code> &#x6216; <code>router.replace</code> &#x5C06;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; Promise&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>location<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>onComplete<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>onAbort<span class="token punctuation">)</span>
+router<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>location<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>onComplete<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>onAbort<span class="token punctuation">)</span>
+</pre><blockquote>
+<p>&#x6CE8;&#x610F;: &#x5982;&#x679C;&#x76EE;&#x7684;&#x5730;&#x548C;&#x5F53;&#x524D;&#x8DEF;&#x7531;&#x76F8;&#x540C;&#xFF0C;&#x53EA;&#x6709;&#x53C2;&#x6570;&#x53D1;&#x751F;&#x4E86;&#x6539;&#x53D8; (&#x6BD4;&#x5982; <code>/users/1 -&gt; /users/2</code>)&#xFF0C;&#x5219;&#x9700;&#x8981;&#x4F7F;&#x7528; <code>beforeRouteUpdate</code> &#x6765;&#x54CD;&#x5E94;&#x8FD9;&#x4E2A;&#x53D8;&#x5316;&#x3002;</p>
+</blockquote>
+<p><code>router.go</code> &#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#x662F;&#x4E00;&#x4E2A;&#x6574;&#x6570;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// &#x5728;&#x6D4F;&#x89C8;&#x5668;&#x8BB0;&#x5F55;&#x4E2D;&#x524D;&#x8FDB;&#x4E00;&#x6B65; &#x7B49;&#x540C;&#x4E8E; router.forward()</span>
+router<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token comment">// &#x540E;&#x9000;&#x4E00;&#x6B65;&#x8BB0;&#x5F55; &#x7B49;&#x540C;&#x4E8E; router.back()</span>
+router<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token comment">// &#x524D;&#x8FDB; 3 &#x6B65;&#x8BB0;&#x5F55;</span>
+router<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+
+<span class="token comment">// &#x4EC5;&#x5237;&#x65B0;</span>
+router<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+<span class="token comment">// &#x5982;&#x679C; history &#x8BB0;&#x5F55;&#x4E0D;&#x591F;&#x7528;&#x5C31;&#x9ED8;&#x9ED8;&#x5730;&#x5931;&#x8D25;</span>
+router<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">100</span><span class="token punctuation">)</span>
+router<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+</pre><p><code>Vue Router</code> &#x7684;&#x5BFC;&#x822A;&#x65B9;&#x6CD5; (<code>push</code>&#x3001; <code>replace</code>&#x3001; <code>go</code>) &#x5728;&#x5404;&#x7C7B;&#x8DEF;&#x7531;&#x6A21;&#x5F0F; (<code>history</code>&#x3001; <code>hash</code> &#x548C; <code>abstract</code>) &#x4E0B;&#x8868;&#x73B0;&#x4E00;&#x81F4;&#x3002;</p>
+<h2 class="mume-header" id="%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E5%8C%B9%E9%85%8Dhttpsroutervuejsorgzhguideessentialsdynamic-matchinghtml"><a href="https://router.vuejs.org/zh/guide/essentials/dynamic-matching.html">&#x52A8;&#x6001;&#x8DEF;&#x7531;&#x5339;&#x914D;</a></h2>
+
+<p>&#x5728; vue-router &#x7684;&#x8DEF;&#x7531;&#x8DEF;&#x5F84;&#x4E2D;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x8DEF;&#x5F84;&#x53C2;&#x6570;&#xFF0C;&#x4EE5;&#x8FBE;&#x5230;&#x52A8;&#x6001;&#x8DEF;&#x7531;&#x7684;&#x6548;&#x679C;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> User <span class="token operator">=</span> <span class="token punctuation">{</span>
+  template<span class="token punctuation">:</span> <span class="token string">&apos;&lt;div&gt;User&lt;/div&gt;&apos;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token comment">// &#x6B64;&#x65F6; /user/foo &#x548C; /user/bar &#x90FD;&#x5C06;&#x6620;&#x5C04;&#x5230;&#x76F8;&#x540C;&#x7684;&#x8DEF;&#x7531;</span>
+    <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">&apos;/user/:id&apos;</span><span class="token punctuation">,</span> component<span class="token punctuation">:</span> User <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x4E00;&#x4E2A;&#x52A8;&#x6001;&#x8DEF;&#x5F84;&#x53C2;&#x6570;&#x4F7F;&#x7528;&#x5192;&#x53F7; <code>:</code> &#x6807;&#x8BB0;&#x3002;&#x5F53;&#x5339;&#x914D;&#x5230;&#x4E00;&#x4E2A;&#x8DEF;&#x7531;&#x65F6;&#xFF0C;&#x53C2;&#x6570;&#x503C;&#x4F1A;&#x88AB;&#x8BBE;&#x7F6E;&#x5230; <code>this.$route.params</code>&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x6BCF;&#x4E2A;&#x7EC4;&#x4EF6;&#x5185;&#x4F7F;&#x7528;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> User <span class="token operator">=</span> <span class="token punctuation">{</span>
+  template<span class="token punctuation">:</span> <span class="token string">&apos;&lt;div&gt;User {{ this.$route.params.id }}&lt;/div&gt;&apos;</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x4E2A;&#x8DEF;&#x7531;&#x4E2D;&#x8BBE;&#x7F6E;&#x591A;&#x6BB5;&#x52A8;&#x6001;&#x8DEF;&#x5F84;&#x53C2;&#x6570;&#xFF0C;&#x5BF9;&#x5E94;&#x7684;&#x503C;&#x90FD;&#x4F1A;&#x8BBE;&#x7F6E;&#x5230; <code>$route.params</code> &#x4E2D;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th>&#x6A21;&#x5F0F;</th>
+<th>&#x5339;&#x914D;&#x8DEF;&#x5F84;</th>
+<th>$route.params</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/user/:username</td>
+<td>/user/evan</td>
+<td>{ username: &apos;evan&apos; }</td>
+</tr>
+<tr>
+<td>/user/:username/post/:post_id</td>
+<td>/user/evan/post/123</td>
+<td>{ username: &apos;evan&apos;, post_id: &apos;123&apos; }</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x5728;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x8DEF;&#x7531;&#x5339;&#x914D;&#x65F6;&#xFF0C;&#x4F8B;&#x5982;&#x4ECE; <code>/user/foo</code> &#x5BFC;&#x822A;&#x5230; <code>/user/bar</code>&#xFF0C;&#x4E24;&#x4E2A;&#x8DEF;&#x7531;&#x90FD;&#x6E32;&#x67D3;&#x540C;&#x4E2A;&#x7EC4;&#x4EF6;&#xFF0C;&#x4E3A;&#x4E86;&#x63D0;&#x9AD8;&#x6548;&#x7387;&#xFF0C;Vue &#x4F1A;&#x590D;&#x7528;&#x539F;&#x6765;&#x7684;&#x7EC4;&#x4EF6;&#x5B9E;&#x4F8B;&#x3002;&#x8FD9;&#x4E5F;&#x610F;&#x5473;&#x7740;&#x7EC4;&#x4EF6;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x94A9;&#x5B50;&#x4E0D;&#x4F1A;&#x518D;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x4E3A;&#x4E86;&#x5728;&#x590D;&#x7528;&#x7EC4;&#x4EF6;&#x65F6;&#xFF0C;&#x54CD;&#x5E94;&#x8DEF;&#x7531;&#x53C2;&#x6570;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>watch</code> &#x4FA6;&#x542C; <code>$route</code> &#x5BF9;&#x8C61;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>beforeRouteUpdate</code> &#x5BFC;&#x822A;&#x5B88;&#x536B;&#x3002;</p>
+</blockquote>
+<p>&#x4F7F;&#x7528;&#x901A;&#x914D;&#x7B26; <code>*</code> &#x5339;&#x914D;&#x4EFB;&#x610F;&#x8DEF;&#x5F84;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token punctuation">{</span>
+  <span class="token comment">// &#x4F1A;&#x5339;&#x914D;&#x6240;&#x6709;&#x8DEF;&#x5F84;</span>
+  path<span class="token punctuation">:</span> <span class="token string">&apos;*&apos;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">// &#x4F1A;&#x5339;&#x914D;&#x4EE5; `/user-` &#x5F00;&#x5934;&#x7684;&#x4EFB;&#x610F;&#x8DEF;&#x5F84;</span>
+  path<span class="token punctuation">:</span> <span class="token string">&apos;/user-*&apos;</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x5F53;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x901A;&#x914D;&#x7B26;&#x65F6;&#xFF0C;<code>$route.params</code> &#x5185;&#x4F1A;&#x81EA;&#x52A8;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x540D;&#x4E3A; <code>pathMatch</code> &#x53C2;&#x6570;&#x3002;&#x5B83;&#x5305;&#x542B;&#x4E86; URL &#x901A;&#x8FC7;&#x901A;&#x914D;&#x7B26;&#x88AB;&#x5339;&#x914D;&#x7684;&#x90E8;&#x5206;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// &#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x8DEF;&#x7531; { path: &apos;/user-*&apos; }</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">&apos;/user-admin&apos;</span><span class="token punctuation">)</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$route<span class="token punctuation">.</span>params<span class="token punctuation">.</span>pathMatch <span class="token comment">// &apos;admin&apos;</span>
+<span class="token comment">// &#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x8DEF;&#x7531; { path: &apos;*&apos; }</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">&apos;/non-existing&apos;</span><span class="token punctuation">)</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$route<span class="token punctuation">.</span>params<span class="token punctuation">.</span>pathMatch <span class="token comment">// &apos;/non-existing&apos;</span>
+</pre><blockquote>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x5F53;&#x540C;&#x4E00;&#x4E2A;&#x8DEF;&#x5F84;&#x53EF;&#x4EE5;&#x5339;&#x914D;&#x591A;&#x4E2A;&#x8DEF;&#x7531;&#x65F6;&#xFF0C;&#x5339;&#x914D;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x5C06;&#x6309;&#x7167;&#x8DEF;&#x7531;&#x7684;&#x5B9A;&#x4E49;&#x987A;&#x5E8F;&#xFF0C;&#x8C01;&#x5148;&#x5B9A;&#x4E49;&#x7684;&#x8C01;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x5C31;&#x6700;&#x9AD8;&#x3002;</p>
+</blockquote>
+<p>&#x4E00;&#x822C;&#x5C06;&#x542B;&#x6709;&#x901A;&#x914D;&#x7B26;&#x7684;&#x8DEF;&#x7531;&#x653E;&#x5728;&#x6700;&#x540E;&#xFF0C;&#x4F8B;&#x5982;&#x8DEF;&#x7531; <code>{ path: &apos;*&apos; }</code>&#xFF0C;&#x7528;&#x4E8E;&#x5BA2;&#x6237;&#x7AEF; 404 &#x9519;&#x8BEF;&#x3002;</p>
+<p>&#x901A;&#x8FC7;&#x52A8;&#x6001;&#x8DEF;&#x7531;&#x5339;&#x914D;&#x53EF;&#x4EE5;&#x628A;&#x67D0;&#x79CD;&#x6A21;&#x5F0F;&#x5339;&#x914D;&#x5230;&#x7684;&#x6240;&#x6709;&#x8DEF;&#x7531;&#xFF0C;&#x5168;&#x90FD;&#x6620;&#x5C04;&#x5230;&#x540C;&#x4E2A;&#x7EC4;&#x4EF6;&#x3002;</p>
+<h2 class="mume-header" id="%E5%91%BD%E5%90%8D%E8%A7%86%E5%9B%BEhttpsroutervuejsorgzhguideessentialsnamed-viewshtml"><a href="https://router.vuejs.org/zh/guide/essentials/named-views.html">&#x547D;&#x540D;&#x89C6;&#x56FE;</a></h2>
+
+<p>&#x547D;&#x540D;&#x89C6;&#x56FE;&#x7531; <code>router-view</code> &#x7EC4;&#x4EF6;&#x4E2D;&#x7684; <code>name</code> &#x5C5E;&#x6027;&#x914D;&#x7F6E;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x5728;&#x754C;&#x9762;&#x4E2D;&#x62E5;&#x6709;&#x591A;&#x4E2A;&#x5355;&#x72EC;&#x547D;&#x540D;&#x7684;&#x89C6;&#x56FE;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x51FA;&#x53E3;&#x3002;</p>
+<pre data-role="codeBlock" data-info="html" class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>view one<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-view</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>view two<span class="token punctuation">&quot;</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>a<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-view</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>view three<span class="token punctuation">&quot;</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>b<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-view</span><span class="token punctuation">&gt;</span></span>
+</pre><p>&#x4E00;&#x4E2A;&#x89C6;&#x56FE;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x6E32;&#x67D3;&#xFF0C;&#x56E0;&#x6B64;&#x5BF9;&#x4E8E;&#x540C;&#x4E2A;&#x8DEF;&#x7531;&#xFF0C;&#x591A;&#x4E2A;&#x89C6;&#x56FE;&#x5C31;&#x9700;&#x8981;&#x591A;&#x4E2A;&#x7EC4;&#x4EF6;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      path<span class="token punctuation">:</span> <span class="token string">&apos;/&apos;</span><span class="token punctuation">,</span>
+      components<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token keyword">default</span><span class="token punctuation">:</span> Foo<span class="token punctuation">,</span>
+        a<span class="token punctuation">:</span> Bar<span class="token punctuation">,</span>
+        b<span class="token punctuation">:</span> Baz
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x4E5F;&#x53EF;&#x4EE5;&#x5C06;&#x547D;&#x540D;&#x89C6;&#x56FE;&#x914D;&#x5408;&#x5D4C;&#x5957;&#x8DEF;&#x7531;&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x521B;&#x5EFA;&#x590D;&#x6742;&#x7684;&#x5E03;&#x5C40;&#xFF0C;&#x4ECE;&#x800C;&#x8BA9;&#x5BF9;&#x5E94;&#x7684;&#x8DEF;&#x5F84;&#x663E;&#x793A;&#x4E0D;&#x540C;&#x7684;&#x547D;&#x540D;&#x89C6;&#x56FE;&#x3002;</p>
+<blockquote>
+<p>&#x6CE8;&#x610F;: &#x5982;&#x679C; <code>router-view</code> &#x6CA1;&#x6709;&#x8BBE;&#x7F6E;&#x540D;&#x5B57;&#xFF0C;&#x90A3;&#x4E48;&#x9ED8;&#x8BA4;&#x4E3A; <code>default</code>&#x3002;</p>
+</blockquote>
+<p>&#x901A;&#x8FC7;&#x547D;&#x540D;&#x89C6;&#x56FE;&#x53EF;&#x4EE5;&#x540C;&#x65F6; (&#x540C;&#x7EA7;) &#x5C55;&#x793A;&#x591A;&#x4E2A;&#x89C6;&#x56FE;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5D4C;&#x5957;&#x5C55;&#x793A;&#x3002;</p>
+<h2 class="mume-header" id="%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%8F%82httpsroutervuejsorgzhguideessentialspassing-propshtml"><a href="https://router.vuejs.org/zh/guide/essentials/passing-props.html">&#x8DEF;&#x7531;&#x7EC4;&#x4EF6;&#x4F20;&#x53C2;</a></h2>
+
+<p>&#x8DEF;&#x7531;&#x7EC4;&#x4EF6;&#x4F20;&#x53C2;&#x7531; <code>routes</code> &#x914D;&#x7F6E;&#x4E2D;&#x7684; <code>props</code> &#x9009;&#x9879;&#x914D;&#x7F6E;&#x3002;</p>
+<p><code>props</code> &#x9009;&#x9879;&#x53EF;&#x4EE5;&#x662F;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x5F62;&#x5F0F;:</p>
+<ul>
+<li>&#x5E03;&#x5C14;&#x6A21;&#x5F0F;<br>
+&#x5F53; <code>props</code> &#x88AB;&#x8BBE;&#x7F6E;&#x4E3A; <code>true</code>&#xFF0C;<code>route.params</code> &#x5C06;&#x4F1A;&#x88AB;&#x8BBE;&#x7F6E;&#x4E3A;&#x7EC4;&#x4EF6;&#x5C5E;&#x6027;&#x3002;</li>
+<li>&#x5BF9;&#x8C61;&#x6A21;&#x5F0F;<br>
+&#x5F53; <code>props</code> &#x88AB;&#x8BBE;&#x7F6E;&#x4E3A;&#x5BF9;&#x8C61;&#xFF0C;&#x5C06;&#x4F1A;&#x6309;&#x539F;&#x6837;&#x8BBE;&#x7F6E;&#x4E3A;&#x7EC4;&#x4EF6;&#x5C5E;&#x6027;&#x3002;</li>
+<li>&#x51FD;&#x6570;&#x6A21;&#x5F0F;<br>
+&#x5F53; <code>props</code> &#x88AB;&#x8BBE;&#x7F6E;&#x4E3A;&#x51FD;&#x6570;&#xFF0C;&#x51FD;&#x6570;&#x5C06;&#x63A5;&#x6536;&#x4E00;&#x4E2A; <code>$route</code> &#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#xFF0C;&#x5E76;&#x5C06;&#x8FD4;&#x56DE;&#x503C;&#x4F5C;&#x4E3A;&#x7EC4;&#x4EF6;&#x5C5E;&#x6027;&#x3002;</li>
+</ul>
+<blockquote>
+<p>&#x6CE8;&#x610F;: &#x8BF7;&#x5C3D;&#x53EF;&#x80FD;&#x4FDD;&#x6301; <code>props</code> &#x51FD;&#x6570;&#x4E3A;&#x65E0;&#x72B6;&#x6001;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x53EA;&#x4F1A;&#x5728;&#x8DEF;&#x7531;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x65F6;&#x8D77;&#x4F5C;&#x7528;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x72B6;&#x6001;&#x6765;&#x5B9A;&#x4E49; <code>props</code>&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;&#x5305;&#x88C5;&#x7EC4;&#x4EF6;&#xFF0C;&#x8FD9;&#x6837; Vue &#x624D;&#x53EF;&#x4EE5;&#x5BF9;&#x72B6;&#x6001;&#x53D8;&#x5316;&#x505A;&#x51FA;&#x53CD;&#x5E94;&#x3002;</p>
+</blockquote>
+<p>&#x5728;&#x7EC4;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528; <code>$route</code> &#x4F1A;&#x4F7F;&#x4E4B;&#x4E0E;&#x5176;&#x5BF9;&#x5E94;&#x8DEF;&#x7531;&#x5F62;&#x6210;&#x9AD8;&#x5EA6;&#x8026;&#x5408;&#xFF0C;&#x4ECE;&#x800C;&#x4F7F;&#x7EC4;&#x4EF6;&#x53EA;&#x80FD;&#x5728;&#x67D0;&#x4E9B;&#x7279;&#x5B9A;&#x7684; URL &#x4E0A;&#x4F7F;&#x7528;&#xFF0C;&#x9650;&#x5236;&#x4E86;&#x5176;&#x7075;&#x6D3B;&#x6027;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> User <span class="token operator">=</span> <span class="token punctuation">{</span>
+  template<span class="token punctuation">:</span> <span class="token string">&apos;&lt;div&gt;User {{ $route.params.id }}&lt;/div&gt;&apos;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">&apos;/user/:id&apos;</span><span class="token punctuation">,</span> component<span class="token punctuation">:</span> User <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x4F7F;&#x7528; <code>props</code> &#x5C06;&#x7EC4;&#x4EF6;&#x548C;&#x8DEF;&#x7531;&#x89E3;&#x8026;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> User <span class="token operator">=</span> <span class="token punctuation">{</span>
+  props<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&apos;id&apos;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  template<span class="token punctuation">:</span> <span class="token string">&apos;&lt;div&gt;User {{ id }}&lt;/div&gt;&apos;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token comment">// &#x5E03;&#x5C14;&#x6A21;&#x5F0F;</span>
+    <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">&apos;/user/:id&apos;</span><span class="token punctuation">,</span> component<span class="token punctuation">:</span> User<span class="token punctuation">,</span> props<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span>
+
+    <span class="token comment">// &#x5BF9;&#x8C61;&#x6A21;&#x5F0F;</span>
+    <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">&apos;/user/:id&apos;</span><span class="token punctuation">,</span> component<span class="token punctuation">:</span> User<span class="token punctuation">,</span> props<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token string">&apos;hello&apos;</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span>
+
+    <span class="token comment">// &#x51FD;&#x6570;&#x6A21;&#x5F0F;</span>
+    <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">&apos;/user/:id&apos;</span><span class="token punctuation">,</span> component<span class="token punctuation">:</span> User<span class="token punctuation">,</span> props<span class="token punctuation">:</span> <span class="token punctuation">(</span>route<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> query<span class="token punctuation">:</span> route<span class="token punctuation">.</span>query<span class="token punctuation">.</span>q <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x901A;&#x8FC7;&#x5411;&#x8DEF;&#x7531;&#x7EC4;&#x4EF6;&#x4F20;&#x53C2;&#x53EF;&#x4EE5;&#x5728;&#x4EFB;&#x4F55;&#x5730;&#x65B9;&#x4F7F;&#x7528;&#x540C;&#x4E2A;&#x7EC4;&#x4EF6;&#xFF0C;&#x4F7F;&#x5F97;&#x7EC4;&#x4EF6;&#x66F4;&#x6613;&#x4E8E;&#x91CD;&#x7528;&#x548C;&#x6D4B;&#x8BD5;&#x3002;</p>
+<h2 class="mume-header" id="%E5%AF%BC%E8%88%AA%E5%AE%88%E5%8D%ABhttpsroutervuejsorgzhguideadvancednavigation-guardshtml"><a href="https://router.vuejs.org/zh/guide/advanced/navigation-guards.html">&#x5BFC;&#x822A;&#x5B88;&#x536B;</a></h2>
+
+<p>&#x5728;&#x8DEF;&#x7531;&#x53D1;&#x751F;&#x6539;&#x53D8;&#x8FC7;&#x7A0B;&#x4E2D;&#x6709;&#x4E09;&#x79CD;&#x65B9;&#x5F0F; (&#x5168;&#x5C40;&#x7684;, &#x5355;&#x4E2A;&#x8DEF;&#x7531;&#x72EC;&#x4EAB;&#x7684;, &#x6216;&#x8005;&#x7EC4;&#x4EF6;&#x7EA7;&#x7684;) &#x690D;&#x5165;&#x5B88;&#x536B;&#x6216;&#x94A9;&#x5B50;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x6BCF;&#x4E2A;&#x5B88;&#x536B;&#x65B9;&#x6CD5;&#x63A5;&#x6536;&#x4E09;&#x4E2A;&#x53C2;&#x6570;:</p>
+<ul>
+<li><code>to: Route</code>: &#x5373;&#x5C06;&#x8981;&#x8FDB;&#x5165;&#x7684;&#x76EE;&#x6807;&#x8DEF;&#x7531;&#x3002;</li>
+<li><code>from: Route</code>: &#x5F53;&#x524D;&#x5BFC;&#x822A;&#x6B63;&#x8981;&#x79BB;&#x5F00;&#x7684;&#x8DEF;&#x7531;&#x3002;</li>
+<li><code>next: Function</code>: &#x7528;&#x6765;&#x7ED3;&#x675F;&#x8FD9;&#x4E2A;&#x94A9;&#x5B50;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5E76;&#x4F9D;&#x8D56;&#x5176;&#x53C2;&#x6570;&#x51B3;&#x5B9A;&#x6267;&#x884C;&#x6548;&#x679C;&#x3002;</li>
+</ul>
+<p><code>next</code> &#x65B9;&#x6CD5;&#x53EF;&#x63A5;&#x6536;&#x53C2;&#x6570;:</p>
+<ul>
+<li><code>next()</code>: &#x8FDB;&#x884C;&#x7BA1;&#x9053;&#x4E2D;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x94A9;&#x5B50;&#x3002;&#x5982;&#x679C;&#x5168;&#x90E8;&#x94A9;&#x5B50;&#x6267;&#x884C;&#x5B8C;&#x4E86;&#xFF0C;&#x5219;&#x5BFC;&#x822A;&#x7684;&#x72B6;&#x6001;&#x5C31;&#x662F; <code>confirmed</code> (&#x786E;&#x8BA4;&#x7684;)&#x3002;</li>
+<li><code>next(false)</code>: &#x4E2D;&#x65AD;&#x5F53;&#x524D;&#x7684;&#x5BFC;&#x822A;&#x3002;&#x5982;&#x679C;&#x6D4F;&#x89C8;&#x5668;&#x7684; URL &#x6539;&#x53D8;&#x4E86; (&#x53EF;&#x80FD;&#x662F;&#x7528;&#x6237;&#x624B;&#x52A8;&#x6216;&#x8005;&#x6D4F;&#x89C8;&#x5668;&#x540E;&#x9000;&#x6309;&#x94AE;)&#xFF0C;&#x90A3;&#x4E48; URL &#x5730;&#x5740;&#x4F1A;&#x91CD;&#x7F6E;&#x5230; <code>from</code> &#x8DEF;&#x7531;&#x5BF9;&#x5E94;&#x7684;&#x5730;&#x5740;&#x3002;</li>
+<li><code>next(&apos;/&apos;)</code> &#x6216;&#x8005; <code>next({ path: &apos;/&apos; })</code>: &#x8DF3;&#x8F6C;&#x5230;&#x4E00;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x5730;&#x5740;&#x3002;&#x5F53;&#x524D;&#x7684;&#x5BFC;&#x822A;&#x88AB;&#x4E2D;&#x65AD;&#xFF0C;&#x7136;&#x540E;&#x8FDB;&#x884C;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5BFC;&#x822A;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x5411; <code>next</code> &#x4F20;&#x9012;&#x4EFB;&#x610F;&#x4F4D;&#x7F6E;&#x5BF9;&#x8C61;&#xFF0C;&#x4E14;&#x5141;&#x8BB8;&#x8BBE;&#x7F6E;&#x8BF8;&#x5982; <code>replace: true</code>&#x3001;<code>name: &apos;home&apos;</code> &#x4E4B;&#x7C7B;&#x7684;&#x9009;&#x9879;&#x4EE5;&#x53CA;&#x4EFB;&#x4F55;&#x7528;&#x5728; <code>router-link</code> &#x7684; <code>to</code> prop &#x6216; <code>router.push</code> &#x4E2D;&#x7684;&#x9009;&#x9879;&#x3002;</li>
+<li><code>next(error)</code>: &#x5982;&#x679C;&#x4F20;&#x5165; <code>next</code> &#x7684;&#x53C2;&#x6570;&#x662F;&#x4E00;&#x4E2A; <code>Error</code> &#x5B9E;&#x4F8B;&#xFF0C;&#x5219;&#x5BFC;&#x822A;&#x4F1A;&#x88AB;&#x7EC8;&#x6B62;&#x4E14;&#x8BE5;&#x9519;&#x8BEF;&#x4F1A;&#x88AB;&#x4F20;&#x9012;&#x7ED9; <code>router.onError()</code> &#x6CE8;&#x518C;&#x8FC7;&#x7684;&#x56DE;&#x8C03;&#x3002;</li>
+</ul>
+<blockquote>
+<p>&#x6CE8;&#x610F;: &#x8981;&#x786E;&#x4FDD; <code>next</code> &#x51FD;&#x6570;&#x5728;&#x4EFB;&#x4F55;&#x7ED9;&#x5B9A;&#x7684;&#x5BFC;&#x822A;&#x5B88;&#x536B;&#x4E2D;&#x90FD;&#x88AB;&#x4E25;&#x683C;&#x8C03;&#x7528;&#x4E00;&#x6B21;&#xFF0C;&#x5426;&#x5219;&#x65E0;&#x6CD5;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x4E0B;&#x4E00;&#x4E2A;&#x5BFC;&#x822A;&#x5B88;&#x536B;&#xFF0C;&#x4ECE;&#x800C;&#x8BA9;&#x8DEF;&#x7531;&#x8DF3;&#x8F6C;&#x505C;&#x6B62;&#x3002;&#x5B83;&#x53EF;&#x4EE5;&#x51FA;&#x73B0;&#x591A;&#x4E8E;&#x4E00;&#x6B21;&#xFF0C;&#x4F46;&#x662F;&#x53EA;&#x80FD;&#x5728;&#x6240;&#x6709;&#x7684;&#x903B;&#x8F91;&#x8DEF;&#x5F84;&#x90FD;&#x4E0D;&#x91CD;&#x53E0;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5426;&#x5219;&#x94A9;&#x5B50;&#x6C38;&#x8FDC;&#x90FD;&#x4E0D;&#x4F1A;&#x88AB;&#x89E3;&#x6790;&#x6216;&#x62A5;&#x9519;&#x3002;</p>
+</blockquote>
+<p>&#x5168;&#x5C40;&#x524D;&#x7F6E;&#x5B88;&#x536B;: <code>router.beforeEach</code></p>
+<p>&#x5F53;&#x4E00;&#x4E2A;&#x5BFC;&#x822A;&#x89E6;&#x53D1;&#x65F6;&#xFF0C;&#x5168;&#x5C40;&#x524D;&#x7F6E;&#x5B88;&#x536B;&#x6309;&#x7167;&#x521B;&#x5EFA;&#x987A;&#x5E8F;&#x8C03;&#x7528;&#x3002;&#x5B88;&#x536B;&#x662F;&#x5F02;&#x6B65;&#x89E3;&#x6790;&#x6267;&#x884C;&#xFF0C;&#x6B64;&#x65F6;&#x5BFC;&#x822A;&#x5728;&#x6240;&#x6709;&#x5B88;&#x536B;&#x5904;&#x7406;&#x5B8C;&#x4E4B;&#x524D;&#x4E00;&#x76F4;&#x5904;&#x4E8E;&#x7B49;&#x5F85;&#x4E2D;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+router<span class="token punctuation">.</span><span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x5168;&#x5C40;&#x89E3;&#x6790;&#x5B88;&#x536B;: <code>router.beforeResolve</code></p>
+<p>&#x5728;&#x5BFC;&#x822A;&#x88AB;&#x786E;&#x8BA4;&#x4E4B;&#x524D;&#xFF0C;&#x540C;&#x65F6;&#x5728;&#x6240;&#x6709;&#x7EC4;&#x4EF6;&#x5185;&#x5B88;&#x536B;&#x548C;&#x5F02;&#x6B65;&#x8DEF;&#x7531;&#x7EC4;&#x4EF6;&#x88AB;&#x89E3;&#x6790;&#x4E4B;&#x540E;&#xFF0C;&#x89E3;&#x6790;&#x5B88;&#x536B;&#x88AB;&#x8C03;&#x7528;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">router<span class="token punctuation">.</span><span class="token function">beforeResolve</span><span class="token punctuation">(</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x5168;&#x5C40;&#x540E;&#x7F6E;&#x94A9;&#x5B50;: <code>router.afterEach</code></p>
+<p>&#x5168;&#x5C40;&#x540E;&#x7F6E;&#x94A9;&#x5B50;&#x548C;&#x5B88;&#x536B;&#x4E0D;&#x540C;&#xFF0C;&#x4E0D;&#x4F1A;&#x63A5;&#x6536; <code>next</code> &#x51FD;&#x6570;&#xFF0C;&#x4E5F;&#x4E0D;&#x4F1A;&#x6539;&#x53D8;&#x5BFC;&#x822A;&#x672C;&#x8EAB;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">router<span class="token punctuation">.</span><span class="token function">afterEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x8DEF;&#x7531;&#x72EC;&#x4EAB;&#x7684;&#x5B88;&#x536B;: <code>beforeEnter</code></p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      path<span class="token punctuation">:</span> <span class="token string">&apos;/foo&apos;</span><span class="token punctuation">,</span>
+      component<span class="token punctuation">:</span> Foo<span class="token punctuation">,</span>
+      beforeEnter<span class="token punctuation">:</span> <span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token comment">// ...</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x7EC4;&#x4EF6;&#x5185;&#x7684;&#x5B88;&#x536B;: <code>beforeRouteEnter</code></p>
+<p>&#x5728;&#x6E32;&#x67D3;&#x8BE5;&#x7EC4;&#x4EF6;&#x7684;&#x5BF9;&#x5E94;&#x8DEF;&#x7531;&#x88AB;&#x786E;&#x8BA4;&#x524D;&#x8C03;&#x7528;&#x3002;&#x6B64;&#x65F6;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x7EC4;&#x4EF6;&#x5B9E;&#x4F8B; <code>this</code>&#xFF0C;&#x56E0;&#x4E3A;&#x5728;&#x5B88;&#x536B;&#x6267;&#x884C;&#x524D;&#xFF0C;&#x7EC4;&#x4EF6;&#x5B9E;&#x4F8B;&#x8FD8;&#x6CA1;&#x88AB;&#x521B;&#x5EFA;&#x3002;&#x4E0D;&#x8FC7;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F20;&#x4E00;&#x4E2A;&#x56DE;&#x8C03;&#x7ED9; <code>next</code> &#x6765;&#x8BBF;&#x95EE;&#x7EC4;&#x4EF6;&#x5B9E;&#x4F8B;&#xFF0C;&#x5728;&#x5BFC;&#x822A;&#x88AB;&#x786E;&#x8BA4;&#x7684;&#x65F6;&#x5019;&#x6267;&#x884C;&#x56DE;&#x8C03;&#xFF0C;&#x5E76;&#x4E14;&#x628A;&#x7EC4;&#x4EF6;&#x5B9E;&#x4F8B;&#x4F5C;&#x4E3A;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> Foo <span class="token operator">=</span> <span class="token punctuation">{</span>
+  template<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`...`</span></span><span class="token punctuation">,</span>
+  <span class="token function">beforeRouteEnter</span> <span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">next</span><span class="token punctuation">(</span>vm <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// &#x901A;&#x8FC7; `vm` &#x8BBF;&#x95EE;&#x7EC4;&#x4EF6;&#x5B9E;&#x4F8B; &#x5728; mounted &#x94A9;&#x5B50;&#x540E;&#x8C03;&#x7528;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x7EC4;&#x4EF6;&#x5185;&#x7684;&#x5B88;&#x536B;: <code>beforeRouteUpdate</code></p>
+<p>&#x5728;&#x5F53;&#x524D;&#x8DEF;&#x7531;&#x6539;&#x53D8;&#xFF0C;&#x4F46;&#x662F;&#x8BE5;&#x7EC4;&#x4EF6;&#x88AB;&#x590D;&#x7528;&#x65F6;&#x8C03;&#x7528;&#x3002;&#x52A8;&#x6001;&#x8DEF;&#x7531;&#x8DF3;&#x8F6C;&#x6216;&#x8DEF;&#x7531;&#x67E5;&#x8BE2;&#x53D8;&#x66F4;&#xFF0C;&#x90FD;&#x53EF;&#x8BA9;&#x7EC4;&#x4EF6;&#x8FDB;&#x884C;&#x590D;&#x7528;&#x3002;&#x6B64;&#x65F6;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x7EC4;&#x4EF6;&#x5B9E;&#x4F8B; <code>this</code>&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token function">beforeRouteUpdate</span> <span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x7EC4;&#x4EF6;&#x5185;&#x7684;&#x5B88;&#x536B;: <code>beforeRouteLeave</code></p>
+<p>&#x5728;&#x5BFC;&#x822A;&#x79BB;&#x5F00;&#x8BE5;&#x7EC4;&#x4EF6;&#x7684;&#x5BF9;&#x5E94;&#x8DEF;&#x7531;&#x65F6;&#x8C03;&#x7528;&#x3002;&#x6B64;&#x65F6;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x7EC4;&#x4EF6;&#x5B9E;&#x4F8B; <code>this</code>&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token function">beforeRouteLeave</span> <span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x5B8C;&#x6574;&#x7684;&#x5BFC;&#x822A;&#x89E3;&#x6790;&#x6D41;&#x7A0B;:</p>
+<ol>
+<li>&#x5BFC;&#x822A;&#x88AB;&#x89E6;&#x53D1;&#x3002;</li>
+<li>&#x5728;&#x5931;&#x6D3B;&#x7684;&#x7EC4;&#x4EF6;&#x91CC;&#x8C03;&#x7528; <code>beforeRouteLeave</code> &#x5B88;&#x536B;&#x3002;</li>
+<li>&#x8C03;&#x7528;&#x5168;&#x5C40;&#x7684; <code>beforeEach</code> &#x5B88;&#x536B;&#x3002;</li>
+<li>&#x5728;&#x91CD;&#x7528;&#x7684;&#x7EC4;&#x4EF6;&#x91CC;&#x8C03;&#x7528; <code>beforeRouteUpdate</code> &#x5B88;&#x536B;&#x3002;</li>
+<li>&#x5728;&#x8DEF;&#x7531;&#x914D;&#x7F6E;&#x91CC;&#x8C03;&#x7528; <code>beforeEnter</code>&#x3002;</li>
+<li>&#x89E3;&#x6790;&#x5F02;&#x6B65;&#x8DEF;&#x7531;&#x7EC4;&#x4EF6;&#x3002;</li>
+<li>&#x5728;&#x88AB;&#x6FC0;&#x6D3B;&#x7684;&#x7EC4;&#x4EF6;&#x91CC;&#x8C03;&#x7528; <code>beforeRouteEnter</code>&#x3002;</li>
+<li>&#x8C03;&#x7528;&#x5168;&#x5C40;&#x7684; <code>beforeResolve</code> &#x5B88;&#x536B;&#x3002;</li>
+<li>&#x5BFC;&#x822A;&#x88AB;&#x786E;&#x8BA4;&#x3002;</li>
+<li>&#x8C03;&#x7528;&#x5168;&#x5C40;&#x7684; <code>afterEach</code> &#x94A9;&#x5B50;&#x3002;</li>
+<li>&#x89E6;&#x53D1; DOM &#x66F4;&#x65B0;&#x3002;</li>
+<li>&#x8C03;&#x7528; <code>beforeRouteEnter</code> &#x5B88;&#x536B;&#x4E2D;&#x4F20;&#x7ED9; <code>next</code> &#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF0C;&#x521B;&#x5EFA;&#x597D;&#x7684;&#x7EC4;&#x4EF6;&#x5B9E;&#x4F8B;&#x4F1A;&#x4F5C;&#x4E3A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x7684;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x3002;</li>
+</ol>
+<blockquote>
+<p>&#x6CE8;&#x610F;: &#x53C2;&#x6570;&#x6216;&#x67E5;&#x8BE2;&#x7684;&#x6539;&#x53D8;&#x5E76;&#x4E0D;&#x4F1A;&#x89E6;&#x53D1;&#x8FDB;&#x5165;/&#x79BB;&#x5F00;&#x7684;&#x5BFC;&#x822A;&#x5B88;&#x536B;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4FA6;&#x542C; <code>$route</code> &#x5BF9;&#x8C61;&#x6765;&#x5E94;&#x5BF9;&#x8FD9;&#x4E9B;&#x53D8;&#x5316;&#xFF0C;&#x6216;&#x4F7F;&#x7528; <code>beforeRouteUpdate</code> &#x7684;&#x7EC4;&#x4EF6;&#x5185;&#x5B88;&#x536B;&#x3002;</p>
+</blockquote>
+<p>&#x901A;&#x8FC7;&#x5BFC;&#x822A;&#x5B88;&#x536B;&#x53EF;&#x4EE5;&#x63A7;&#x5236;&#x5BFC;&#x822A;&#x7684;&#x901A;&#x8FC7;&#x8DF3;&#x8F6C;&#x6216;&#x53D6;&#x6D88;&#xFF0C;&#x4E5F;&#x53EF;&#x5728;&#x5BFC;&#x822A;&#x5B8C;&#x6210;&#x524D;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x3002;</p>
+<h2 class="mume-header" id="%E8%B7%AF%E7%94%B1%E5%85%83%E4%BF%A1%E6%81%AFhttpsroutervuejsorgzhguideadvancedmetahtml"><a href="https://router.vuejs.org/zh/guide/advanced/meta.html">&#x8DEF;&#x7531;&#x5143;&#x4FE1;&#x606F;</a></h2>
+
+<p>&#x8DEF;&#x7531;&#x5143;&#x4FE1;&#x606F;&#x7531; <code>routes</code> &#x914D;&#x7F6E;&#x4E2D;&#x7684; <code>meta</code> &#x9009;&#x9879;&#x914D;&#x7F6E;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      path<span class="token punctuation">:</span> <span class="token string">&apos;/foo&apos;</span><span class="token punctuation">,</span>
+      component<span class="token punctuation">:</span> Foo<span class="token punctuation">,</span>
+      meta<span class="token punctuation">:</span> <span class="token punctuation">{</span> requiresAuth<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x4F7F;&#x7528; <code>$route.meta</code> &#x8BBF;&#x95EE;&#x5F53;&#x524D;&#x8DEF;&#x7531;&#x7684;&#x5143;&#x4FE1;&#x606F;&#x3002;&#x5BF9;&#x4E8E;&#x5D4C;&#x5957;&#x8DEF;&#x7531;&#xFF0C;&#x53EF;&#x4EE5;&#x904D;&#x5386; <code>$route</code> &#x5BF9;&#x8C61;&#x7684; <code>$route.matched</code> &#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x8DEF;&#x7531;&#x8BB0;&#x5F55;&#xFF0C;&#x8BBF;&#x95EE; <code>meta</code> &#x5B57;&#x6BB5;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">router<span class="token punctuation">.</span><span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>to<span class="token punctuation">.</span>matched<span class="token punctuation">.</span><span class="token function">some</span><span class="token punctuation">(</span>record <span class="token operator">=&gt;</span> record<span class="token punctuation">.</span>meta<span class="token punctuation">.</span>requiresAuth<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">next</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p>&#x901A;&#x8FC7;&#x8DEF;&#x7531;&#x5143;&#x4FE1;&#x606F;&#x53EF;&#x4EE5;&#x5728;&#x5BFC;&#x822A;&#x5B88;&#x536B;&#x4E2D;&#x68C0;&#x67E5;&#x5143;&#x5B57;&#x6BB5;&#xFF0C;&#x5E76;&#x6839;&#x636E;&#x5176;&#x503C;&#x914D;&#x7F6E;&#x76F8;&#x5E94;&#x7684;&#x5BFC;&#x822A;&#x5904;&#x7406;&#x903B;&#x8F91;&#x3002;</p>
+<h2 class="mume-header" id="%E8%BF%87%E6%B8%A1%E5%8A%A8%E6%95%88httpsroutervuejsorgzhguideadvancedtransitionshtml"><a href="https://router.vuejs.org/zh/guide/advanced/transitions.html">&#x8FC7;&#x6E21;&#x52A8;&#x6548;</a></h2>
+
+<p>&#x5B9E;&#x73B0;&#x6240;&#x6709;&#x8DEF;&#x7531;&#x7684;&#x8FC7;&#x6E21;&#x52A8;&#x6548;&#x9700;&#x8981;&#x5728; <code>router-view</code> &#x7EC4;&#x4EF6;&#x5916;&#x914D;&#x5408; <code>transition</code> &#x7EC4;&#x4EF6;&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token operator">&lt;</span>transition<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>router<span class="token operator">-</span>view<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>view<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>transition<span class="token operator">&gt;</span>
+</pre><blockquote>
+<p>&#x5B9E;&#x73B0;&#x5355;&#x4E2A;&#x8DEF;&#x7531;&#x7684;&#x8FC7;&#x6E21;&#x52A8;&#x6548;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x5404;&#x8DEF;&#x7531;&#x7EC4;&#x4EF6;&#x5185;&#x4F7F;&#x7528; <code>&lt;transition&gt;</code> &#x5E76;&#x8BBE;&#x7F6E;&#x4E0D;&#x540C;&#x7684; <code>name</code>&#x3002;</p>
+</blockquote>
+<p>&#x901A;&#x8FC7;&#x8FC7;&#x6E21;&#x52A8;&#x6548;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x6240;&#x6709;&#x8DEF;&#x7531;&#x7684;&#x7EDF;&#x4E00;&#x8FC7;&#x6E21;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x914D;&#x5408; <code>&lt;transition&gt;</code> &#x7684; <code>name</code> attribute &#x5B9E;&#x73B0;&#x57FA;&#x4E8E;&#x8DEF;&#x7531;&#x7684;&#x52A8;&#x6001;&#x8FC7;&#x6E21;&#x3002;</p>
+<h2 class="mume-header" id="%E6%BB%9A%E5%8A%A8%E8%A1%8C%E4%B8%BAhttpsroutervuejsorgzhguideadvancedscroll-behaviorhtml"><a href="https://router.vuejs.org/zh/guide/advanced/scroll-behavior.html">&#x6EDA;&#x52A8;&#x884C;&#x4E3A;</a></h2>
+
+<p>&#x6EDA;&#x52A8;&#x884C;&#x4E3A;&#x7531; <code>scrollBehavior</code> &#x9009;&#x9879;&#x914D;&#x7F6E;&#x3002;</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token function">scrollBehavior</span> <span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> savedPosition<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// return &#x671F;&#x671B;&#x6EDA;&#x52A8;&#x5230;&#x54EA;&#x4E2A;&#x7684;&#x4F4D;&#x7F6E;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre><p><code>scrollBehavior</code> &#x65B9;&#x6CD5;&#x63A5;&#x6536; <code>to</code> &#x548C; <code>from</code> &#x8DEF;&#x7531;&#x5BF9;&#x8C61;&#x3002;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570; <code>savedPosition</code> &#x5F53;&#x4E14;&#x4EC5;&#x5F53; <code>popstate</code> &#x5BFC;&#x822A; (&#x901A;&#x8FC7;&#x6D4F;&#x89C8;&#x5668;&#x7684; &#x524D;&#x8FDB;/&#x540E;&#x9000; &#x6309;&#x94AE;&#x89E6;&#x53D1;) &#x65F6;&#x624D;&#x53EF;&#x7528;&#x3002;</p>
+<p>&#x8FD4;&#x56DE;&#x6EDA;&#x52A8;&#x4F4D;&#x7F6E;&#x7684;&#x5BF9;&#x8C61;&#x53EF;&#x4EE5;&#x662F;&#x4EE5;&#x4E0B;&#x7684;&#x51E0;&#x79CD;&#x60C5;&#x51B5;:</p>
+<ul>
+<li><code>{ x: number, y: number }</code></li>
+<li><code>{ selector: string, offset? : { x: number, y: number }}</code></li>
+<li><code>savedPosition</code></li>
+<li>falsy &#x503C;</li>
+<li>Promise</li>
+</ul>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token function">scrollBehavior</span> <span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> savedPosition<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span> x<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// &#x6EDA;&#x52A8;&#x5230;&#x9875;&#x9762;&#x9876;&#x90E8;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span> selector<span class="token punctuation">:</span> to<span class="token punctuation">.</span>hash <span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// &#x6EDA;&#x52A8;&#x5230;&#x9875;&#x9762;&#x951A;&#x70B9;&#x5904;</span>
+  <span class="token keyword">return</span> savedPosition<span class="token punctuation">;</span> <span class="token comment">// &#x6EDA;&#x52A8;&#x5230;&#x9875;&#x9762;&#x4E4B;&#x524D;&#x7684;&#x4F4D;&#x7F6E;</span>
+  <span class="token keyword">return</span> undefined<span class="token punctuation">;</span> <span class="token comment">// &#x4E0D;&#x6EDA;&#x52A8;</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span>resolve <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>to<span class="token punctuation">.</span>matched<span class="token punctuation">.</span><span class="token function">some</span><span class="token punctuation">(</span>m <span class="token operator">=&gt;</span> m<span class="token punctuation">.</span>meta<span class="token punctuation">.</span>scrollToTop<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">{</span> x<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// &#x914D;&#x5408;&#x8DEF;&#x7531;&#x5143;&#x4FE1;&#x606F;&#x66F4;&#x7EC6;&#x9897;&#x7C92;&#x5EA6;&#x5730;&#x63A7;&#x5236;&#x6EDA;&#x52A8;</span>
+<span class="token punctuation">}</span>
+</pre><blockquote>
+<p>&#x6CE8;&#x610F;: &#x8FD9;&#x4E2A;&#x529F;&#x80FD;&#x53EA;&#x5728;&#x652F;&#x6301; <code>history.pushState</code> &#x7684;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x53EF;&#x7528;&#x3002;</p>
+</blockquote>
+<p>&#x901A;&#x8FC7;&#x6EDA;&#x52A8;&#x884C;&#x4E3A;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x8DEF;&#x7531;&#x5207;&#x6362;&#x65F6;&#x9875;&#x9762;&#x5982;&#x4F55;&#x6EDA;&#x52A8; (&#x6EDA;&#x5230;&#x9876;&#x90E8;&#x6216;&#x8005;&#x662F;&#x4FDD;&#x6301;&#x539F;&#x5148;&#x7684;&#x6EDA;&#x52A8;&#x4F4D;&#x7F6E;)&#x3002;</p>
+<h2 class="mume-header" id="%E8%B7%AF%E7%94%B1%E5%AF%B9%E8%B1%A1httpsroutervuejsorgzhapie8b7afe794b1e5afb9e8b1a1"><a href="https://router.vuejs.org/zh/api/#%E8%B7%AF%E7%94%B1%E5%AF%B9%E8%B1%A1">&#x8DEF;&#x7531;&#x5BF9;&#x8C61;</a></h2>
+
+<p>&#x8DEF;&#x7531;&#x5BF9;&#x8C61;&#x8868;&#x793A;&#x5F53;&#x524D;&#x6FC0;&#x6D3B;&#x7684;&#x8DEF;&#x7531;&#x7684;&#x72B6;&#x6001;&#x4FE1;&#x606F;&#xFF0C;&#x5305;&#x542B;&#x4E86;&#x5F53;&#x524D; URL &#x89E3;&#x6790;&#x5F97;&#x5230;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x8FD8;&#x6709; URL &#x5339;&#x914D;&#x5230;&#x7684;&#x8DEF;&#x7531;&#x8BB0;&#x5F55;&#x3002;&#x8DEF;&#x7531;&#x5BF9;&#x8C61;&#x662F;&#x53EA;&#x8BFB;&#x7684;&#xFF0C;&#x6BCF;&#x6B21;&#x6210;&#x529F;&#x7684;&#x5BFC;&#x822A;&#x540E;&#x90FD;&#x4F1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+<p>&#x8DEF;&#x7531;&#x5BF9;&#x8C61;&#x51FA;&#x73B0;&#x5728;&#x591A;&#x4E2A;&#x5730;&#x65B9;:</p>
+<ul>
+<li>&#x5728;&#x7EC4;&#x4EF6;&#x5185;&#xFF0C;&#x5373; <code>this.$route</code>&#x3002;</li>
+<li>&#x5728; <code>$route</code> &#x89C2;&#x5BDF;&#x8005;&#x56DE;&#x8C03;&#x5185;&#x3002;</li>
+<li><code>router.match(location)</code> &#x7684;&#x8FD4;&#x56DE;&#x503C;&#x3002;</li>
+<li>&#x5BFC;&#x822A;&#x5B88;&#x536B;&#x7684;&#x53C2;&#x6570;&#x3002;</li>
+<li><code>scrollBehavior</code> &#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#x3002;</li>
+</ul>
+<h3 class="mume-header" id="%E5%B1%9E%E6%80%A7">&#x5C5E;&#x6027;</h3>
+
+<ul>
+<li>
+<p>$route.path<br>
+&#x7C7B;&#x578B;: string<br>
+&#x5BF9;&#x5E94;&#x5F53;&#x524D;&#x8DEF;&#x7531;&#x7684;&#x8DEF;&#x5F84;&#xFF0C;&#x603B;&#x662F;&#x89E3;&#x6790;&#x4E3A;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#x3002;</p>
+</li>
+<li>
+<p>$route.params<br>
+&#x7C7B;&#x578B;: Object<br>
+&#x5305;&#x542B;&#x4E86;&#x52A8;&#x6001;&#x7247;&#x6BB5;&#x548C;&#x5168;&#x5339;&#x914D;&#x7247;&#x6BB5;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x8DEF;&#x7531;&#x53C2;&#x6570;&#xFF0C;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x7A7A;&#x5BF9;&#x8C61;&#x3002;</p>
+</li>
+<li>
+<p>$route.query<br>
+&#x7C7B;&#x578B;: Object<br>
+&#x8868;&#x793A; URL &#x67E5;&#x8BE2;&#x53C2;&#x6570;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x67E5;&#x8BE2;&#x53C2;&#x6570;&#xFF0C;&#x5219;&#x662F;&#x4E2A;&#x7A7A;&#x5BF9;&#x8C61;&#x3002;</p>
+</li>
+<li>
+<p>$route.hash<br>
+&#x7C7B;&#x578B;: string<br>
+&#x5F53;&#x524D;&#x8DEF;&#x7531;&#x7684; <code>hash</code> &#x503C; (&#x5E26; <code>#</code>)&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709; <code>hash</code> &#x503C;&#xFF0C;&#x5219;&#x4E3A;&#x7A7A;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+</li>
+<li>
+<p>$route.fullPath<br>
+&#x7C7B;&#x578B;: string<br>
+&#x5B8C;&#x6210;&#x89E3;&#x6790;&#x540E;&#x7684; URL&#xFF0C;&#x5305;&#x542B;&#x67E5;&#x8BE2;&#x53C2;&#x6570;&#x548C; <code>hash</code> &#x7684;&#x5B8C;&#x6574;&#x8DEF;&#x5F84;&#x3002;</p>
+</li>
+<li>
+<p>$route.matched<br>
+&#x7C7B;&#x578B;: Array&lt;RouteRecord&gt;<br>
+&#x5305;&#x542B;&#x5F53;&#x524D;&#x8DEF;&#x7531;&#x7684;&#x6240;&#x6709;&#x5D4C;&#x5957;&#x8DEF;&#x5F84;&#x7247;&#x6BB5;&#x7684;&#x8DEF;&#x7531;&#x8BB0;&#x5F55;&#x3002;&#x8DEF;&#x7531;&#x8BB0;&#x5F55;&#x5C31;&#x662F; <code>routes</code> &#x914D;&#x7F6E;&#x6570;&#x7EC4; (&#x5305;&#x542B; <code>children</code> &#x6570;&#x7EC4;) &#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x526F;&#x672C;&#x3002;</p>
+</li>
+<li>
+<p>$<a href="http://route.name">route.name</a><br>
+&#x7C7B;&#x578B;: string<br>
+&#x5F53;&#x524D;&#x8DEF;&#x7531;&#x7684;&#x540D;&#x79F0;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x7684;&#x8BDD;&#x3002;</p>
+</li>
+<li>
+<p>$route.redirectedFrom<br>
+&#x7C7B;&#x578B;: string<br>
+&#x5982;&#x679C;&#x5B58;&#x5728;&#x91CD;&#x5B9A;&#x5411;&#xFF0C;&#x5373;&#x4E3A;&#x91CD;&#x5B9A;&#x5411;&#x6765;&#x6E90;&#x7684;&#x8DEF;&#x7531;&#x7684;&#x540D;&#x5B57;&#x3002;</p>
+</li>
+</ul>
+<h2 class="mume-header" id="%E6%9E%84%E5%BB%BA%E9%80%89%E9%A1%B9httpsroutervuejsorgzhapirouter-e69e84e5bbbae98089e9a1b9"><a href="https://router.vuejs.org/zh/api/#router-%E6%9E%84%E5%BB%BA%E9%80%89%E9%A1%B9">&#x6784;&#x5EFA;&#x9009;&#x9879;</a></h2>
+
+<ul>
+<li>
+<p>routes<br>
+&#x7C7B;&#x578B;: Array&lt;RouteConfig&gt;<br>
+&#x5B9A;&#x4E49;&#x8DEF;&#x7531;&#xFF0C;&#x6BCF;&#x4E2A;&#x8DEF;&#x7531;&#x5E94;&#x8BE5;&#x6620;&#x5C04;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x3002;<br>
+<code>RouteConfig</code> &#x7684;&#x7C7B;&#x578B;&#x5B9A;&#x4E49;:</p>
+<pre data-role="codeBlock" data-info="ts" class="language-ts"><span class="token keyword">interface</span> <span class="token class-name">RouteConfig</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  path<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token comment">// &#x8DEF;&#x7531;</span>
+  component<span class="token operator">?</span><span class="token operator">:</span> Component<span class="token punctuation">,</span> <span class="token comment">// &#x7EC4;&#x4EF6;</span>
+  name<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token comment">// &#x547D;&#x540D;&#x8DEF;&#x7531;</span>
+  components<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token punctuation">[</span>name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">]</span><span class="token operator">:</span> Component <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// &#x547D;&#x540D;&#x89C6;&#x56FE;&#x7EC4;&#x4EF6;</span>
+  redirect<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token operator">|</span> Location <span class="token operator">|</span> <span class="token builtin">Function</span><span class="token punctuation">,</span> <span class="token comment">// &#x91CD;&#x5B9A;&#x5411;</span>
+  props<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span> <span class="token operator">|</span> Object <span class="token operator">|</span> <span class="token builtin">Function</span><span class="token punctuation">,</span> <span class="token comment">// &#x8DEF;&#x7531;&#x7EC4;&#x4EF6;&#x4F20;&#x53C2;</span>
+  alias<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token operator">|</span> <span class="token builtin">Array</span><span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> <span class="token comment">// &#x522B;&#x540D;</span>
+  children<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">Array</span><span class="token operator">&lt;</span>RouteConfig<span class="token operator">&gt;</span><span class="token punctuation">,</span> <span class="token comment">// &#x5D4C;&#x5957;&#x8DEF;&#x7531;</span>
+  beforeEnter<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span>to<span class="token operator">:</span> Route<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token operator">:</span> Route<span class="token punctuation">,</span> next<span class="token operator">:</span> <span class="token builtin">Function</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">,</span> <span class="token comment">// &#x8DEF;&#x7531;&#x72EC;&#x4EAB;&#x7684;&#x5B88;&#x536B;</span>
+  meta<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">,</span> <span class="token comment">// &#x8DEF;&#x7531;&#x5143;&#x4FE1;&#x606F;</span>
+
+  <span class="token comment">// 2.6.0+</span>
+  caseSensitive<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">,</span> <span class="token comment">// &#x5339;&#x914D;&#x89C4;&#x5219;&#x662F;&#x5426;&#x5927;&#x5C0F;&#x5199;&#x654F;&#x611F;&#xFF1F;(&#x9ED8;&#x8BA4;&#x503C;: false)</span>
+  pathToRegexpOptions<span class="token operator">?</span><span class="token operator">:</span> Object <span class="token comment">// &#x7F16;&#x8BD1;&#x6B63;&#x5219;&#x7684;&#x9009;&#x9879;</span>
+<span class="token punctuation">}</span>
+</pre></li>
+<li>
+<p>mode<br>
+&#x7C7B;&#x578B;: string<br>
+&#x9ED8;&#x8BA4;&#x503C;: <code>&quot;hash&quot;</code> (&#x6D4F;&#x89C8;&#x5668;&#x73AF;&#x5883;) | <code>&quot;abstract&quot;</code> (Node.js &#x73AF;&#x5883;)<br>
+&#x53EF;&#x9009;&#x503C;: <code>&quot;hash&quot;</code> | <code>&quot;history&quot;</code> | <code>&quot;abstract&quot;</code><br>
+&#x914D;&#x7F6E;&#x8DEF;&#x7531;&#x6A21;&#x5F0F;&#x3002;</p>
+</li>
+<li>
+<p>linkActiveClass<br>
+&#x7C7B;&#x578B;: string<br>
+&#x9ED8;&#x8BA4;&#x503C;: <code>&quot;router-link-active&quot;</code><br>
+&#x5168;&#x5C40;&#x914D;&#x7F6E; <code>&lt;router-link&gt;</code> &#x9ED8;&#x8BA4;&#x7684;&#x6FC0;&#x6D3B;&#x7684; class&#x3002;<br>
+&#x5173;&#x8054;: #active-class#</p>
+</li>
+<li>
+<p>linkExactActiveClass<br>
+&#x7C7B;&#x578B;: string<br>
+&#x9ED8;&#x8BA4;&#x503C;: <code>&quot;router-link-exact-active&quot;</code><br>
+&#x5168;&#x5C40;&#x914D;&#x7F6E; <code>&lt;router-link&gt;</code> &#x9ED8;&#x8BA4;&#x7684;&#x7CBE;&#x786E;&#x6FC0;&#x6D3B;&#x7684; class&#x3002;<br>
+&#x5173;&#x8054;: #exact-active-class#</p>
+</li>
+<li>
+<p>scrollBehavior<br>
+&#x7C7B;&#x578B;: Function<br>
+&#x914D;&#x7F6E;&#x8DEF;&#x7531;&#x5207;&#x6362;&#x65F6;&#x9875;&#x9762;&#x7684;&#x6EDA;&#x52A8;&#x884C;&#x4E3A;&#x3002;</p>
+</li>
+</ul>
+<h2 class="mume-header" id="%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95httpsroutervuejsorgzhapirouter-e5ae9ee4be8be696b9e6b395"><a href="https://router.vuejs.org/zh/api/#router-%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95">&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;</a></h2>
+
+<ul>
+<li>
+<p>router.beforeEach<br>
+&#x7C7B;&#x578B;: (to: Route, from: Route, next: Function) =&gt; void<br>
+&#x6CE8;&#x518C;&#x5168;&#x5C40;&#x524D;&#x7F6E;&#x5B88;&#x536B;&#x3002;</p>
+</li>
+<li>
+<p>router.beforeResolve<br>
+&#x7C7B;&#x578B;: (to: Route, from: Route, next: Function) =&gt; void<br>
+&#x6CE8;&#x518C;&#x5168;&#x5C40;&#x89E3;&#x6790;&#x5B88;&#x536B;&#x3002;</p>
+</li>
+<li>
+<p>router.afterEach<br>
+&#x7C7B;&#x578B;: (to: Route, from: Route) =&gt; void<br>
+&#x6CE8;&#x518C;&#x5168;&#x5C40;&#x540E;&#x7F6E;&#x94A9;&#x5B50;&#x3002;</p>
+</li>
+<li>
+<p>router.push<br>
+&#x7C7B;&#x578B;: string | Location<br>
+&#x5BFC;&#x822A;&#x5230;&#x65B0; URL&#xFF0C;&#x5E76;&#x5411; history &#x6808;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x8BB0;&#x5F55;&#x3002;<br>
+&#x5173;&#x8054;: #to#</p>
+</li>
+<li>
+<p>router.replace<br>
+&#x7C7B;&#x578B;: string | Location<br>
+&#x5BFC;&#x822A;&#x5230;&#x65B0; URL&#xFF0C;&#x5E76;&#x66FF;&#x6362;&#x6389;&#x5F53;&#x524D;&#x7684; history &#x8BB0;&#x5F55;&#x3002;<br>
+&#x5173;&#x8054;: #to#</p>
+</li>
+<li>
+<p>router.go<br>
+&#x7C7B;&#x578B;: number<br>
+&#x5BFC;&#x822A;&#x5230; history &#x8BB0;&#x5F55;&#x4E2D;&#x7684; URL&#x3002;</p>
+</li>
+<li>
+<p>router.back<br>
+&#x5BFC;&#x822A;&#x5230;&#x5F53;&#x524D; history &#x8BB0;&#x5F55;&#x7684;&#x4E0A;&#x4E00;&#x4E2A; URL&#x3002;</p>
+</li>
+<li>
+<p>router.forward<br>
+&#x5BFC;&#x822A;&#x5230;&#x5F53;&#x524D; history &#x8BB0;&#x5F55;&#x7684;&#x4E0B;&#x4E00;&#x4E2A; URL&#x3002;</p>
+</li>
+<li>
+<p>router.onError<br>
+&#x7C7B;&#x578B;: Function<br>
+&#x6CE8;&#x518C;&#x5728;&#x8DEF;&#x7531;&#x5BFC;&#x822A;&#x8FC7;&#x7A0B;&#x4E2D;&#x51FA;&#x9519;&#x65F6;&#x7684;&#x56DE;&#x8C03;&#x3002;</p>
+</li>
+</ul>
+<h2 class="mume-header" id="router-linkhttpsroutervuejsorgzhapirouter-link"><a href="https://router.vuejs.org/zh/api/#router-link">&lt;router-link&gt;</a></h2>
+
+<p><code>&lt;router-link&gt;</code> &#x7EC4;&#x4EF6;&#x7528;&#x4E8E;&#x5728;&#x5177;&#x6709;&#x8DEF;&#x7531;&#x529F;&#x80FD;&#x7684;&#x5E94;&#x7528;&#x4E2D; (&#x70B9;&#x51FB;) &#x5BFC;&#x822A;&#x3002;</p>
+<p>&#x901A;&#x8FC7; <code>to</code> &#x5C5E;&#x6027;&#x6307;&#x5B9A;&#x76EE;&#x6807;&#x5730;&#x5740;&#xFF0C;&#x9ED8;&#x8BA4;&#x6E32;&#x67D3;&#x6210;&#x5E26;&#x6709;&#x6B63;&#x786E;&#x94FE;&#x63A5;&#x7684; <code>&lt;a&gt;</code> &#x6807;&#x7B7E;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x914D;&#x7F6E; <code>tag</code> &#x5C5E;&#x6027;&#x751F;&#x6210;&#x522B;&#x7684;&#x6807;&#x7B7E;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x5F53;&#x76EE;&#x6807;&#x8DEF;&#x7531;&#x6210;&#x529F;&#x6FC0;&#x6D3B;&#x65F6;&#xFF0C;&#x94FE;&#x63A5;&#x5143;&#x7D20;&#x81EA;&#x52A8;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x8868;&#x793A;&#x6FC0;&#x6D3B;&#x7684; CSS &#x7C7B;&#x540D;&#x3002;</p>
+<blockquote>
+<p><code>&lt;router-link&gt;</code> &#x548C; <code>&lt;a&gt;</code> &#x7684;&#x533A;&#x522B;&#xFF1F;</p>
+<p>&#x65E0;&#x8BBA;&#x662F; HTML5 history &#x6A21;&#x5F0F;&#x8FD8;&#x662F; hash &#x6A21;&#x5F0F;&#xFF0C;<code>router-link</code> &#x7684;&#x8868;&#x73B0;&#x884C;&#x4E3A;&#x4E00;&#x81F4;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x5F53;&#x8981;&#x5207;&#x6362;&#x8DEF;&#x7531;&#x6A21;&#x5F0F;&#xFF0C;&#x6216;&#x8005;&#x5728; IE9 &#x964D;&#x7EA7;&#x4F7F;&#x7528; hash &#x6A21;&#x5F0F;&#xFF0C;&#x65E0;&#x987B;&#x4F5C;&#x4EFB;&#x4F55;&#x53D8;&#x52A8;&#x3002;<br>
+&#x5728; HTML5 history &#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;<code>router-link</code> &#x4F1A;&#x5B88;&#x536B;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#xFF0C;&#x8BA9;&#x6D4F;&#x89C8;&#x5668;&#x4E0D;&#x518D;&#x91CD;&#x65B0;&#x52A0;&#x8F7D;&#x9875;&#x9762;&#x3002;<br>
+&#x5728; HTML5 history &#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x4F7F;&#x7528; <code>router-link</code> &#x7684; <code>base</code> &#x9009;&#x9879;&#x4E4B;&#x540E;&#xFF0C;&#x6240;&#x6709;&#x7684; <code>to</code> &#x5C5E;&#x6027;&#x90FD;&#x4E0D;&#x9700;&#x8981;&#x5199; (&#x57FA;&#x8DEF;&#x5F84;) &#x4E86;&#x3002;</p>
+</blockquote>
+<h3 class="mume-header" id="router-link-props">&lt;router-link&gt; Props</h3>
+
+<ul>
+<li>
+<p>to<br>
+&#x7C7B;&#x578B;: string | Location<br>
+&#x8BBE;&#x7F6E;&#x76EE;&#x6807;&#x8DEF;&#x7531;&#x7684;&#x94FE;&#x63A5;&#x3002;<br>
+&#x5173;&#x8054;: #router.push# #router.replace#</p>
+</li>
+<li>
+<p>active-class<br>
+&#x7C7B;&#x578B;: string<br>
+&#x9ED8;&#x8BA4;&#x503C;: <code>&quot;router-link-active&quot;</code><br>
+&#x8BBE;&#x7F6E;&#x5F53;&#x524D;&#x8DEF;&#x5F84;&#x5305;&#x542B; <code>to</code> &#x5C5E;&#x6027;&#x503C;&#x65F6;&#x4F7F;&#x7528;&#x7684; CSS &#x7C7B;&#x540D;&#x3002;<br>
+&#x5173;&#x8054;: #linkActiveClass#</p>
+</li>
+<li>
+<p>exact-active-class<br>
+&#x7C7B;&#x578B;: string<br>
+&#x9ED8;&#x8BA4;&#x503C;: <code>&quot;router-link-exact-active&quot;</code><br>
+&#x8BBE;&#x7F6E;&#x5F53;&#x524D;&#x8DEF;&#x5F84;&#x5B8C;&#x5168;&#x5339;&#x914D; <code>to</code> &#x5C5E;&#x6027;&#x503C;&#x65F6;&#x4F7F;&#x7528;&#x7684; CSS &#x7C7B;&#x540D;&#x3002;<br>
+&#x5173;&#x8054;: #linkExactActiveClass#</p>
+</li>
+<li>
+<p>tag<br>
+&#x7C7B;&#x578B;: string<br>
+&#x9ED8;&#x8BA4;&#x503C;: <code>&quot;a&quot;</code><br>
+&#x6307;&#x5B9A;&#x8981; <code>&lt;router-link&gt;</code> &#x6E32;&#x67D3;&#x6210;&#x4F55;&#x79CD;&#x6807;&#x7B7E;&#x3002;<br>
+&#x6CE8;&#x610F;: &#x4E0D;&#x8BBA;&#x662F;&#x4F55;&#x79CD;&#x6807;&#x7B7E;&#x90FD;&#x4F1A;&#x76D1;&#x542C;&#x70B9;&#x51FB;&#xFF0C;&#x89E6;&#x53D1;&#x5BFC;&#x822A;&#x3002;</p>
+</li>
+</ul>
+<h2 class="mume-header" id="router-viewhttpsroutervuejsorgzhapirouter-view"><a href="https://router.vuejs.org/zh/api/#router-view">&lt;router-view&gt;</a></h2>
+
+<p><code>&lt;router-view&gt;</code> &#x7EC4;&#x4EF6;&#x7528;&#x4E8E;&#x6E32;&#x67D3;&#x8DEF;&#x5F84;&#x5339;&#x914D;&#x5230;&#x7684;&#x89C6;&#x56FE;&#x7EC4;&#x4EF6;&#x3002;</p>
+<p>&#x975E; <code>router-view</code> &#x4F7F;&#x7528;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x90FD;&#x76F4;&#x63A5;&#x4F20;&#x7ED9;&#x6E32;&#x67D3;&#x7684;&#x7EC4;&#x4EF6;&#x3002;<code>router-view</code> &#x6E32;&#x67D3;&#x7684;&#x7EC4;&#x4EF6;&#x8FD8;&#x53EF;&#x4EE5;&#x5185;&#x5D4C;&#x81EA;&#x5DF1;&#x7684; <code>router-view</code>&#xFF0C;&#x6839;&#x636E;&#x5D4C;&#x5957;&#x8DEF;&#x5F84;&#xFF0C;&#x6E32;&#x67D3;&#x5D4C;&#x5957;&#x7EC4;&#x4EF6;&#x3002;</p>
+<h3 class="mume-header" id="router-view-props">&lt;router-view&gt; Props</h3>
+
+<ul>
+<li>name<br>
+&#x7C7B;&#x578B;: string<br>
+&#x9ED8;&#x8BA4;&#x503C;: <code>&quot;default&quot;</code><br>
+&#x7528;&#x4E8E;&#x547D;&#x540D;&#x89C6;&#x56FE;&#x6E32;&#x67D3;&#x5BF9;&#x5E94;&#x7684;&#x8DEF;&#x7531;&#x914D;&#x7F6E;&#x4E2D; <code>components</code> &#x4E0B;&#x7684;&#x76F8;&#x5E94;&#x7EC4;&#x4EF6;&#x3002;</li>
+</ul>
+
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#%E5%AE%89%E8%A3%85httpsroutervuejsorgzhinstallationhtml">&#x5B89;&#x88C5;</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8httpsroutervuejsorgzhguide">&#x57FA;&#x672C;&#x4F7F;&#x7528;</a></li>
+<li><a href="#%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8Fhttpsroutervuejsorgzhguideessentialshistory-modehtml">&#x8DEF;&#x7531;&#x6A21;&#x5F0F;</a></li>
+<li><a href="#%E5%91%BD%E5%90%8D%E8%B7%AF%E7%94%B1httpsroutervuejsorgzhguideessentialsnamed-routeshtml">&#x547D;&#x540D;&#x8DEF;&#x7531;</a></li>
+<li><a href="#%E5%B5%8C%E5%A5%97%E8%B7%AF%E7%94%B1httpsroutervuejsorgzhguideessentialsnested-routeshtml">&#x5D4C;&#x5957;&#x8DEF;&#x7531;</a></li>
+<li><a href="#%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E5%88%AB%E5%90%8Dhttpsroutervuejsorgzhguideessentialsredirect-and-aliashtml">&#x91CD;&#x5B9A;&#x5411;&#x548C;&#x522B;&#x540D;</a></li>
+<li><a href="#%E7%BC%96%E7%A8%8B%E5%BC%8F%E7%9A%84%E5%AF%BC%E8%88%AAhttpsroutervuejsorgzhguideessentialsnavigationhtml">&#x7F16;&#x7A0B;&#x5F0F;&#x7684;&#x5BFC;&#x822A;</a></li>
+<li><a href="#%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E5%8C%B9%E9%85%8Dhttpsroutervuejsorgzhguideessentialsdynamic-matchinghtml">&#x52A8;&#x6001;&#x8DEF;&#x7531;&#x5339;&#x914D;</a></li>
+<li><a href="#%E5%91%BD%E5%90%8D%E8%A7%86%E5%9B%BEhttpsroutervuejsorgzhguideessentialsnamed-viewshtml">&#x547D;&#x540D;&#x89C6;&#x56FE;</a></li>
+<li><a href="#%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%8F%82httpsroutervuejsorgzhguideessentialspassing-propshtml">&#x8DEF;&#x7531;&#x7EC4;&#x4EF6;&#x4F20;&#x53C2;</a></li>
+<li><a href="#%E5%AF%BC%E8%88%AA%E5%AE%88%E5%8D%ABhttpsroutervuejsorgzhguideadvancednavigation-guardshtml">&#x5BFC;&#x822A;&#x5B88;&#x536B;</a></li>
+<li><a href="#%E8%B7%AF%E7%94%B1%E5%85%83%E4%BF%A1%E6%81%AFhttpsroutervuejsorgzhguideadvancedmetahtml">&#x8DEF;&#x7531;&#x5143;&#x4FE1;&#x606F;</a></li>
+<li><a href="#%E8%BF%87%E6%B8%A1%E5%8A%A8%E6%95%88httpsroutervuejsorgzhguideadvancedtransitionshtml">&#x8FC7;&#x6E21;&#x52A8;&#x6548;</a></li>
+<li><a href="#%E6%BB%9A%E5%8A%A8%E8%A1%8C%E4%B8%BAhttpsroutervuejsorgzhguideadvancedscroll-behaviorhtml">&#x6EDA;&#x52A8;&#x884C;&#x4E3A;</a></li>
+<li><a href="#%E8%B7%AF%E7%94%B1%E5%AF%B9%E8%B1%A1httpsroutervuejsorgzhapie8b7afe794b1e5afb9e8b1a1">&#x8DEF;&#x7531;&#x5BF9;&#x8C61;</a>
+<ul>
+<li><a href="#%E5%B1%9E%E6%80%A7">&#x5C5E;&#x6027;</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9E%84%E5%BB%BA%E9%80%89%E9%A1%B9httpsroutervuejsorgzhapirouter-e69e84e5bbbae98089e9a1b9">&#x6784;&#x5EFA;&#x9009;&#x9879;</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95httpsroutervuejsorgzhapirouter-e5ae9ee4be8be696b9e6b395">&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;</a></li>
+<li><a href="#router-linkhttpsroutervuejsorgzhapirouter-link">&lt;router-link&gt;</a>
+<ul>
+<li><a href="#router-link-props">&lt;router-link&gt; Props</a></li>
+</ul>
+</li>
+<li><a href="#router-viewhttpsroutervuejsorgzhapirouter-view">&lt;router-view&gt;</a>
+<ul>
+<li><a href="#router-view-props">&lt;router-view&gt; Props</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">&#x2261;</a>
+    
+    
+    
+    
+    
+    
+    
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  
+    </body></html>
